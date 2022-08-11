@@ -10,7 +10,8 @@ export type Station = {
     x: number,
     y: number,
     FID: number,
-    ID: number
+    ID: number,
+    _id?: string
 }
 
 export enum ActionTypes {
