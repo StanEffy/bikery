@@ -8,7 +8,7 @@ export const LoadAllStations = () => async (dispatch: Dispatch<ILoadAllStations>
         dispatch(
             {
                 type: ActionTypes.LoadAllStations,
-                payload: data
+                payload: data.data.data
             }
         )
     }

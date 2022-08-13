@@ -8,10 +8,17 @@ import StationList from "./components/StationsList/StationList";
 import Statistics from "./components/Statistics/Statistics";
 import AddTrip from "./components/AddTrip/AddTrip";
 import AddStation from "./components/AddStation/AddStation";
+import {useDispatch} from "react-redux";
+import {ActionTypes} from "./store/actions/types";
+import {useEffect} from "react";
+import {LoadAllStations} from "./store/actions/stationsActions";
 
 function App() {
-
-
+  const dispatch = useDispatch();
+ useEffect( () => {
+   // @ts-ignore
+   dispatch(LoadAllStations())
+ })
   return (
       <div className="App">
         <header className="App-header">

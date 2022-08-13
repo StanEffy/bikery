@@ -35,5 +35,8 @@ export const stationsReducers = (state = initialState, action: TAction) => {
                 ...state, activeStation: action.payload
             }
         }
+        default: {
+            return state
+        }
     }
 }
