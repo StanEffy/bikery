@@ -1,10 +1,9 @@
 import React from 'react';
+import StatioListTable from "./StatioListTable";
 
 const StationList = () => {
     return (
-        <div>
-            This is stations list
-        </div>
+        <StatioListTable />
     );
 };
 
