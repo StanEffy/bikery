@@ -8,10 +8,19 @@ import StationList from "./components/StationsList/StationList";
 import Statistics from "./components/Statistics/Statistics";
 import AddTrip from "./components/AddTrip/AddTrip";
 import AddStation from "./components/AddStation/AddStation";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {LoadAllStations} from "./store/actions/stationsActions";
+import {LoadAllStationsStats} from "./store/actions/stationsStatsActions";
 
 function App() {
-
-
+  const dispatch = useDispatch();
+ useEffect( () => {
+   // @ts-ignore
+   dispatch(LoadAllStations())
+   // @ts-ignore
+   dispatch(LoadAllStationsStats())
+ })
   return (
       <div className="App">
         <header className="App-header">
@@ -19,8 +28,10 @@ function App() {
             <Header />
             <Routes>
               <Route path={'/stations'} element={<StationList />} />
+              <Route path={'/stations/:id'} element={<SingleStation />} />
+
               <Route path={'/map'} element={<Map />} />
-              <Route path={'/random_station'} element={<SingleStation />} />
+
               <Route path={'/statistics'} element={<Statistics />} />
 
               <Route path={'/add_trip'} element={<AddTrip />} />
