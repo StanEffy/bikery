@@ -18,13 +18,3 @@ export const apiTrips = axios.create({
     // @ts-ignore
     'Access-Control-Allow-Credentials': true
 })
-
-export const apiTripsByDeparture = async (id: string | undefined) => {
-    try {
-        const {data} = await apiTrips.get(`/?departure_station_id=${id}`)
-        return data.data.data
-    }
-    catch (e) {
-        console.log(e)
-    }
-}

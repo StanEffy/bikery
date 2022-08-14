@@ -14,7 +14,7 @@ const SingleStation = () => {
     const {id} = useParams()
     // @ts-ignore
     const tripsFromStation = useSelector((state) => state.trips.tripsForActiveStation)
-// @ts-ignore
+    // @ts-ignore
     useEffect( () => {
         // @ts-ignore
         dispatch(LoadAllTripsByStation(id))
