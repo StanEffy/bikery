@@ -3,6 +3,8 @@ import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {Station, StationStats} from "../../store/actions/types";
 import SingleStationStatsTable from "./SingleStationStatsTable";
+import SingleMap from "../Map/SingleMap";
+import {Typography} from "@mui/material";
 
 const SingleStation = () => {
     const {id} = useParams()
@@ -17,6 +19,8 @@ const SingleStation = () => {
     return (
         <div>
             <SingleStationStatsTable id={st_id} name={name}  address={activeStation.Osoite} capacity={activeStation.Kapasiteet} arrivals={arrivals} departures={departures} mean_duration={mean_duration} mean_distance={mean_distance} median_duration={median_duration} median_distance={median_distance} />
+            <Typography variant={"h5"} sx={{ textAlign: "center", my: 3}}> Here it is on the map!</Typography>
+            <SingleMap x={activeStation.x} y={activeStation.y} />
         </div>
     );
 };

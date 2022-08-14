@@ -32,7 +32,7 @@ console.log(median_duration)
                         <TableCell>ID</TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Address</TableCell>
-                        <TableCell align="right">Capacity</TableCell>
+                        <TableCell align="right" sx={{display: { xs: 'none', md: 'table-cell'}}}>Capacity</TableCell>
                         <TableCell align="right">Arrivals</TableCell>
                         <TableCell align="right">Departures</TableCell>
                         <TableCell align="right" sx={{display: { xs: 'none', md: 'table-cell'}}}>Mean dist</TableCell>
@@ -54,7 +54,7 @@ console.log(median_duration)
                             </TableCell> <TableCell component="th" scope="row">
                                 {address}
                             </TableCell>
-                            <TableCell align="right">{capacity}</TableCell>
+                            <TableCell align="right" sx={{display: { xs: 'none', md: 'table-cell'}}}>{capacity}</TableCell>
                             <TableCell align="right">{arrivals}</TableCell>
                             <TableCell align="right">{departures}</TableCell>
                             <TableCell align="right" sx={{display: { xs: 'none', md: 'table-cell'}}}>{Math.floor(mean_distance)} m</TableCell>

@@ -5,13 +5,12 @@ import {useSelector} from "react-redux";
 
 const SingleMap = ({x , y}: { x: number, y: number}) => {
     // @ts-ignore
-    const allStations = useSelector((state) => state.stations.allStations)
 
     useEffect(() => {
         mapboxgl.accessToken = 'pk.eyJ1IjoiaG9seWRvbmsiLCJhIjoiY2t3bTV4c2s5MXdqaTJ2bWxqYmNzeXg4ciJ9.9mHUItDBPKx0if6COMXKEg';
         const map = new mapboxgl.Map({
             container: 's-map', // container ID
-            style: 'mapbox://styles/mapbox/light-v9', // style URL
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
             center: [x, y], // starting position [lng, lat]
             zoom: 12, // starting zoom// display the map as a 3D globe
         });
@@ -25,7 +24,7 @@ const SingleMap = ({x , y}: { x: number, y: number}) => {
 
     }, [])
     return (
-        <div id={'s-map'} style={{ maxWidth: '500px', width: '100%', height: '500px'}}/>
+        <div id={'s-map'} style={{  width: '100%', height: '400px', }}/>
     );
 };
 
