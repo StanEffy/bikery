@@ -184,7 +184,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     );
 };
 
-export default function StatioListTable() {
+export default function StationListTable() {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof Data>('id');
     const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -271,7 +271,7 @@ export default function StatioListTable() {
                                             role="checkbox"
                                             tabIndex={-1}
                                             key={name}
-                                            className={"table-row--clickable"}
+                                            className={"StationListTable"}
                                         >
 
                                             <TableCell

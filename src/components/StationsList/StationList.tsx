@@ -1,9 +1,9 @@
 import React from 'react';
-import StatioListTable from "./StatioListTable";
-
+import StationListTable from "./StationListTable";
+ 
 const StationList = () => {
     return (
-        <StatioListTable />
+        <StationListTable />
     );
 };
 
