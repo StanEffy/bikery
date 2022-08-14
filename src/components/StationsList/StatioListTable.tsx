@@ -127,17 +127,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
-                    <Checkbox
-                        color="primary"
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{
-                            'aria-label': 'select all',
-                        }}
-                    />
-                </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
@@ -182,16 +171,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 }),
             }}
         >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
+
                 <Typography
                     sx={{ flex: '1 1 100%' }}
                     variant="h6"
@@ -200,20 +180,6 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                 >
                     Stations list
                 </Typography>
-            )}
-            {numSelected > 0 ? (
-                <Tooltip title="Delete">
-                    <IconButton>
-                        <DeleteIcon />
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
         </Toolbar>
     );
 };
@@ -224,7 +190,7 @@ export default function StatioListTable() {
     const [selected, setSelected] = React.useState<readonly string[]>([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(25);
     const navigate = useNavigate()
     // @ts-ignore
     const allStations = useSelector((state) => state.stations.allStationsStats)
@@ -273,7 +239,7 @@ export default function StatioListTable() {
     // @ts-ignore
     return (
         <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
+            <Paper sx={{ width: '100%', mb: 2, pl: 1, boxSizing: "border-box" }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer>
                     <Table
@@ -295,7 +261,7 @@ export default function StatioListTable() {
                             {stableSort(allStations, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(({departures, departure_station_name:name,arrivals, departure_station_id: id, capacity}, index) => {
-                                    const isItemSelected = isSelected(name);
+
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
@@ -303,20 +269,11 @@ export default function StatioListTable() {
                                             hover
                                             onClick={() => handleClick(id)}
                                             role="checkbox"
-                                            aria-checked={isItemSelected}
                                             tabIndex={-1}
                                             key={name}
-                                            selected={isItemSelected}
+                                            className={"table-row--clickable"}
                                         >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    color="primary"
-                                                    checked={isItemSelected}
-                                                    inputProps={{
-                                                        'aria-labelledby': labelId,
-                                                    }}
-                                                />
-                                            </TableCell>
+
                                             <TableCell
                                                 component="th"
                                                 id={labelId}

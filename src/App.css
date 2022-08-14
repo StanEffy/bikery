@@ -16,3 +16,9 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+
+/*tables*/
+.table-row--clickable:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

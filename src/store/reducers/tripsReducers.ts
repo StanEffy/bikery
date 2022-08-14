@@ -1,7 +1,7 @@
 import {ActionTypesTrips, ILoadAllTripsByStation, IAddNewTrip} from "../actions/types";
 
 export const initialState = {
-    tripsForStation: {},
+    tripsForActiveStation: {},
 }
 type TAction = ILoadAllTripsByStation | IAddNewTrip
 
@@ -12,10 +12,11 @@ export const tripsReducers = (state = initialState, action: TAction) => {
 
         }
         case ActionTypesTrips.AddNewTrip: {
-
             return {
                 ...state
             }
         }
+        default:
+            return state
     }
 }
