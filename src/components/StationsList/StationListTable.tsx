@@ -271,7 +271,7 @@ export default function StationListTable() {
                                             role="checkbox"
                                             tabIndex={-1}
                                             key={name}
-                                            className={"StationListTable"}
+                                            className={"station-list__row--clickable"}
                                         >
 
                                             <TableCell

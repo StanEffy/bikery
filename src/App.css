@@ -18,7 +18,7 @@
 }
 
 /*tables*/
-.table-row--clickable:hover {
+.station-list__row--clickable:hover {
   opacity: 0.8;
-  cursor: pointer;
+  cursor: pointer!important;
 }
