@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -22,16 +23,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import {useSelector} from "react-redux";
-import {Station, StationStats} from "../../store/actions/types";
+import {Station, StationStats, Trip} from "../../store/actions/types";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 interface Data {
-    name: string,
-    id: number,
-    address: string,
-    capacity: number,
-    arrivals: number,
-    departures: number
+    departure_station: string,
+    arrival_station: string,
+    duration: number,
+    distance: number
+    date: string
 }
 
 
@@ -82,27 +83,27 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
     {
-        id: 'id',
-        numeric: true,
+        id: 'departure_station',
+        numeric: false,
         disablePadding: true,
-        label: 'id',
+        label: 'departure station',
     },
     {
-        id: 'name',
+        id: 'arrival_station',
         numeric: true,
         disablePadding: false,
-        label: 'name',
+        label: 'arrival station',
     },
     {
-        id: 'arrivals',
+        id: 'duration',
         numeric: true,
         disablePadding: false,
-        label: 'arrivals',
+        label: 'duration',
     }, {
-        id: 'departures',
+        id: 'distance',
         numeric: true,
         disablePadding: false,
-        label: 'departures',
+        label: 'distance',
     },
 ];
 
@@ -116,7 +117,7 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    const {  order, orderBy , onRequestSort } =
         props;
     const createSortHandler =
         (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
@@ -177,13 +178,13 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     id="tableTitle"
                     component="div"
                 >
-                    Stations list
+                   Trips from station
                 </Typography>
         </Toolbar>
     );
 };
 
-export default function StationListTable() {
+export default function TripsFromStationTable({trips}) {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof Data>('id');
     const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -191,8 +192,6 @@ export default function StationListTable() {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(25);
     const navigate = useNavigate()
-    // @ts-ignore
-    const allStations = useSelector((state) => state.stations.allStationsStats)
 
     const handleRequestSort = (
         event: React.MouseEvent<unknown>,
@@ -205,7 +204,7 @@ export default function StationListTable() {
 
     const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-            const newSelected = allStations.map((n: StationStats) => n.departure_station_name);
+            const newSelected = trips.map((n: Trip) => n.departure_station_name);
             setSelected(newSelected);
             return;
         }
@@ -227,13 +226,10 @@ export default function StationListTable() {
     const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDense(event.target.checked);
     };
-
-    const isSelected = (name: string) => selected.indexOf(name) !== -1;
-
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - allStations.length) : 0;
-
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - trips.length) : 0;
+    useEffect(() => {}, [trips])
     // @ts-ignore
     return (
         <Box sx={{ width: '100%' }}>
@@ -251,22 +247,21 @@ export default function StationListTable() {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={allStations.length}
+                            rowCount={trips.length}
                         />
                         <TableBody>
-                            {stableSort(allStations, getComparator(order, orderBy))
+                            {stableSort(trips, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map(({departures, departure_station_name:name,arrivals, departure_station_id: id, capacity}, index) => {
+                                .map(({_id, departure_station_name: departure_station, return_station_name: arrival_station, duration_sec: duration, covered_distance_m: distance, return_station_id  }, index) => {
 
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={() => handleClick(id)}
                                             role="checkbox"
                                             tabIndex={-1}
-                                            key={name}
+                                            key={_id}
                                             className={"station-list__row--clickable"}
                                         >
                                             <TableCell
@@ -274,18 +269,19 @@ export default function StationListTable() {
                                                 id={labelId}
                                                 scope="row"
                                                 padding="none"
-                                            >{id}</TableCell>
+                                            >{departure_station}</TableCell>
                                             <TableCell
                                                 align="right"
                                                 component="th"
                                                 id={labelId}
                                                 scope="row"
                                                 padding="none"
+                                                onClick={() => handleClick(return_station_id)}
                                             >
-                                                {name}
+                                                {arrival_station}
                                             </TableCell>
-                                            <TableCell align="right">{departures}</TableCell>
-                                            <TableCell align="right">{arrivals}</TableCell>
+                                            <TableCell align="right">{Math.floor(duration / 60)} min {duration % 60} sec</TableCell>
+                                            <TableCell align="right">{distance / 1000} km</TableCell>
                                         </TableRow>
                                     );
                                 })}
@@ -304,7 +300,7 @@ export default function StationListTable() {
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={allStations.length}
+                    count={trips.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}

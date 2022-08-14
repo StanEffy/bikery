@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import {useSelector} from "react-redux";
 
 
-const SingleMap = ({x , y}: { x: number, y: number}) => {
+const SingleMap = ({x , y, st_id}: { x: number, y: number, st_id: string}) => {
     // @ts-ignore
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const SingleMap = ({x , y}: { x: number, y: number}) => {
                 .setLngLat([x, y])
                 .addTo(map);
 
-    }, [])
+    }, [st_id])
     return (
         <div id={'s-map'} style={{  width: '100%', height: '400px', }}/>
     );

@@ -6,19 +6,20 @@ import SingleStationStatsTable from "./SingleStationStatsTable";
 import SingleMap from "../Map/SingleMap";
 import {Typography} from "@mui/material";
 import {LoadAllTripsByStation} from "../../store/actions/tripsAction";
+import TripsFromStationTable from "./TripsFromStation";
 
 
 const SingleStation = () => {
     const dispatch = useDispatch();
     const {id} = useParams()
+    // @ts-ignore
+    const tripsFromStation = useSelector((state) => state.trips.tripsForActiveStation)
 // @ts-ignore
     useEffect( () => {
         // @ts-ignore
         dispatch(LoadAllTripsByStation(id))
-    }, []
+    }, [id]
     )
-    // @ts-ignore
-    const tripsFromStation = useSelector((state) => state.trips.tripsForActiveStation)
     console.log(tripsFromStation)
     // @ts-ignore
     const allStationsStats = useSelector((state) => state.stations.allStationsStats)
@@ -35,7 +36,9 @@ const SingleStation = () => {
         <div>
             <SingleStationStatsTable id={st_id} name={name}  address={activeStation.Osoite} capacity={activeStation.Kapasiteet} arrivals={arrivals} departures={departures} mean_duration={mean_duration} mean_distance={mean_distance} median_duration={median_duration} median_distance={median_distance} />
             <Typography variant={"h5"} sx={{ textAlign: "center", my: 3}}> Here it is on the map!</Typography>
-            <SingleMap x={activeStation.x} y={activeStation.y} />
+            <SingleMap x={activeStation.x} y={activeStation.y} st_id={st_id} />
+
+            <TripsFromStationTable trips={tripsFromStation}/>
         </div>
     );
 };

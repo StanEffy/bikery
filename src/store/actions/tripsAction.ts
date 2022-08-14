@@ -9,7 +9,7 @@ import {Dispatch} from "redux";
 export const LoadAllTripsByStation = (id:string) => async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
     try {
         const {data} = await apiTrips.get('/?departure_station_id='+ id);
-        console.log(data.data.data)
+
         dispatch(
             {
                 type: ActionTypesTrips.LoadAllTripsByStation,
