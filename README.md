@@ -48,18 +48,19 @@ The project is still under construction and many other features are going to be 
 
 But it has some interesting stuff to be observed and pondered upon...
 
-![Map](https://i.postimg.cc/fJNTVWNN/Screenshot-10.jpg)
+![Map](https://iili.io/gdoemN.md.jpg)
 
 It has a map based on MapBox with pins of all the stations we got from the dataset. All the pins are clickable and 
 lead you to the page belonged to the station
 
-![Single station view](https://i.postimg.cc/8fhpZ9L9/single-station.jpg)
+![Single station view](https://iili.io/gdovII.md.jpg)
 
 Here you can learn some statistics about station, but remember: the bigger monitor you have, the better info you get 
 (up to some limit of course).
 There is a table which consist of some trips started from this station with covered distance and duration.
 
-![Single station view](https://i.postimg.cc/YjgC2GTR/station-list.jpg)
+![Single station view](https://iili.io/gdoOep.md.jpg)
+
 Also there is a page where you can have a look on every single station, click on the row and go straight to this 
 station.
 
