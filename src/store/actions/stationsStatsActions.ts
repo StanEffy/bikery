@@ -9,7 +9,7 @@ export const LoadAllStationsStats = () => async (dispatch: Dispatch<ILoadAllStat
         dispatch(
             {
                 type: ActionTypesStats.LoadAllStationStats,
-                payload: data
+                payload: data.data.data
             }
         )
     } catch (e) {

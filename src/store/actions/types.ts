@@ -9,7 +9,7 @@ export type Station = {
     Kapasiteet: number,
     x: number,
     y: number,
-    FID: number,
+    FID?: number | string,
     ID: number,
     _id?: string
 }

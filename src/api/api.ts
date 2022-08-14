@@ -8,7 +8,7 @@ export const apiStations = axios.create({
 })
 
 export const apiStationsStats = axios.create({
-    baseURL: '/',
+    baseURL: 'http://localhost:3001/api/v1/stats/',
     // @ts-ignore
     'Access-Control-Allow-Credentials': true
 })
