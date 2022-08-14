@@ -14,7 +14,7 @@ export const apiStationsStats = axios.create({
 })
 
 export const apiTrips = axios.create({
-    baseURL: '/',
+    baseURL: 'http://localhost:3001/api/v1/trips/',
     // @ts-ignore
     'Access-Control-Allow-Credentials': true
 })

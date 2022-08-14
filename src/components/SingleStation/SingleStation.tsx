@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Station, StationStats} from "../../store/actions/types";
 import SingleStationStatsTable from "./SingleStationStatsTable";
 import SingleMap from "../Map/SingleMap";
 import {Typography} from "@mui/material";
-import {apiTripsByDeparture} from "../../api/api";
+import {LoadAllTripsByStation} from "../../store/actions/tripsAction";
+
 
 const SingleStation = () => {
-
+    const dispatch = useDispatch();
     const {id} = useParams()
 // @ts-ignore
-    const tripsFromStation = apiTripsByDeparture(id)
+    useEffect( () => {
+        // @ts-ignore
+        dispatch(LoadAllTripsByStation(id))
+    }, []
+    )
+    // @ts-ignore
+    const tripsFromStation = useSelector((state) => state.trips.tripsForActiveStation)
     console.log(tripsFromStation)
     // @ts-ignore
     const allStationsStats = useSelector((state) => state.stations.allStationsStats)

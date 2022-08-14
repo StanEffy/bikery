@@ -23,7 +23,7 @@ type StationStatsRow = {
 
 
 export default function SingleStationStatsTable({name, id, address, capacity, arrivals, departures, mean_distance, median_distance, mean_duration, median_duration}: StationStatsRow) {
-console.log(median_duration)
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 450 }} aria-label="table of the station" size="small">

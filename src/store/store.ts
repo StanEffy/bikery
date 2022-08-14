@@ -3,9 +3,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {stationsReducers} from "./reducers/stationsReducers";
+import {tripsReducers} from "./reducers/tripsReducers";
 
 const reducer = combineReducers({
-    stations: stationsReducers
+    stations: stationsReducers,
+    trips: tripsReducers
 })
 
 const middleware = [thunk];
