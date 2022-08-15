@@ -12,6 +12,7 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {LoadAllStations} from "./store/actions/stationsActions";
 import {LoadAllStationsStats} from "./store/actions/stationsStatsActions";
+import InitialPage from "./components/InitialPage/InitialPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
           <Router>
             <Header />
             <Routes>
+              <Route path={'/'} element={<InitialPage />} />
               <Route path={'/stations'} element={<StationList />} />
               <Route path={'/stations/:id'} element={<SingleStation />} />
 
