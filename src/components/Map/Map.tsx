@@ -32,7 +32,7 @@ const Map = () => {
                 .addTo(map);
 
             marker.getElement().addEventListener('click', () => {
-            navigate(`/stations/${station.ID}`)
+            navigate(`/stations/${station.FID}`)
             });
 
         })

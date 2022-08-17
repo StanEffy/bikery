@@ -13,6 +13,7 @@ import {useEffect} from "react";
 import {LoadAllStations} from "./store/actions/stationsActions";
 import {LoadAllStationsStats} from "./store/actions/stationsStatsActions";
 import InitialPage from "./components/InitialPage/InitialPage";
+import JourneysList from "./components/JourneysList/JourneysList";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,8 @@ function App() {
               <Route path={'/map'} element={<Map />} />
 
               <Route path={'/statistics'} element={<Statistics />} />
+
+              <Route path={'/journeys'} element={<JourneysList />} />
 
               <Route path={'/add_trip'} element={<AddTrip />} />
               <Route path={'/add_station'} element={<AddStation />} />

@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
 import mapboxgl from 'mapbox-gl';
-import {useSelector} from "react-redux";
-
 
 const SingleMap = ({x , y, st_id}: { x: number, y: number, st_id: string}) => {
     // @ts-ignore
