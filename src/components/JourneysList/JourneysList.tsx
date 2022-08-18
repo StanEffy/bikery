@@ -1,6 +1,6 @@
 import React from 'react';
 import {DistanceFilter, DurationFilter, JourneysStationFilters} from "./JourneysFilters";
-import {Box} from "@mui/material";
+import {Box, Button} from "@mui/material";
 
 const JourneysList = () => {
 
@@ -12,7 +12,9 @@ const JourneysList = () => {
                     <DistanceFilter />
                     <DurationFilter />
                 </Box>
-
+                <Box display={"flex"} alignItems={"flex-start"} justifyContent={"center"} sx={{ width: "100%"}}>
+                    <Button variant="contained">Send filters</Button>
+                </Box>
             </Box>
 
             <div>

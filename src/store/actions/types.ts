@@ -1,3 +1,5 @@
+import {LoadFilteredTrips} from "./tripsAction";
+
 export type Station = {
     Name: string,
     Namn?: string,
@@ -43,6 +45,7 @@ export enum ActionTypes {
 export enum ActionTypesTrips {
     LoadAllTripsByStation= "LoadAllTripsByStation" ,
     AddNewTrip = "AddNewTrip",
+    LoadFilteredTrips = "LoadFilteredTrips"
 }
 export enum ActionTypesStats {
     LoadAllStationStats = "LoadAllStationStats"
@@ -64,7 +67,7 @@ export interface  IAddNewStation {
 }
 
 export interface ILoadAllTripsByStation {
-    type: ActionTypesTrips.LoadAllTripsByStation,
+    type: ActionTypesTrips.LoadAllTripsByStation | ActionTypesTrips.LoadFilteredTrips,
     payload: [Trip]
 }
 
