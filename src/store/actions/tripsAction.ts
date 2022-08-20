@@ -22,6 +22,22 @@ export const LoadAllTripsByStation = (id:string) => async (dispatch: Dispatch<IL
     }
 }
 
+export const LoadFilteredTrips = (requestString:string) => async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
+    try {
+        const {data} = await apiTrips.get('/'+ requestString);
+
+        dispatch(
+            {
+                type: ActionTypesTrips.LoadFilteredTrips,
+                payload: data.data.data
+            }
+        )
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+
 export const AddNewTrip = (trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
     try {
         dispatch(
