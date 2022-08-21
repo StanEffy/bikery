@@ -178,7 +178,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
                     id="tableTitle"
                     component="div"
                 >
-                   Trips from station
+                   Filtered trips from station/s
                 </Typography>
         </Toolbar>
     );

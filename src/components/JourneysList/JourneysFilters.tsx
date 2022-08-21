@@ -10,7 +10,8 @@ import {Box, FormControlLabel, InputAdornment} from "@mui/material";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export const JourneysStationFilters = () => {
+// @ts-ignore
+export const JourneysStationFilters = ({handleFilters}) => {
     // @ts-ignore
     const allStations = useSelector(state => state.stations.allStations)
 
@@ -18,6 +19,7 @@ export const JourneysStationFilters = () => {
         <Autocomplete
             multiple
             id="checkboxes-tags-demo"
+            onChange={(event, value) => ( handleFilters((prevState: any) => ({...prevState, departure_station_id: value})))}
             options={allStations}
             disableCloseOnSelect
             getOptionLabel={(option: Station) => option.Name}
@@ -40,7 +42,8 @@ export const JourneysStationFilters = () => {
     );
 }
 
-export const DistanceFilter = () => {
+// @ts-ignore
+export const DistanceFilter = ({handleFilters}) => {
     const [distance, setDistance] = useState("0")
     const [checked, setChecked] = React.useState(true);
 
@@ -49,6 +52,7 @@ export const DistanceFilter = () => {
     };
     const handleDistanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDistance(event.target.value);
+        handleFilters((prevState: any) => ({...prevState, covered_distance_m: event.target.value}))
     };
     return (
         <Box display={"flex"} alignItems={"center"}>
@@ -70,7 +74,8 @@ export const DistanceFilter = () => {
     )
 }
 
-export const DurationFilter = () => {
+// @ts-ignore
+export const DurationFilter = ({handleFilters}) => {
     const [duration, setDuration] = useState("0")
     const [checked, setChecked] = React.useState(true);
 
@@ -79,6 +84,7 @@ export const DurationFilter = () => {
     };
     const handleDistanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDuration(event.target.value);
+        handleFilters((prevState: any) => ({...prevState, duration_sec: event.target.value}))
     };
     return (
         <Box display={"flex"} alignItems={"center"}>
