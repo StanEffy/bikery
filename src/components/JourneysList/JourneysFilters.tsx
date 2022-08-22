@@ -6,41 +6,40 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import {useSelector} from "react-redux";
 import {Station} from "../../store/actions/types"
-import {Box, FormControlLabel, InputAdornment} from "@mui/material";
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+import {
+    Box,
+    FormControlLabel,
+    InputAdornment,
+} from "@mui/material";
 
 // @ts-ignore
 export const JourneysStationFilters = ({handleFilters}) => {
     // @ts-ignore
-    const allStations = useSelector(state => state.stations.allStations)
+        const allStations = useSelector(state => state.stations.allStations)
 
-    return (
-        <Autocomplete
-            multiple
-            id="checkboxes-tags-demo"
-            onChange={(event, value) => ( handleFilters((prevState: any) => ({...prevState, departure_station_id: value})))}
-            options={allStations}
-            disableCloseOnSelect
-            getOptionLabel={(option: Station) => option.Name}
-            renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                    <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
-                        style={{ marginRight: 8 }}
-                        checked={selected}
-                    />
-                    {option.Name}
-                </li>
-            )}
-            style={{ width: 500 }}
-            renderInput={(params) => (
-                <TextField {...params} label="Station of departure" placeholder="Stations" />
-            )}
-        />
-    );
-}
+    const handleStationChange = (value: any) => {
+        handleFilters((prevState: any) => ({...prevState, departure_station_id: value}))
+    };
+
+        return (
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={allStations}
+                onChange={(event, value) => {
+                    handleStationChange(value)
+                }}
+                sx={{ width: 300 }}
+                getOptionLabel={(option:Station) => option.Name}
+                renderOption={(props, option) => (
+                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                        {option.Name}
+                    </Box>
+                )}
+                    renderInput={(params) => <TextField {...params} label="Movie" />}
+            />
+        );
+    }
 
 // @ts-ignore
 export const DistanceFilter = ({handleFilters}) => {
