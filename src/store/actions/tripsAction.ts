@@ -24,7 +24,7 @@ export const LoadAllTripsByStation = (id:string) => async (dispatch: Dispatch<IL
 
 export const LoadFilteredTrips = (requestString:string) => async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
     try {
-        const {data} = await apiTrips.get('/'+ requestString);
+        const {data} = await apiTrips.get('/?'+ requestString);
 
         dispatch(
             {
