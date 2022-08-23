@@ -36,7 +36,7 @@ export const JourneysStationFilters = ({handleFilters}) => {
                         {option.Name}
                     </Box>
                 )}
-                    renderInput={(params) => <TextField {...params} label="Movie" />}
+                    renderInput={(params) => <TextField {...params} label="Departure station" />}
             />
         );
     }
@@ -48,6 +48,7 @@ export const DistanceFilter = ({handleFilters}) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
+        handleFilters((prevState: any) => ({...prevState, distance_is_greater: event.target.checked}))
     };
     const handleDistanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDistance(event.target.value);
@@ -80,6 +81,7 @@ export const DurationFilter = ({handleFilters}) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
+        handleFilters((prevState: any) => ({...prevState, duration_is_greater: event.target.checked}))
     };
     const handleDistanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDuration(event.target.value);
