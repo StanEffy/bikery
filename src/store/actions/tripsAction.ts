@@ -24,7 +24,9 @@ export const LoadAllTripsByStation = (id:string) => async (dispatch: Dispatch<IL
 
 export const LoadFilteredTrips = (requestString:string) => async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
     try {
-        const {data} = await apiTrips.get('/?'+ requestString);
+        //If nothing was filtered, than sending only 60k trips
+        let str = requestString.length > 0 ? '/?' + requestString : ''
+        const {data} = await apiTrips.get(str);
 
         dispatch(
             {
