@@ -8,6 +8,7 @@ import {Station} from "../../store/actions/types"
 
 type TFilter = {
     departure_station_id: null | Station,
+	return_station_id: null | Station,
     covered_distance_m: string | 0,
     duration_sec: string | 0,
     distance_is_greater: boolean,
@@ -21,6 +22,7 @@ const JourneysList = () => {
 
 	const [filters, setFilters] = useState<TFilter>({
 		departure_station_id: null,
+		return_station_id: null,
 		covered_distance_m: 0,
 		duration_sec: 0,
 		distance_is_greater: true,
@@ -31,6 +33,10 @@ const JourneysList = () => {
 		let str = ""
 		if(filter.departure_station_id !== null) {
 			str += "departure_station_id="+ filter.departure_station_id?.ID
+		}
+		if(filter.return_station_id !== null) {
+			filter.departure_station_id !== null ? str += "&return_station_id="+ filter.return_station_id?.ID :
+				str += "return_station_id="+ filter.return_station_id?.ID
 		}
 		if(filter.covered_distance_m > 0){
 			if(filter.distance_is_greater){
@@ -55,13 +61,16 @@ const JourneysList = () => {
 	return (
 		<>
 			<Box display={"flex"} alignItems={"flex-start"} justifyContent={"center"} flexWrap={"wrap"} sx={{ mt: 2}}>
-				<JourneysStationFilters  handleFilters={setFilters}/>
+				<Box justifyContent={"space-between"} height={"100%"}>
+					<JourneysStationFilters label={"Departure station"}  handleFilters={setFilters}/>
+					<JourneysStationFilters label={"Return station"} handleFilters={setFilters}/>
+				</Box>
 				<Box>
 					<DistanceFilter handleFilters={setFilters}/>
 					<DurationFilter handleFilters={setFilters}/>
 				</Box>
 				<Box display={"flex"} alignItems={"flex-start"} justifyContent={"center"} sx={{ width: "100%"}}>
-					<Button disabled={!filters.departure_station_id} variant="contained" onClick={() => handleFilter() }>Send filters</Button>
+					<Button disabled={!filters.departure_station_id || !filters.return_station_id} variant="contained" onClick={() => handleFilter() }>Send filters</Button>
 				</Box>
 			</Box>
 			<TripsFromStationTable trips={trips} />

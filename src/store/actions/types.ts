@@ -1,5 +1,3 @@
-import {LoadFilteredTrips} from "./tripsAction";
-
 export type Station = {
     Name: string,
     Namn?: string,

@@ -13,12 +13,14 @@ import {
 } from "@mui/material"
 
 // @ts-ignore
-export const JourneysStationFilters = ({handleFilters}) => {
+export const JourneysStationFilters = ({label, handleFilters}) => {
 	// @ts-ignore
 	const allStations = useSelector(state => state.stations.allStations)
 
 	const handleStationChange = (value: any) => {
-		handleFilters((prevState: any) => ({...prevState, departure_station_id: value}))
+		label === "Departure station" ?
+			handleFilters((prevState: any) => ({...prevState, departure_station_id: value})) :
+			handleFilters((prevState: any) => ({...prevState, return_station_id: value}))
 	}
 
 	return (
@@ -36,7 +38,7 @@ export const JourneysStationFilters = ({handleFilters}) => {
 					{option.Name}
 				</Box>
 			)}
-			renderInput={(params) => <TextField {...params} label="Departure station" />}
+			renderInput={(params) => <TextField {...params} label={label} />}
 		/>
 	)
 }
