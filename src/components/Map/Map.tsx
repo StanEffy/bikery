@@ -1,9 +1,9 @@
-import React, {useEffect} from "react"
+import React, { useEffect } from "react"
 import mapboxgl from "mapbox-gl"
-import {useSelector} from "react-redux"
-import {Station} from "../../store/actions/types"
+import { useSelector } from "react-redux"
+import { Station } from "../../store/actions/types"
 import CreateCustomPopup from "./CustomPopup"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Map = () => {
 	// @ts-ignore
@@ -12,7 +12,8 @@ const Map = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		mapboxgl.accessToken = "pk.eyJ1IjoiaG9seWRvbmsiLCJhIjoiY2t3bTV4c2s5MXdqaTJ2bWxqYmNzeXg4ciJ9.9mHUItDBPKx0if6COMXKEg"
+		mapboxgl.accessToken =
+			"pk.eyJ1IjoiaG9seWRvbmsiLCJhIjoiY2t3bTV4c2s5MXdqaTJ2bWxqYmNzeXg4ciJ9.9mHUItDBPKx0if6COMXKEg"
 		const map = new mapboxgl.Map({
 			container: "map", // container ID
 			style: "mapbox://styles/mapbox/light-v9", // style URL
@@ -23,8 +24,8 @@ const Map = () => {
 			// @ts-ignore
 			map.setFog({}) // Set the default atmosphere style
 		})
-		allStations.forEach( (station : Station) => {
-			const popup = CreateCustomPopup(station.Osoite, station.Kapasiteet )
+		allStations.forEach((station: Station) => {
+			const popup = CreateCustomPopup(station.Osoite, station.Kapasiteet)
 
 			const marker = new mapboxgl.Marker()
 				.setLngLat([station.x, station.y])
@@ -34,12 +35,9 @@ const Map = () => {
 			marker.getElement().addEventListener("click", () => {
 				navigate(`/stations/${station.FID}`)
 			})
-
 		})
 	}, [])
-	return (
-		<div id={"map"} style={{ width: "100%", height: "100vh"}}/>
-	)
+	return <div id={"map"} style={{ width: "100%", height: "100vh" }} />
 }
 
 export default Map

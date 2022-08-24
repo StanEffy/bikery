@@ -1,24 +1,24 @@
 .mapboxgl-marker:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .mapboxgl-marker:hover svg > g > g:nth-child(2) {
-  fill: #7993a5;
+	fill: #7993a5;
 }
 
-.mapboxgl-popup{
-  color: #282c34;
-  width: 170px;
+.mapboxgl-popup {
+	color: #282c34;
+	width: 170px;
 }
 .mapboxgl-popup__header {
-  font-size: 0.75rem;
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
+	font-size: 0.75rem;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 /*tables*/
 .station-list__row--clickable:hover {
-  opacity: 0.8;
-  cursor: pointer!important;
+	opacity: 0.8;
+	cursor: pointer !important;
 }

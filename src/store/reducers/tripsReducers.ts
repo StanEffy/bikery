@@ -1,29 +1,33 @@
-import {ActionTypesTrips, ILoadAllTripsByStation, IAddNewTrip} from "../actions/types"
-import {LoadFilteredTrips} from "../actions/tripsAction"
+import {
+	ActionTypesTrips,
+	ILoadAllTripsByStation,
+	IAddNewTrip,
+} from '../actions/types'
+import { LoadFilteredTrips } from '../actions/tripsAction'
 
 export const initialState = {
 	tripsForActiveStation: [],
-	filteredTrips: []
+	filteredTrips: [],
 }
 type TAction = ILoadAllTripsByStation | IAddNewTrip
 
 export const tripsReducers = (state = initialState, action: TAction) => {
 	switch (action.type) {
-	case ActionTypesTrips.LoadAllTripsByStation: {
-		return {...state, tripsForActiveStation: action.payload}
-
-	}
-	case ActionTypesTrips.LoadFilteredTrips: {
-		return {
-			...state, filteredTrips: action.payload
+		case ActionTypesTrips.LoadAllTripsByStation: {
+			return { ...state, tripsForActiveStation: action.payload }
 		}
-	}
-	case ActionTypesTrips.AddNewTrip: {
-		return {
-			...state
+		case ActionTypesTrips.LoadFilteredTrips: {
+			return {
+				...state,
+				filteredTrips: action.payload,
+			}
 		}
-	}
-	default:
-		return state
+		case ActionTypesTrips.AddNewTrip: {
+			return {
+				...state,
+			}
+		}
+		default:
+			return state
 	}
 }

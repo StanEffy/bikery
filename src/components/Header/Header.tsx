@@ -9,17 +9,18 @@ import Container from "@mui/material/Container"
 import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import MenuIcon from "@mui/icons-material/Menu"
-import { useNavigate  } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { pages } from "../../routes/routes"
 
-
 const ResponsiveAppBar = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+		null
+	)
 
 	const history = useNavigate()
 
-	const navigate = (where:string) => {
+	const navigate = (where: string) => {
 		history(`${where}`)
 	}
 
@@ -47,13 +48,18 @@ const ResponsiveAppBar = () => {
 							letterSpacing: ".3rem",
 							color: "inherit",
 							textDecoration: "none",
-							textTransform: "uppercase"
+							textTransform: "uppercase",
 						}}
 					>
-                        Bikery
+						Bikery
 					</Typography>
 
-					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+					<Box
+						sx={{
+							flexGrow: 1,
+							display: { xs: "flex", md: "none" },
+						}}
+					>
 						<IconButton
 							size="large"
 							aria-label="account of current user"
@@ -82,14 +88,21 @@ const ResponsiveAppBar = () => {
 								display: { xs: "block", md: "none" },
 							}}
 						>
-							{pages.map((page:{name:string, href:string}) => (
-								<MenuItem key={page.name} onClick={ () => {
-									navigate(page.href)
-									handleCloseNavMenu()
-								}}>
-									<Typography textAlign="center">{page.name}</Typography>
-								</MenuItem>
-							))}
+							{pages.map(
+								(page: { name: string; href: string }) => (
+									<MenuItem
+										key={page.name}
+										onClick={() => {
+											navigate(page.href)
+											handleCloseNavMenu()
+										}}
+									>
+										<Typography textAlign="center">
+											{page.name}
+										</Typography>
+									</MenuItem>
+								)
+							)}
 						</Menu>
 					</Box>
 					<Typography
@@ -108,16 +121,21 @@ const ResponsiveAppBar = () => {
 							textDecoration: "none",
 						}}
 					>
-                        BIKERY
+						BIKERY
 					</Typography>
-					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						{pages.map((page:{name:string, href:string}) => (
+					<Box
+						sx={{
+							flexGrow: 1,
+							display: { xs: "none", md: "flex" },
+						}}
+					>
+						{pages.map((page: { name: string; href: string }) => (
 							<Button
 								key={page.name}
 								onClick={() => {
 									navigate(page.href)
-									handleCloseNavMenu()}
-								}
+									handleCloseNavMenu()
+								}}
 								sx={{ my: 2, color: "white", display: "block" }}
 							>
 								{page.name}

@@ -1,80 +1,82 @@
 export type Station = {
-    Name: string,
-    Namn?: string,
-    Nimi?: string,
-    Osoite: string,
-    Kaupunki: string,
-    Stad?: string,
-    Operaattor?: string,
-    Kapasiteet: number,
-    x: number,
-    y: number,
-    FID?: number | string,
-    ID: number,
-    _id?: string
+	Name: string
+	Namn?: string
+	Nimi?: string
+	Osoite: string
+	Kaupunki: string
+	Stad?: string
+	Operaattor?: string
+	Kapasiteet: number
+	x: number
+	y: number
+	FID?: number | string
+	ID: number
+	_id?: string
 }
 export type Trip = {
-    departure: string,
-    return:   string,
-    departure_station_id:  number,
-    departure_station_name:  string,
-    return_station_id: number,
-    return_station_name:  string,
-    covered_distance_m: number,
-    duration_sec: number,
+	departure: string
+	return: string
+	departure_station_id: number
+	departure_station_name: string
+	return_station_id: number
+	return_station_name: string
+	covered_distance_m: number
+	duration_sec: number
 }
 export type StationStats = {
-    departure_station_name: string,
-    departure_station_id: number,
-    departures: number,
-    mean_distance: number,
-    median_distance: number,
-    mean_duration: number,
-    median_durarion: number,
-    arrivals: number
+	departure_station_name: string
+	departure_station_id: number
+	departures: number
+	mean_distance: number
+	median_distance: number
+	mean_duration: number
+	median_durarion: number
+	arrivals: number
 }
 
 export enum ActionTypes {
-    LoadAllStations= "LoadAllStations" ,
-    SetActiveStation = "SetActiveStation",
-    AddNewStation = "AddNewStation"
+	LoadAllStations = 'LoadAllStations',
+	SetActiveStation = 'SetActiveStation',
+	AddNewStation = 'AddNewStation',
 }
 
 export enum ActionTypesTrips {
-    LoadAllTripsByStation= "LoadAllTripsByStation" ,
-    AddNewTrip = "AddNewTrip",
-    LoadFilteredTrips = "LoadFilteredTrips"
+	LoadAllTripsByStation = 'LoadAllTripsByStation',
+	AddNewTrip = 'AddNewTrip',
+	LoadFilteredTrips = 'LoadFilteredTrips',
 }
 export enum ActionTypesStats {
-    LoadAllStationStats = "LoadAllStationStats"
+	LoadAllStationStats = 'LoadAllStationStats',
 }
 
 export interface ILoadAllStations {
-    type: ActionTypes.LoadAllStations,
-    payload: [Station]
+	type: ActionTypes.LoadAllStations
+	payload: [Station]
 }
 
-export interface  ISetActiveStation {
-    type: ActionTypes.SetActiveStation,
-    payload: Station
+export interface ISetActiveStation {
+	type: ActionTypes.SetActiveStation
+	payload: Station
 }
 
-export interface  IAddNewStation {
-    type: ActionTypes.AddNewStation,
-    payload: Station
+export interface IAddNewStation {
+	type: ActionTypes.AddNewStation
+	payload: Station
 }
 
 export interface ILoadAllTripsByStation {
-    type: ActionTypesTrips.LoadAllTripsByStation | ActionTypesTrips.LoadFilteredTrips,
-    payload: [Trip]
+	type:
+		| ActionTypesTrips.LoadAllTripsByStation
+		| ActionTypesTrips.LoadFilteredTrips
+	payload: [Trip]
 }
 
 export interface IAddNewTrip {
-    type: ActionTypesTrips.AddNewTrip,
-    payload: Trip
+	type: ActionTypesTrips.AddNewTrip
+	payload: Trip
 }
 
 export interface ILoadAllStats {
-    type: ActionTypesStats.LoadAllStationStats,
-    payload: [StationStats]
+	type: ActionTypesStats.LoadAllStationStats
+	payload: [StationStats]
 }
