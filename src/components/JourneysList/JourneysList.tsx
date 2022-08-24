@@ -60,12 +60,12 @@ const JourneysList = () => {
 	}
 	return (
 		<>
-			<Box display={"flex"} alignItems={"flex-start"} justifyContent={"center"} flexWrap={"wrap"} sx={{ mt: 2}}>
-				<Box justifyContent={"space-between"} height={"100%"}>
+			<Box display={"flex"} justifyContent={"center"} flexWrap={"wrap"} sx={{ mt: 2}}>
+				<Box display={"flex"} alignItems={"center"} flexWrap={"wrap"} flexDirection={"column"} justifyContent={"space-between"} sx={{ p: 1}}>
 					<JourneysStationFilters label={"Departure station"}  handleFilters={setFilters}/>
 					<JourneysStationFilters label={"Return station"} handleFilters={setFilters}/>
 				</Box>
-				<Box>
+				<Box >
 					<DistanceFilter handleFilters={setFilters}/>
 					<DurationFilter handleFilters={setFilters}/>
 				</Box>
