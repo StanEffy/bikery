@@ -4,7 +4,6 @@ import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { stationsReducers } from "./reducers/stationsReducers"
 import { tripsReducers } from "./reducers/tripsReducers"
-import { configureStore } from "@reduxjs/toolkit"
 
 const reducer = combineReducers({
 	stations: stationsReducers,

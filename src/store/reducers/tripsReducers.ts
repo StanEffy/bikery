@@ -2,10 +2,16 @@ import {
 	ActionTypesTrips,
 	ILoadAllTripsByStation,
 	IAddNewTrip,
-} from '../actions/types'
-import { LoadFilteredTrips } from '../actions/tripsAction'
+} from "../actions/types"
 
-export const initialState = {
+import { Station } from "../actions/types"
+
+export type TTripsState = {
+	tripsForActiveStation: [] | [Station]
+	filteredTrips: [] | [Station]
+}
+
+export const initialState: TTripsState = {
 	tripsForActiveStation: [],
 	filteredTrips: [],
 }

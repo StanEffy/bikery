@@ -5,9 +5,17 @@ import {
 	ILoadAllStations,
 	ILoadAllStats,
 	ISetActiveStation,
-} from '../actions/types'
+	StationStats,
+} from "../actions/types"
+import { Station } from "../actions/types"
 
-export const initialState = {
+export type TTStations = {
+	allStations: [] | [Station]
+	activeStation: null | Station
+	allStationsStats: [] | [StationStats]
+}
+
+export const initialState: TTStations = {
 	allStations: [],
 	activeStation: null,
 	allStationsStats: [],

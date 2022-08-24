@@ -1,17 +1,17 @@
-import { apiStations } from '../../api/api'
+import { apiStations } from "../../api/api"
 import {
 	ActionTypes,
 	IAddNewStation,
 	ILoadAllStations,
 	ISetActiveStation,
 	Station,
-} from './types'
-import { Dispatch } from 'redux'
+} from "./types"
+import { Dispatch } from "redux"
 
 export const LoadAllStations =
 	() => async (dispatch: Dispatch<ILoadAllStations>) => {
 		try {
-			const { data } = await apiStations.get('/')
+			const { data } = await apiStations.get("/")
 			dispatch({
 				type: ActionTypes.LoadAllStations,
 				payload: data.data.data,
@@ -35,7 +35,7 @@ export const SetActiveStation =
 export const AddNewStation =
 	(station: Station) => async (dispatch: Dispatch<IAddNewStation>) => {
 		try {
-			await apiStations.post('/', station)
+			await apiStations.post("/", station)
 			dispatch({
 				type: ActionTypes.AddNewStation,
 				payload: station,

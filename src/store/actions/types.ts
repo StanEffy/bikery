@@ -1,3 +1,6 @@
+import { TTripsState } from "../reducers/tripsReducers"
+import { TTStations } from "../reducers/stationsReducers"
+
 export type Station = {
 	Name: string
 	Namn?: string
@@ -35,18 +38,18 @@ export type StationStats = {
 }
 
 export enum ActionTypes {
-	LoadAllStations = 'LoadAllStations',
-	SetActiveStation = 'SetActiveStation',
-	AddNewStation = 'AddNewStation',
+	LoadAllStations = "LoadAllStations",
+	SetActiveStation = "SetActiveStation",
+	AddNewStation = "AddNewStation",
 }
 
 export enum ActionTypesTrips {
-	LoadAllTripsByStation = 'LoadAllTripsByStation',
-	AddNewTrip = 'AddNewTrip',
-	LoadFilteredTrips = 'LoadFilteredTrips',
+	LoadAllTripsByStation = "LoadAllTripsByStation",
+	AddNewTrip = "AddNewTrip",
+	LoadFilteredTrips = "LoadFilteredTrips",
 }
 export enum ActionTypesStats {
-	LoadAllStationStats = 'LoadAllStationStats',
+	LoadAllStationStats = "LoadAllStationStats",
 }
 
 export interface ILoadAllStations {
@@ -79,4 +82,9 @@ export interface IAddNewTrip {
 export interface ILoadAllStats {
 	type: ActionTypesStats.LoadAllStationStats
 	payload: [StationStats]
+}
+
+export type TState = {
+	stations: TTStations
+	trips: TTripsState
 }

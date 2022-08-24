@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { Station, StationStats } from "../../store/actions/types"
+import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
 import { Typography } from "@mui/material"
@@ -11,22 +11,22 @@ import TripsFromStationTable from "./TripsFromStation"
 const SingleStation = () => {
 	const dispatch = useDispatch()
 	const { id } = useParams()
-	// @ts-ignore
+
 	const tripsFromStation = useSelector(
-		(state) => state.trips.tripsForActiveStation
+		(state: TState) => state.trips.tripsForActiveStation
 	)
-	// @ts-ignore
 	useEffect(() => {
 		// @ts-ignore
 		dispatch(LoadAllTripsByStation(id))
 	}, [id])
 	console.log(tripsFromStation)
-	// @ts-ignore
+
 	const allStationsStats = useSelector(
-		(state) => state.stations.allStationsStats
+		(state: TState) => state.stations.allStationsStats
 	)
-	// @ts-ignore
-	const allStations = useSelector((state) => state.stations.allStations)
+	const allStations = useSelector(
+		(state: TState) => state.stations.allStations
+	)
 
 	const activeStation = allStations.find(
 		(st: Station) => st.ID.toString() === id
