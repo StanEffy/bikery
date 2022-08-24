@@ -55,9 +55,15 @@ const JourneysList = () => {
 		return str
 	}
 	const handleFilter = () => {
+		console.log(toggleDisable())
 		// @ts-ignore
 		dispatch(LoadFilteredTrips(createQueryString(filters)))
 	}
+
+	const toggleDisable = () => {
+		return filters.departure_station_id || filters.return_station_id
+	}
+	
 	return (
 		<>
 			<Box display={"flex"} justifyContent={"center"} flexWrap={"wrap"} sx={{ mt: 2}}>
@@ -70,7 +76,7 @@ const JourneysList = () => {
 					<DurationFilter handleFilters={setFilters}/>
 				</Box>
 				<Box display={"flex"} alignItems={"flex-start"} justifyContent={"center"} sx={{ width: "100%"}}>
-					<Button disabled={!filters.departure_station_id || !filters.return_station_id} variant="contained" onClick={() => handleFilter() }>Send filters</Button>
+					<Button disabled={!toggleDisable()} variant="contained" onClick={() => handleFilter()}>Send filters</Button>
 				</Box>
 			</Box>
 			<TripsFromStationTable trips={trips} />
