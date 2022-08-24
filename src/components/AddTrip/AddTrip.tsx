@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react"
 
 const AddTrip = () => {
-    return (
-        <div>
-            Add trip
-        </div>
-    );
-};
+	return <div>Add trip</div>
+}
 
-export default AddTrip;
+export default AddTrip

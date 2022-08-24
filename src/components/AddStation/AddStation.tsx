@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react"
 
 const AddStation = () => {
-    return (
-        <div>
-            Add station
-        </div>
-    );
-};
+	return <div>Add station</div>
+}
 
-export default AddStation;
+export default AddStation
