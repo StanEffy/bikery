@@ -2,16 +2,14 @@ import React, { useEffect } from "react"
 import mapboxgl from "mapbox-gl"
 
 const SingleMap = ({
-	x,
-	y,
+	x = 60.16,
+	y = 24.93,
 	st_id,
 }: {
 	x: number
 	y: number
-	st_id: string
+	st_id: string | number
 }) => {
-	// @ts-ignore
-
 	useEffect(() => {
 		mapboxgl.accessToken =
 			"pk.eyJ1IjoiaG9seWRvbmsiLCJhIjoiY2t3bTV4c2s5MXdqaTJ2bWxqYmNzeXg4ciJ9.9mHUItDBPKx0if6COMXKEg"
@@ -21,11 +19,8 @@ const SingleMap = ({
 			center: [x, y], // starting position [lng, lat]
 			zoom: 12, // starting zoom// display the map as a 3D globe
 		})
-		map.on("style.load", () => {
-			// @ts-ignore
-			map.setFog({}) // Set the default atmosphere style
-		})
-		const marker = new mapboxgl.Marker().setLngLat([x, y]).addTo(map)
+
+		new mapboxgl.Marker().setLngLat([x, y]).addTo(map)
 	}, [st_id])
 	return <div id={"s-map"} style={{ width: "100%", height: "400px" }} />
 }
