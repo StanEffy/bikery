@@ -77,8 +77,8 @@ const SingleStation = () => {
 				Here it is on the map!
 			</Typography>
 			<SingleMap
-				x={activeStation?.x ? activeStation?.x : 60.16}
-				y={activeStation?.y ? activeStation?.y : 24.93}
+				x={activeStation?.x}
+				y={activeStation?.y}
 				st_id={st_id}
 			/>
 

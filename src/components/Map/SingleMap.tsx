@@ -6,8 +6,8 @@ const SingleMap = ({
 	y = 24.93,
 	st_id,
 }: {
-	x: number
-	y: number
+	x: number | undefined
+	y: number | undefined
 	st_id: string | number
 }) => {
 	useEffect(() => {

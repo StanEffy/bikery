@@ -1,13 +1,14 @@
 import React, { useEffect } from "react"
 import mapboxgl from "mapbox-gl"
 import { useSelector } from "react-redux"
-import { Station } from "../../store/actions/types"
+import { Station, TState } from "../../store/actions/types"
 import CreateCustomPopup from "./CustomPopup"
 import { useNavigate } from "react-router-dom"
 
 const Map = () => {
-	// @ts-ignore
-	const allStations = useSelector((state) => state.stations.allStations)
+	const allStations = useSelector(
+		(state: TState) => state.stations.allStations
+	)
 
 	const navigate = useNavigate()
 
@@ -33,7 +34,7 @@ const Map = () => {
 				.addTo(map)
 
 			marker.getElement().addEventListener("click", () => {
-				navigate(`/stations/${station.FID}`)
+				navigate(`/stations/${station.ID}`)
 			})
 		})
 	}, [])
