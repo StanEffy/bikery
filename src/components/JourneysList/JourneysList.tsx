@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 import {
 	DistanceFilter,
 	DurationFilter,
 	JourneysStationFilters,
-} from './JourneysFilters'
-import { Box, Button } from '@mui/material'
-import TripsFromStationTable from '../SingleStation/TripsFromStation'
-import { useDispatch, useSelector } from 'react-redux'
-import { LoadFilteredTrips } from '../../store/actions/tripsAction'
-import { Station } from '../../store/actions/types'
+} from "./JourneysFilters"
+import { Box, Button } from "@mui/material"
+import TripsFromStationTable from "../SingleStation/TripsFromStation"
+import { useDispatch, useSelector } from "react-redux"
+import { LoadFilteredTrips } from "../../store/actions/tripsAction"
+import { Station } from "../../store/actions/types"
 
 type TFilter = {
 	departure_station_id: null | Station
@@ -34,27 +34,27 @@ const JourneysList = () => {
 	})
 
 	const createQueryString = (filter: TFilter) => {
-		let str = ''
+		let str = ""
 		if (filter.departure_station_id !== null) {
-			str += 'departure_station_id=' + filter.departure_station_id?.ID
+			str += "departure_station_id=" + filter.departure_station_id?.ID
 		}
 		if (filter.return_station_id !== null) {
 			filter.departure_station_id !== null
-				? (str += '&return_station_id=' + filter.return_station_id?.ID)
-				: (str += 'return_station_id=' + filter.return_station_id?.ID)
+				? (str += "&return_station_id=" + filter.return_station_id?.ID)
+				: (str += "return_station_id=" + filter.return_station_id?.ID)
 		}
 		if (filter.covered_distance_m > 0) {
 			if (filter.distance_is_greater) {
-				str += '&covered_distance_m[gte]=' + filter.covered_distance_m
+				str += "&covered_distance_m[gte]=" + filter.covered_distance_m
 			} else {
-				str += '&covered_distance_m[lte]=' + filter.covered_distance_m
+				str += "&covered_distance_m[lte]=" + filter.covered_distance_m
 			}
 		}
 		if (filter.duration_sec > 0) {
 			if (filter.duration_is_greater) {
-				str += '&duration_sec[gte]=' + filter.duration_sec
+				str += "&duration_sec[gte]=" + filter.duration_sec
 			} else {
-				str += '&duration_sec[lte]=' + filter.duration_sec
+				str += "&duration_sec[lte]=" + filter.duration_sec
 			}
 		}
 		return str
@@ -72,25 +72,25 @@ const JourneysList = () => {
 	return (
 		<>
 			<Box
-				display={'flex'}
-				justifyContent={'center'}
-				flexWrap={'wrap'}
+				display={"flex"}
+				justifyContent={"center"}
+				flexWrap={"wrap"}
 				sx={{ mt: 2 }}
 			>
 				<Box
-					display={'flex'}
-					alignItems={'center'}
-					flexWrap={'wrap'}
-					flexDirection={'column'}
-					justifyContent={'space-between'}
+					display={"flex"}
+					alignItems={"center"}
+					flexWrap={"wrap"}
+					flexDirection={"column"}
+					justifyContent={"space-between"}
 					sx={{ p: 1 }}
 				>
 					<JourneysStationFilters
-						label={'Departure station'}
+						label={"Departure station"}
 						handleFilters={setFilters}
 					/>
 					<JourneysStationFilters
-						label={'Return station'}
+						label={"Return station"}
 						handleFilters={setFilters}
 					/>
 				</Box>
@@ -99,10 +99,10 @@ const JourneysList = () => {
 					<DurationFilter handleFilters={setFilters} />
 				</Box>
 				<Box
-					display={'flex'}
-					alignItems={'flex-start'}
-					justifyContent={'center'}
-					sx={{ width: '100%' }}
+					display={"flex"}
+					alignItems={"flex-start"}
+					justifyContent={"center"}
+					sx={{ width: "100%" }}
 				>
 					<Button
 						disabled={!toggleDisable()}

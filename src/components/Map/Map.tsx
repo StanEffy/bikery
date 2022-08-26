@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import Map, { Marker } from "react-map-gl"
 import AddStationButton from "./AddStationButton"
 import ConfirmPinButton from "./ConfirmPinButton"
+import AddStationDialog from "./AddStationDialog"
 
 const MapComponent = () => {
 	const allStations = useSelector(
@@ -15,11 +16,19 @@ const MapComponent = () => {
 		x: 24.93,
 		y: 60.16,
 	})
+	const [dialog, setDialogState] = useState(false)
+
 	const [pin, setPin] = useState(true)
 	const handleClick = (id: number) => {
 		navigate(`/stations/${id}`)
 	}
 
+	const setDialogOpen = () => {
+		setDialogState(true)
+	}
+	const setDialogClose = () => {
+		setDialogState(false)
+	}
 	const handleDrag = (e: any) => {
 		setPoints((prev) => {
 			return {
@@ -70,8 +79,15 @@ const MapComponent = () => {
 					onDragEnd={(e) => handleDrag(e)}
 				/>
 			) : null}
-			{pin ? <ConfirmPinButton /> : null}
+			{pin ? <ConfirmPinButton handleClick={setDialogOpen} /> : null}
 			<AddStationButton handleClick={setPin} pin={pin} />
+			<AddStationDialog
+				open={dialog}
+				handleClose={setDialogClose}
+				length={allStations.length}
+				x={points.x}
+				y={points.y}
+			/>
 		</Map>
 	)
 }
