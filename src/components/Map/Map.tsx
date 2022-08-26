@@ -18,7 +18,7 @@ const MapComponent = () => {
 	})
 	const [dialog, setDialogState] = useState(false)
 
-	const [pin, setPin] = useState(true)
+	const [pin, setPin] = useState(false)
 	const handleClick = (id: number) => {
 		navigate(`/stations/${id}`)
 	}
