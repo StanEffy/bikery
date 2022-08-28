@@ -55,10 +55,10 @@ const MapComponent = () => {
 			}}
 			mapStyle="mapbox://styles/mapbox/light-v9"
 		>
-			{allStations.map((station: Station) => {
+			{allStations.map((station: Station, i) => {
 				return (
 					<Marker
-						key={`marker-${station.Name}`}
+						key={`marker-${station.Name}-${i}`}
 						longitude={station.x}
 						latitude={station.y}
 						anchor="bottom"

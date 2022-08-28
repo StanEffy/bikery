@@ -9,7 +9,7 @@ import {
 	TextField,
 } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { AddNewStation } from "../../store/actions/stationsActions"
 
@@ -49,7 +49,10 @@ const AddStationDialog = ({
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	useEffect(() => {}, [x, y])
+	useEffect(() => {
+		setStaion((prev) => ({ ...prev, x: x, y: y }))
+	}, [x, y])
+
 	return (
 		<Dialog onClose={handleClose} open={open}>
 			<Box display={"flex"} justifyContent={"space-between"}>
