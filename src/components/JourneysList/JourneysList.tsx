@@ -8,7 +8,7 @@ import { Box, Button } from "@mui/material"
 import TripsFromStationTable from "../SingleStation/TripsFromStation"
 import { useDispatch, useSelector } from "react-redux"
 import { LoadFilteredTrips } from "../../store/actions/tripsAction"
-import { Station } from "../../store/actions/types"
+import { Station, TState } from "../../store/actions/types"
 
 type TFilter = {
 	departure_station_id: null | Station
@@ -21,8 +21,8 @@ type TFilter = {
 
 const JourneysList = () => {
 	const dispatch = useDispatch()
-	// @ts-ignore
-	const trips = useSelector((state) => state.trips.filteredTrips)
+
+	const trips = useSelector((state: TState) => state.trips.filteredTrips)
 
 	const [filters, setFilters] = useState<TFilter>({
 		departure_station_id: null,
