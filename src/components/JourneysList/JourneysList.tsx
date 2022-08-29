@@ -1,15 +1,12 @@
 import React, { useState } from "react"
-import {
-	DistanceFilter,
-	DurationFilter,
-	JourneysStationFilters,
-} from "./JourneysFilters"
+import { DistanceFilter, DurationFilter } from "./JourneysFilters"
 import { Box, Button } from "@mui/material"
 import TripsFromStationTable from "../SingleStation/TripsFromStation"
 import { useDispatch, useSelector } from "react-redux"
 import { LoadFilteredTrips } from "../../store/actions/tripsAction"
 import { Station, TState } from "../../store/actions/types"
 import createJourneysQueryString from "../../utils/functions/createJourneysQueryString"
+import { JourneysStationFilters } from "../common/JourneysStationFilters"
 
 export type TFilter = {
 	departure_station_id: null | Station
@@ -35,7 +32,6 @@ const JourneysList = () => {
 	})
 
 	const handleFilter = () => {
-		console.log(toggleDisable())
 		// @ts-ignore
 		dispatch(LoadFilteredTrips(createJourneysQueryString(filters)))
 	}
