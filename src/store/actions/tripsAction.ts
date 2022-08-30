@@ -42,7 +42,12 @@ export const LoadFilteredTrips =
 export const AddNewTrip =
 	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
 		try {
-			const data = await apiTrips.post("/", trip)
+			const data = await apiTrips.post("/", JSON.stringify(trip), {
+				withCredentials: true,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
 			dispatch({
 				type: ActionTypesTrips.AddNewTrip,
 				payload: trip,

@@ -37,13 +37,14 @@ const AddStationDialog = ({
 		Kapasiteet: 0,
 		x: x,
 		y: y,
-		FID: length + 222,
-		ID: length + 222,
+		FID: length + 822,
+		ID: length + 822,
 	})
 
 	const dispatch = useDispatch()
 
 	const handleSendStation = () => {
+		console.log(station)
 		// @ts-ignore
 		dispatch(AddNewStation(JSON.stringify(station)))
 	}

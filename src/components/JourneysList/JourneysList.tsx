@@ -7,7 +7,6 @@ import { LoadFilteredTrips } from "../../store/actions/tripsAction"
 import { Station, TState } from "../../store/actions/types"
 import createJourneysQueryString from "../../utils/functions/createJourneysQueryString"
 import { JourneysStationFilters } from "../common/JourneysStationFilters"
-import { format, compareAsc, parseISO } from "date-fns"
 
 export type TFilter = {
 	departure_station_id: null | Station
@@ -40,9 +39,7 @@ const JourneysList = () => {
 	const toggleDisable = () => {
 		return filters.departure_station_id || filters.return_station_id
 	}
-	useEffect(() => {
-		console.log(parseISO(trips[0].departure))
-	}, [trips])
+	useEffect(() => {}, [trips])
 	return (
 		<>
 			<Box

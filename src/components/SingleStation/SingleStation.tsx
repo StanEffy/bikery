@@ -31,7 +31,6 @@ const SingleStation = () => {
 		// @ts-ignore
 		dispatch(LoadAllTripsByStation(id))
 	}, [id])
-	console.log(tripsFromStation)
 
 	const allStationsStats = useSelector(
 		(state: TState) => state.stations.allStationsStats
@@ -62,8 +61,8 @@ const SingleStation = () => {
 	return (
 		<div>
 			<SingleStationStatsTable
-				id={st_id}
-				name={name}
+				id={activeStation?.FID ?? st_id}
+				name={activeStation?.Name ?? name}
 				address={activeStation?.Osoite}
 				capacity={activeStation?.Kapasiteet ?? 0}
 				arrivals={arrivals}

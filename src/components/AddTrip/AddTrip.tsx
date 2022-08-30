@@ -38,10 +38,8 @@ const AddTrip = () => {
 	const handleSubmit = () => {
 		const dateNow = new Date()
 
-		const distance = Math.floor(randomiseNumber(res.length / trips.length))
-		const duration = Math.floor(
-			randomiseNumber(res.duration / trips.length)
-		)
+		const distance = Math.floor(randomiseNumber(res.length))
+		const duration = Math.floor(randomiseNumber(res.duration))
 
 		const createdTrip = {
 			departure: dateNow.toISOString(),
@@ -56,7 +54,7 @@ const AddTrip = () => {
 
 		console.log(createdTrip)
 		// @ts-ignore
-		// dispatch(AddNewTrip(createdTrip))
+		dispatch(AddNewTrip(createdTrip))
 	}
 
 	const trips = useSelector((state: TState) => state.trips.filteredTrips)
