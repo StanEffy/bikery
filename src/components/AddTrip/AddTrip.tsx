@@ -6,6 +6,7 @@ import createJourneysQueryString from "../../utils/functions/createJourneysQuery
 import { Box, Button, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { TState } from "../../store/actions/types"
+import { format, compareAsc, parseISO, addSeconds } from "date-fns"
 
 const AddTrip = () => {
 	const dispatch = useDispatch()
@@ -31,24 +32,31 @@ const AddTrip = () => {
 	}
 	//Add some random distance or duration to a trip
 	const randomiseNumber = (num: number) => {
-		return Math.floor((Math.random() + 0.4) * num)
+		return Math.floor(((Math.random() + 0.4) * num) / trips.length)
 	}
 
 	const handleSubmit = () => {
+		const dateNow = new Date()
+
+		const distance = Math.floor(randomiseNumber(res.length / trips.length))
+		const duration = Math.floor(
+			randomiseNumber(res.duration / trips.length)
+		)
+
 		const createdTrip = {
-			departure: "",
-			string: "",
+			departure: dateNow.toISOString(),
+			return: addSeconds(dateNow, duration).toISOString(),
 			departure_station_id: filters.departure_station_id?.ID,
 			departure_station_name: filters.departure_station_id?.Name,
 			return_station_id: filters.return_station_id?.ID,
 			return_station_name: filters.return_station_id?.Name,
-			covered_distance_m: randomiseNumber(res.length / trips.length),
-			duration_sec: randomiseNumber(res.duration / trips.length),
+			covered_distance_m: distance,
+			duration_sec: duration,
 		}
 
 		console.log(createdTrip)
 		// @ts-ignore
-		dispatch(AddNewTrip(createdTrip))
+		// dispatch(AddNewTrip(createdTrip))
 	}
 
 	const trips = useSelector((state: TState) => state.trips.filteredTrips)
