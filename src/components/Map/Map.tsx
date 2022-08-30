@@ -8,6 +8,12 @@ import ConfirmPinButton from "./ConfirmPinButton"
 import AddStationDialog from "./AddStationDialog"
 
 const MapComponent = () => {
+	const [viewState, setViewState] = React.useState({
+		longitude: 24.93,
+		latitude: 60.16,
+		zoom: 13,
+	})
+
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)
@@ -40,11 +46,7 @@ const MapComponent = () => {
 	}
 	return (
 		<Map
-			initialViewState={{
-				longitude: 24.93,
-				latitude: 60.16,
-				zoom: 13,
-			}}
+			{...viewState}
 			mapboxAccessToken={
 				"pk.eyJ1IjoiaG9seWRvbmsiLCJhIjoiY2t3bTV4c2s5MXdqaTJ2bWxqYmNzeXg4ciJ9.9mHUItDBPKx0if6COMXKEg"
 			}
@@ -52,6 +54,16 @@ const MapComponent = () => {
 				width: "100%",
 				height: "calc(100vh - 70px)",
 				boxSizing: "border-box",
+			}}
+			onMove={(evt) => {
+				setViewState(evt.viewState)
+				setPoints((prev) => {
+					return {
+						...prev,
+						x: evt.viewState.longitude,
+						y: evt.viewState.latitude,
+					}
+				})
 			}}
 			mapStyle="mapbox://styles/mapbox/light-v9"
 		>
