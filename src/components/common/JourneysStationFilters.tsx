@@ -5,7 +5,15 @@ import { Box } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import React from "react"
 
-export const JourneysStationFilters = ({ label, handleFilters }) => {
+type Props = {
+	label: string
+	handleFilters: (e: any) => void
+}
+
+export const JourneysStationFilters: React.FC<Props> = ({
+	label,
+	handleFilters,
+}) => {
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)

@@ -3,10 +3,11 @@ import { JourneysStationFilters } from "../common/JourneysStationFilters"
 import { TFilter } from "../JourneysList/JourneysList"
 import { AddNewTrip, LoadFilteredTrips } from "../../store/actions/tripsAction"
 import createJourneysQueryString from "../../utils/functions/createJourneysQueryString"
-import { Box, Button, Typography } from "@mui/material"
+import { Box, Button, TextField, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { TState } from "../../store/actions/types"
 import { format, compareAsc, parseISO, addSeconds } from "date-fns"
+import TripFillInDistDur from "./TripFillInDistDur"
 
 const AddTrip = () => {
 	const dispatch = useDispatch()
@@ -83,6 +84,17 @@ const AddTrip = () => {
 					handleFilters={setFilters}
 				/>
 			</Box>
+			{!trips.length ? (
+				<Typography textAlign={"center"} sx={{ p: 2 }}>
+					Fetch trips to count on average, or fill distance and
+					duration it yourself
+				</Typography>
+			) : (
+				<Typography textAlign={"center"} sx={{ p: 2 }}>
+					Average data is in the system! All energy to engines!
+				</Typography>
+			)}
+
 			<Box display={"flex"} justifyContent={"center"}>
 				<Button
 					disabled={!toggleDisable()}
@@ -92,12 +104,17 @@ const AddTrip = () => {
 					Send filters
 				</Button>
 			</Box>
-			<Typography>
-				{res.duration / trips.length} average sec duration with{" "}
-				{res.length / trips.length / 1000} average km length
-			</Typography>
-			<Box display={"flex"} justifyContent={"center"}>
-				<Button variant="contained" onClick={() => handleSubmit()}>
+			{!!filters.departure_station_id &&
+			!!filters.return_station_id &&
+			trips.length == 0 ? (
+				<TripFillInDistDur setFilters={setFilters} />
+			) : null}
+			<Box display={"flex"} justifyContent={"center"} sx={{ py: 2 }}>
+				<Button
+					disabled={!toggleDisable()}
+					variant="contained"
+					onClick={() => handleSubmit()}
+				>
 					Add trip
 				</Button>
 			</Box>
