@@ -2,13 +2,14 @@ import {
 	ActionTypesTrips,
 	ILoadAllTripsByStation,
 	IAddNewTrip,
+	Trip,
 } from "../actions/types"
 
 import { Station } from "../actions/types"
 
 export type TTripsState = {
 	tripsForActiveStation: [] | [Station]
-	filteredTrips: [] | [Station]
+	filteredTrips: [] | [Trip]
 }
 
 export const initialState: TTripsState = {

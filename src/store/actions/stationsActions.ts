@@ -35,7 +35,12 @@ export const SetActiveStation =
 export const AddNewStation =
 	(station: Station) => async (dispatch: Dispatch<IAddNewStation>) => {
 		try {
-			await apiStations.post("/", station)
+			await apiStations.post("/", station, {
+				withCredentials: true,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
 			dispatch({
 				type: ActionTypes.AddNewStation,
 				payload: station,

@@ -1,53 +1,7 @@
 import React, { useState } from "react"
 import Checkbox from "@mui/material/Checkbox"
 import TextField from "@mui/material/TextField"
-import Autocomplete from "@mui/material/Autocomplete"
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
-import CheckBoxIcon from "@mui/icons-material/CheckBox"
-import { useSelector } from "react-redux"
-import { Station } from "../../store/actions/types"
 import { Box, FormControlLabel, InputAdornment } from "@mui/material"
-
-// @ts-ignore
-export const JourneysStationFilters = ({ label, handleFilters }) => {
-	// @ts-ignore
-	const allStations = useSelector((state) => state.stations.allStations)
-
-	const handleStationChange = (value: any) => {
-		label === "Departure station"
-			? handleFilters((prevState: any) => ({
-				...prevState,
-				departure_station_id: value,
-			  }))
-			: handleFilters((prevState: any) => ({
-				...prevState,
-				return_station_id: value,
-			  }))
-	}
-
-	return (
-		<Autocomplete
-			disablePortal
-			id="combo-box-demo"
-			options={allStations}
-			onChange={(event, value) => {
-				handleStationChange(value)
-			}}
-			sx={{ width: 300 }}
-			getOptionLabel={(option: Station) => option.Name}
-			renderOption={(props, option) => (
-				<Box
-					component="li"
-					sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-					{...props}
-				>
-					{option.Name}
-				</Box>
-			)}
-			renderInput={(params) => <TextField {...params} label={label} />}
-		/>
-	)
-}
 
 // @ts-ignore
 export const DistanceFilter = ({ handleFilters }) => {

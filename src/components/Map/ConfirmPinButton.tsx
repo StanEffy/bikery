@@ -2,7 +2,9 @@ import React from "react"
 import DoneIcon from "@mui/icons-material/Done"
 import { Button } from "@mui/material"
 
-const ConfirmPinButton = () => {
+// eslint-disable-next-line react/prop-types,@typescript-eslint/ban-ts-comment
+// @ts-ignore
+const ConfirmPinButton = ({ handleClick }) => {
 	return (
 		<Button
 			color="primary"
@@ -10,6 +12,7 @@ const ConfirmPinButton = () => {
 			aria-label="fill in station details"
 			component="label"
 			size="large"
+			onClick={() => handleClick()}
 			sx={{
 				position: "absolute",
 				left: "20px",

@@ -52,6 +52,21 @@ But it has some interesting stuff to be observed and pondered upon...
 It has a map based on MapBox with pins of all the stations we got from the dataset. All the pins are clickable and
 lead you to the page belonged to the station
 
+[![addstation1.jpg](https://i.postimg.cc/JhL4pSYz/Add-Station1.jpg)](https://postimg.cc/fV8NLqhG)
+
+By clicking on a button in right bottom corner you can go and add a draggable pin on the map. Whenever map is moving 
+it is always in the center of it.
+
+[![addstation2.jpg](https://i.postimg.cc/7Z7ZMqVR/Add-Station2.jpg)](https://postimg.cc/pmWvPb3Q)
+
+When you are settled with the place for your new business you can go to next step and summon a dialog. There is 
+nothing much you can do with it, just address and name of your station. Later I am going to add menu with three cities.
+
+[![addstation3.jpg](https://i.postimg.cc/158tXGNs/Add-Station3.jpg)](https://postimg.cc/nCtZwQkP)
+
+So if you filled it in correctly, you can send request to a server and your map will reappear on the map. For now it 
+is a bit bugged, so you have to reload the page. But soon enough all will be fixed with error boundaries
+
 ![Single station view](https://iili.io/gdovII.md.jpg)
 
 Here you can learn some statistics about station, but remember: the bigger monitor you have, the better info you get
@@ -68,6 +83,13 @@ You can go to Journeys page and use its' rather primitive filtering system. I pr
 easier to use. For now, you can select one station and look for specifically long/short trips or observe all of them
 at once.
 
+[![filters.jpg](https://i.postimg.cc/65FQv8dR/Add-New-Trip.jpg)](https://postimg.cc/ppYxNXcX)
+You can easily add new trip by selecting from which to which station trip has been done and then send request to a 
+server with some randomized (based on real trips duration and length) data. Date of the trip is starting from now 
+and finishes somewhere seconds in the future. I could do the opposite, but I like future from the first episode of 
+Futurama seen by me.
+
+
 ## Tech used
 
 For the project I used classic MERN stack with Typescript on frontend and javascript on back.
@@ -80,8 +102,17 @@ Mongo deployed to Atlas, backend to EC2.
 
 Soon I am going to add:
 
--   Filtering on trips
--   Add new journey
--   Add new station
--   Registration (without any reason, just because I want to)
--   deployment
+- Filtering on trips
+    
+Partly done. Need to change functionality on backend to make it possible observe trips not only from/to one 
+  station to another/any, but make several options from station. And also create limiter to top something trips
+- ~~Add new journey~~
+    
+Done. Need to fix when there are no examples from one station to another to randomize distance and time properly
+- ~~Add new station~~
+    
+Done. Need to redirect to map on success.
+- Registration (without any reason, just because I want to)
+- deployment
+    
+Back deployed, front waiting.
