@@ -32,11 +32,9 @@ function App() {
 	})
 
 	useEffect(() => {
-		// @ts-ignore
-		dispatch(LoadAllStations())
-		// @ts-ignore
-		dispatch(LoadAllStationsStats())
-	})
+		dispatch<any>(LoadAllStations())
+		dispatch<any>(LoadAllStationsStats())
+	}, [])
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>

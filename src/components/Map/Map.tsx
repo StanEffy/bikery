@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Station, TState } from "../../store/actions/types"
 import { useNavigate } from "react-router-dom"
 import Map, { Marker } from "react-map-gl"
 import AddStationButton from "../AddStation/AddStationButton"
 import ConfirmPinButton from "../AddStation/ConfirmPinButton"
 import AddStationDialog from "../AddStation/AddStationDialog"
+import { LoadAllStations } from "../../store/actions/stationsActions"
 
 const MapComponent = () => {
+	const dispatch = useDispatch()
+
 	const [viewState, setViewState] = React.useState({
 		longitude: 24.93,
 		latitude: 60.16,
@@ -17,6 +20,9 @@ const MapComponent = () => {
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)
+
+	allStations.length === 0 ? dispatch<any>(LoadAllStations()) : null
+
 	const navigate = useNavigate()
 	const [points, setPoints] = useState({
 		x: 24.93,
