@@ -3,9 +3,9 @@ import { useSelector } from "react-redux"
 import { Station, TState } from "../../store/actions/types"
 import { useNavigate } from "react-router-dom"
 import Map, { Marker } from "react-map-gl"
-import AddStationButton from "./AddStationButton"
-import ConfirmPinButton from "./ConfirmPinButton"
-import AddStationDialog from "./AddStationDialog"
+import AddStationButton from "../AddStation/AddStationButton"
+import ConfirmPinButton from "../AddStation/ConfirmPinButton"
+import AddStationDialog from "../AddStation/AddStationDialog"
 
 const MapComponent = () => {
 	const [viewState, setViewState] = React.useState({
