@@ -2,15 +2,19 @@ import React, { useState } from "react"
 import Checkbox from "@mui/material/Checkbox"
 import TextField from "@mui/material/TextField"
 import { Box, FormControlLabel, InputAdornment } from "@mui/material"
+import { TFilter } from "./JourneysList"
 
-// @ts-ignore
-export const DistanceFilter = ({ handleFilters }) => {
+type Props = {
+	handleFilters: (cb: (value: TFilter) => TFilter) => void
+}
+
+export const DistanceFilter: React.FC<Props> = ({ handleFilters }) => {
 	const [distance, setDistance] = useState("0")
 	const [checked, setChecked] = React.useState(true)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setChecked(event.target.checked)
-		handleFilters((prevState: any) => ({
+		handleFilters((prevState: TFilter) => ({
 			...prevState,
 			distance_is_greater: event.target.checked,
 		}))
@@ -19,7 +23,7 @@ export const DistanceFilter = ({ handleFilters }) => {
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
 		setDistance(event.target.value)
-		handleFilters((prevState: any) => ({
+		handleFilters((prevState: TFilter) => ({
 			...prevState,
 			covered_distance_m: event.target.value,
 		}))
@@ -27,6 +31,7 @@ export const DistanceFilter = ({ handleFilters }) => {
 	return (
 		<Box display={"flex"} alignItems={"center"}>
 			<FormControlLabel
+				labelPlacement={"top"}
 				control={<Checkbox checked={checked} onChange={handleChange} />}
 				label={checked ? "Greater than:" : "Shorter than:"}
 			/>
@@ -48,14 +53,13 @@ export const DistanceFilter = ({ handleFilters }) => {
 	)
 }
 
-// @ts-ignore
-export const DurationFilter = ({ handleFilters }) => {
+export const DurationFilter: React.FC<Props> = ({ handleFilters }) => {
 	const [duration, setDuration] = useState("0")
 	const [checked, setChecked] = React.useState(true)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setChecked(event.target.checked)
-		handleFilters((prevState: any) => ({
+		handleFilters((prevState: TFilter) => ({
 			...prevState,
 			duration_is_greater: event.target.checked,
 		}))
@@ -64,7 +68,7 @@ export const DurationFilter = ({ handleFilters }) => {
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
 		setDuration(event.target.value)
-		handleFilters((prevState: any) => ({
+		handleFilters((prevState: TFilter) => ({
 			...prevState,
 			duration_sec: event.target.value,
 		}))
@@ -72,6 +76,7 @@ export const DurationFilter = ({ handleFilters }) => {
 	return (
 		<Box display={"flex"} alignItems={"center"}>
 			<FormControlLabel
+				labelPlacement={"top"}
 				control={<Checkbox checked={checked} onChange={handleChange} />}
 				label={checked ? "Greater than:" : "Shorter than:"}
 			/>

@@ -19,10 +19,10 @@ export type Station = {
 export type Trip = {
 	departure: string
 	return: string
-	departure_station_id: number
-	departure_station_name: string
-	return_station_id: number
-	return_station_name: string
+	departure_station_id: number | undefined
+	departure_station_name: string | undefined
+	return_station_id: number | undefined
+	return_station_name: string | undefined
 	covered_distance_m: number
 	duration_sec: number
 }

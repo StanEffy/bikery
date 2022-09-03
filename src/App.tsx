@@ -6,9 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SingleStation from "./components/SingleStation/SingleStation"
 import Map from "./components/Map/Map"
 import StationList from "./components/StationsList/StationList"
-import Statistics from "./components/Statistics/Statistics"
 import AddTrip from "./components/AddTrip/AddTrip"
-import AddStation from "./components/AddStation/AddStation"
+import AddStationPin from "./components/AddStation/AddStationPin"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { LoadAllStations } from "./store/actions/stationsActions"
@@ -32,11 +31,9 @@ function App() {
 	})
 
 	useEffect(() => {
-		// @ts-ignore
-		dispatch(LoadAllStations())
-		// @ts-ignore
-		dispatch(LoadAllStationsStats())
-	})
+		dispatch<any>(LoadAllStations())
+		dispatch<any>(LoadAllStationsStats())
+	}, [])
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
@@ -53,23 +50,15 @@ function App() {
 								path={"/stations/:id"}
 								element={<SingleStation />}
 							/>
-
 							<Route path={"/map"} element={<Map />} />
-
-							<Route
-								path={"/statistics"}
-								element={<Statistics />}
-							/>
-
 							<Route
 								path={"/journeys"}
 								element={<JourneysList />}
 							/>
-
 							<Route path={"/add_trip"} element={<AddTrip />} />
 							<Route
 								path={"/add_station"}
-								element={<AddStation />}
+								element={<AddStationPin />}
 							/>
 						</Routes>
 					</Router>

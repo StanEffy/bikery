@@ -22,6 +22,10 @@
 	opacity: 0.8;
 	cursor: pointer !important;
 }
+.truncated {
+	text-overflow: ellipsis;
+	max-width: 100px;
+}
 
 /*dialog to create new stations*/
 .station-dialog>div{

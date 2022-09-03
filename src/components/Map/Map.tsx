@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Station, TState } from "../../store/actions/types"
 import { useNavigate } from "react-router-dom"
-import Map, { Marker } from "react-map-gl"
-import AddStationButton from "./AddStationButton"
-import ConfirmPinButton from "./ConfirmPinButton"
-import AddStationDialog from "./AddStationDialog"
+import Map, { Marker, MarkerDragEvent } from "react-map-gl"
+import AddStationButton from "../AddStation/AddStationButton"
+import ConfirmPinButton from "../AddStation/ConfirmPinButton"
+import AddStationDialog from "../AddStation/AddStationDialog"
+import { LoadAllStations } from "../../store/actions/stationsActions"
 
 const MapComponent = () => {
+	const dispatch = useDispatch()
+
 	const [viewState, setViewState] = React.useState({
 		longitude: 24.93,
 		latitude: 60.16,
@@ -17,6 +20,10 @@ const MapComponent = () => {
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)
+	allStations.length === 0
+		? dispatch<any>(LoadAllStations())
+		: () => undefined
+
 	const navigate = useNavigate()
 	const [points, setPoints] = useState({
 		x: 24.93,
@@ -35,7 +42,7 @@ const MapComponent = () => {
 	const setDialogClose = () => {
 		setDialogState(false)
 	}
-	const handleDrag = (e: any) => {
+	const handleDrag = (e: MarkerDragEvent) => {
 		setPoints((prev) => {
 			return {
 				...prev,
@@ -44,6 +51,7 @@ const MapComponent = () => {
 			}
 		})
 	}
+
 	return (
 		<Map
 			{...viewState}
@@ -96,7 +104,6 @@ const MapComponent = () => {
 			<AddStationDialog
 				open={dialog}
 				handleClose={setDialogClose}
-				length={allStations.length}
 				x={points.x}
 				y={points.y}
 			/>

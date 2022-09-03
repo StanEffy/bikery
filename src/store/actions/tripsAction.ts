@@ -9,7 +9,8 @@ import {
 import { Dispatch } from "redux"
 
 export const LoadAllTripsByStation =
-	(id: string) => async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
+	(id: string | undefined) =>
+	async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
 		try {
 			const { data } = await apiTrips.get("/?departure_station_id=" + id)
 
@@ -40,9 +41,19 @@ export const LoadFilteredTrips =
 	}
 
 export const AddNewTrip =
-	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
+	(trip: {
+		departure_station_name: string | undefined
+		covered_distance_m: number
+		departure: string
+		departure_station_id: number | undefined
+		return_station_id: number | undefined
+		return_station_name: string | undefined
+		return: string
+		duration_sec: number
+	}) =>
+	async (dispatch: Dispatch<IAddNewTrip>) => {
 		try {
-			const data = await apiTrips.post("/", JSON.stringify(trip), {
+			await apiTrips.post("/", JSON.stringify(trip), {
 				withCredentials: true,
 				headers: {
 					"Content-Type": "application/json",

@@ -3,10 +3,10 @@ import { JourneysStationFilters } from "../common/JourneysStationFilters"
 import { TFilter } from "../JourneysList/JourneysList"
 import { AddNewTrip, LoadFilteredTrips } from "../../store/actions/tripsAction"
 import createJourneysQueryString from "../../utils/functions/createJourneysQueryString"
-import { Box, Button, TextField, Typography } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { TState } from "../../store/actions/types"
-import { format, compareAsc, parseISO, addSeconds } from "date-fns"
+import { addSeconds } from "date-fns"
 import TripFillInDistDur from "./TripFillInDistDur"
 
 const AddTrip = () => {
@@ -24,8 +24,7 @@ const AddTrip = () => {
 	const res = { duration: 0, length: 0 }
 
 	const handleFilter = () => {
-		// @ts-ignore
-		dispatch(LoadFilteredTrips(createJourneysQueryString(filters)))
+		dispatch<any>(LoadFilteredTrips(createJourneysQueryString(filters)))
 	}
 
 	const toggleDisable = () => {
@@ -53,9 +52,7 @@ const AddTrip = () => {
 			duration_sec: duration,
 		}
 
-		console.log(createdTrip)
-		// @ts-ignore
-		dispatch(AddNewTrip(createdTrip))
+		dispatch<any>(AddNewTrip(createdTrip))
 	}
 
 	const trips = useSelector((state: TState) => state.trips.filteredTrips)
@@ -65,7 +62,9 @@ const AddTrip = () => {
 		res.length += t.covered_distance_m
 	})
 
-	useEffect(() => {}, [trips])
+	useEffect(() => {
+		console.log("Trips updated!")
+	}, [trips])
 	return (
 		<>
 			<Box

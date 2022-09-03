@@ -8,7 +8,7 @@ import {
 import { Station } from "../actions/types"
 
 export type TTripsState = {
-	tripsForActiveStation: [] | [Station]
+	tripsForActiveStation: [] | [Trip]
 	filteredTrips: [] | [Trip]
 }
 
