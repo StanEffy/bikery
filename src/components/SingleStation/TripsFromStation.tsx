@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import * as React from "react"
 import { alpha } from "@mui/material/styles"
 import Box from "@mui/material/Box"
@@ -25,11 +23,13 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
 interface Data {
-	departure_station: string
-	arrival_station: string
-	duration: number
-	distance: number
-	date: string
+	departure_station_name: string | number | any
+	return_station_name: string | number | any
+	duration_sec: number
+	covered_distance_m: number
+	return_station_id: number
+	departure?: string | number | any
+	return?: string | number | any
 }
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -82,25 +82,25 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: "departure_station",
+		id: "departure_station_name",
 		numeric: false,
 		disablePadding: true,
 		label: "departure station",
 	},
 	{
-		id: "arrival_station",
+		id: "return_station_name",
 		numeric: true,
 		disablePadding: false,
 		label: "arrival station",
 	},
 	{
-		id: "duration",
+		id: "duration_sec",
 		numeric: true,
 		disablePadding: false,
 		label: "duration",
 	},
 	{
-		id: "distance",
+		id: "covered_distance_m",
 		numeric: true,
 		disablePadding: false,
 		label: "distance",
@@ -192,8 +192,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 
 export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 	const [order, setOrder] = React.useState<Order>("asc")
-	const [orderBy, setOrderBy] = React.useState<keyof Data>("id")
-	const [selected, setSelected] = React.useState<readonly string[]>([])
+	const [orderBy, setOrderBy] =
+		React.useState<keyof Data>("covered_distance_m")
 	const [page, setPage] = React.useState(0)
 	const [dense, setDense] = React.useState(false)
 	const [rowsPerPage, setRowsPerPage] = React.useState(25)
@@ -208,16 +208,6 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 		setOrderBy(property)
 	}
 
-	const handleSelectAllClick = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		if (event.target.checked) {
-			const newSelected = trips.map((n: Trip) => n.departure_station_name)
-			setSelected(newSelected)
-			return
-		}
-		setSelected([])
-	}
 	const handleClick = (id: number) => {
 		navigate(`/stations/${id}`)
 	}
@@ -246,23 +236,15 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 			<Paper
 				sx={{ width: "100%", mb: 2, pl: 1, boxSizing: "border-box" }}
 			>
-				<EnhancedTableToolbar numSelected={selected.length} />
+				<EnhancedTableToolbar numSelected={0} />
 				<TableContainer>
 					<Table
 						sx={{ minWidth: "375px" }}
 						aria-labelledby="tableTitle"
 						size={dense ? "small" : "medium"}
 					>
-						<EnhancedTableHead
-							numSelected={selected.length}
-							order={order}
-							orderBy={orderBy}
-							onSelectAllClick={handleSelectAllClick}
-							onRequestSort={handleRequestSort}
-							rowCount={trips.length}
-						/>
 						<TableBody>
-							{stableSort(trips, getComparator(order, orderBy))
+							{trips
 								.slice(
 									page * rowsPerPage,
 									page * rowsPerPage + rowsPerPage
@@ -270,13 +252,10 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 								.map(
 									(
 										{
-											_id,
-											departure_station_name:
-												departure_station,
-											return_station_name:
-												arrival_station,
-											duration_sec: duration,
-											covered_distance_m: distance,
+											departure_station_name,
+											return_station_name,
+											duration_sec,
+											covered_distance_m,
 											return_station_id,
 										},
 										index
@@ -288,7 +267,12 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 												hover
 												role="checkbox"
 												tabIndex={-1}
-												key={_id}
+												key={
+													departure_station_name +
+													"_" +
+													index +
+													"-row"
+												}
 												className={
 													"station-list__row--clickable"
 												}
@@ -300,7 +284,7 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 													padding="none"
 													className={"truncated"}
 												>
-													{departure_station}
+													{departure_station_name}
 												</TableCell>
 												<TableCell
 													align="right"
@@ -315,14 +299,17 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 														)
 													}
 												>
-													{arrival_station}
+													{return_station_name}
 												</TableCell>
 												<TableCell align="right">
-													{Math.floor(duration / 60)}{" "}
-													min {duration % 60} sec
+													{Math.floor(
+														duration_sec / 60
+													)}{" "}
+													min {duration_sec % 60} sec
 												</TableCell>
 												<TableCell align="right">
-													{distance / 1000} km
+													{covered_distance_m / 1000}{" "}
+													km
 												</TableCell>
 											</TableRow>
 										)

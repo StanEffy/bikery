@@ -44,10 +44,12 @@ const AddTrip = () => {
 		const createdTrip = {
 			departure: dateNow.toISOString(),
 			return: addSeconds(dateNow, duration).toISOString(),
-			departure_station_id: filters.departure_station_id?.ID,
-			departure_station_name: filters.departure_station_id?.Name,
-			return_station_id: filters.return_station_id?.ID,
-			return_station_name: filters.return_station_id?.Name,
+			departure_station_id: filters.departure_station_id?.ID ?? 1111,
+			departure_station_name:
+				filters.departure_station_id?.Name ?? "Mock station",
+			return_station_id: filters.return_station_id?.ID ?? 1111,
+			return_station_name:
+				filters.return_station_id?.Name ?? "Mock station",
 			covered_distance_m: distance,
 			duration_sec: duration,
 		}
