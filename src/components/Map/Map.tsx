@@ -20,8 +20,8 @@ const MapComponent = () => {
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)
-
-	allStations.length === 0 ? dispatch<any>(LoadAllStations()) : null
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	allStations.length === 0 ? dispatch<any>(LoadAllStations()) : () => {}
 
 	const navigate = useNavigate()
 	const [points, setPoints] = useState({

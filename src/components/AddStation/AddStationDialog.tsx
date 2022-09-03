@@ -4,12 +4,10 @@ import {
 	Dialog,
 	DialogTitle,
 	IconButton,
-	List,
-	ListItem,
 	TextField,
 } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AddNewStation } from "../../store/actions/stationsActions"
 import { TState } from "../../store/actions/types"
@@ -20,7 +18,7 @@ const AddStationDialog = ({
 	x,
 	y,
 }: {
-	handleClose: any
+	handleClose: () => void
 	open: boolean
 	x: number
 	y: number
@@ -41,8 +39,8 @@ const AddStationDialog = ({
 		Kapasiteet: 0,
 		x: x,
 		y: y,
-		FID: length + 1023,
-		ID: length + 1023,
+		FID: length + 2023,
+		ID: length + 2023,
 	})
 
 	const dispatch = useDispatch()

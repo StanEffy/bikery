@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import DoNotDisturbOnTotalSilenceIcon from "@mui/icons-material/DoNotDisturbOnTotalSilence"
 type Props = {
-	handleClick?: any
+	handleClick: (p: boolean) => void
 	pin: boolean
 }
 

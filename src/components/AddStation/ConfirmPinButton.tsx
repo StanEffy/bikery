@@ -2,9 +2,11 @@ import React from "react"
 import DoneIcon from "@mui/icons-material/Done"
 import { Button } from "@mui/material"
 
-// eslint-disable-next-line react/prop-types,@typescript-eslint/ban-ts-comment
-// @ts-ignore
-const ConfirmPinButton = ({ handleClick }) => {
+type Props = {
+	handleClick: () => void
+}
+
+const ConfirmPinButton: React.FC<Props> = ({ handleClick }) => {
 	return (
 		<Button
 			color="primary"
