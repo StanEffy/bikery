@@ -10,9 +10,9 @@ import {
 import { Station } from "../actions/types"
 
 export type TTStations = {
-	allStations: [] | [Station]
+	allStations: Station[]
 	activeStation: null | Station
-	allStationsStats: [] | [StationStats]
+	allStationsStats: StationStats[]
 }
 
 export const initialState: TTStations = {

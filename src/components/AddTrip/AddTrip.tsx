@@ -105,7 +105,7 @@ const AddTrip = () => {
 			</Box>
 			{!!filters.departure_station_id &&
 			!!filters.return_station_id &&
-			trips.length == 0 ? (
+			trips.length === 0 ? (
 				<TripFillInDistDur setFilters={setFilters} />
 			) : null}
 			<Box display={"flex"} justifyContent={"center"} sx={{ py: 2 }}>

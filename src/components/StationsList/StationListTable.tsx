@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from "react"
 import { alpha } from "@mui/material/styles"
 import Box from "@mui/material/Box"
@@ -13,23 +12,18 @@ import TableSortLabel from "@mui/material/TableSortLabel"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 import Paper from "@mui/material/Paper"
-import Checkbox from "@mui/material/Checkbox"
-import IconButton from "@mui/material/IconButton"
-import Tooltip from "@mui/material/Tooltip"
+
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Switch from "@mui/material/Switch"
-import DeleteIcon from "@mui/icons-material/Delete"
-import FilterListIcon from "@mui/icons-material/FilterList"
+
 import { visuallyHidden } from "@mui/utils"
 import { useSelector } from "react-redux"
-import { Station, StationStats, TState } from "../../store/actions/types"
+import { StationStats, TState } from "../../store/actions/types"
 import { useNavigate } from "react-router-dom"
 
 interface Data {
-	name: string
-	id: number
-	address: string
-	capacity: number
+	departure_station_name: string
+	departure_station_id: number
 	arrivals: number
 	departures: number
 }
@@ -85,14 +79,14 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: "id",
+		id: "departure_station_id",
 		numeric: true,
 		disablePadding: true,
 		label: "id",
 		align: "left",
 	},
 	{
-		id: "name",
+		id: "departure_station_name",
 		numeric: false,
 		disablePadding: true,
 		label: "name",
@@ -199,7 +193,9 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 
 export default function StationListTable() {
 	const [order, setOrder] = React.useState<Order>("asc")
-	const [orderBy, setOrderBy] = React.useState<keyof Data>("id")
+	const [orderBy, setOrderBy] = React.useState<keyof Data>(
+		"departure_station_id"
+	)
 	const [selected, setSelected] = React.useState<readonly string[]>([])
 	const [page, setPage] = React.useState(0)
 	const [dense, setDense] = React.useState(false)
@@ -289,10 +285,9 @@ export default function StationListTable() {
 									(
 										{
 											departures,
-											departure_station_name: name,
+											departure_station_name,
 											arrivals,
-											departure_station_id: id,
-											capacity,
+											departure_station_id,
 										},
 										index
 									) => {
@@ -301,10 +296,14 @@ export default function StationListTable() {
 										return (
 											<TableRow
 												hover
-												onClick={() => handleClick(id)}
+												onClick={() =>
+													handleClick(
+														departure_station_id
+													)
+												}
 												role="checkbox"
 												tabIndex={-1}
-												key={name}
+												key={departure_station_name}
 												className={
 													"station-list__row--clickable"
 												}
@@ -315,7 +314,7 @@ export default function StationListTable() {
 													scope="row"
 													padding="none"
 												>
-													{id}
+													{departure_station_id}
 												</TableCell>
 												<TableCell
 													align="right"
@@ -324,7 +323,7 @@ export default function StationListTable() {
 													scope="row"
 													padding="none"
 												>
-													{name}
+													{departure_station_name}
 												</TableCell>
 												<TableCell align="right">
 													{departures}
