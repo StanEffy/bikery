@@ -32,14 +32,13 @@ const JourneysList = () => {
 	})
 
 	const handleFilter = () => {
-		// @ts-ignore
-		dispatch(LoadFilteredTrips(createJourneysQueryString(filters)))
+		dispatch<any>(LoadFilteredTrips(createJourneysQueryString(filters)))
 	}
 
 	const toggleDisable = () => {
 		return filters.departure_station_id || filters.return_station_id
 	}
-	useEffect(() => {}, [trips])
+	useEffect(() => undefined, [trips])
 	return (
 		<>
 			<Box

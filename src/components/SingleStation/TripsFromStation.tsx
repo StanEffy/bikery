@@ -193,7 +193,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 	)
 }
 
-export default function TripsFromStationTable({ trips }) {
+export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 	const [order, setOrder] = React.useState<Order>("asc")
 	const [orderBy, setOrderBy] = React.useState<keyof Data>("id")
 	const [selected, setSelected] = React.useState<readonly string[]>([])
@@ -243,8 +243,7 @@ export default function TripsFromStationTable({ trips }) {
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - trips.length) : 0
 
-	useEffect(() => {}, [trips])
-	// @ts-ignore
+	useEffect(() => undefined, [trips])
 	return (
 		<Box sx={{ width: "100%" }}>
 			<Paper

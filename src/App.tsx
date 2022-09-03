@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SingleStation from "./components/SingleStation/SingleStation"
 import Map from "./components/Map/Map"
 import StationList from "./components/StationsList/StationList"
-import Statistics from "./components/Statistics/Statistics"
 import AddTrip from "./components/AddTrip/AddTrip"
 import AddStationPin from "./components/AddStation/AddStationPin"
 import { useDispatch } from "react-redux"
@@ -51,19 +50,11 @@ function App() {
 								path={"/stations/:id"}
 								element={<SingleStation />}
 							/>
-
 							<Route path={"/map"} element={<Map />} />
-
-							<Route
-								path={"/statistics"}
-								element={<Statistics />}
-							/>
-
 							<Route
 								path={"/journeys"}
 								element={<JourneysList />}
 							/>
-
 							<Route path={"/add_trip"} element={<AddTrip />} />
 							<Route
 								path={"/add_station"}

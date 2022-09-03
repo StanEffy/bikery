@@ -1,13 +1,14 @@
 import React from "react"
 import { Box, TextField } from "@mui/material"
+import { TFilter } from "../JourneysList/JourneysList"
 
 const TripFillInDistDur = ({
 	setFilters,
 }: {
-	setFilters: (state: any) => void
+	setFilters: (cb: (value: TFilter) => TFilter) => void
 }) => {
 	const handleDistance = (v: string) => {
-		setFilters((prev: any) => {
+		setFilters((prev: TFilter) => {
 			return {
 				...prev,
 				covered_distance_m: v,
@@ -15,7 +16,7 @@ const TripFillInDistDur = ({
 		})
 	}
 	const handleDuration = (v: string) => {
-		setFilters((prev: any) => {
+		setFilters((prev: TFilter) => {
 			return {
 				...prev,
 				duration_sec: v,

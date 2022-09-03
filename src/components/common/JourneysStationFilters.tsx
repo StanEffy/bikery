@@ -4,10 +4,11 @@ import { Station, TState } from "../../store/actions/types"
 import { Box } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import React from "react"
+import { TFilter } from "../JourneysList/JourneysList"
 
 type Props = {
 	label: string
-	handleFilters: (e: any) => void
+	handleFilters: (cb: (value: TFilter) => TFilter) => void
 }
 
 export const JourneysStationFilters: React.FC<Props> = ({
@@ -20,11 +21,11 @@ export const JourneysStationFilters: React.FC<Props> = ({
 
 	const handleStationChange = (value: Station | null) => {
 		label === "Departure station"
-			? handleFilters((prevState: any) => ({
+			? handleFilters((prevState: TFilter) => ({
 					...prevState,
 					departure_station_id: value,
 			  }))
-			: handleFilters((prevState: any) => ({
+			: handleFilters((prevState: TFilter) => ({
 					...prevState,
 					return_station_id: value,
 			  }))

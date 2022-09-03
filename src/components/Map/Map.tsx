@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Station, TState } from "../../store/actions/types"
 import { useNavigate } from "react-router-dom"
-import Map, { Marker } from "react-map-gl"
+import Map, { Marker, MarkerDragEvent } from "react-map-gl"
 import AddStationButton from "../AddStation/AddStationButton"
 import ConfirmPinButton from "../AddStation/ConfirmPinButton"
 import AddStationDialog from "../AddStation/AddStationDialog"
@@ -20,8 +20,9 @@ const MapComponent = () => {
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	allStations.length === 0 ? dispatch<any>(LoadAllStations()) : () => {}
+	allStations.length === 0
+		? dispatch<any>(LoadAllStations())
+		: () => undefined
 
 	const navigate = useNavigate()
 	const [points, setPoints] = useState({
@@ -41,7 +42,7 @@ const MapComponent = () => {
 	const setDialogClose = () => {
 		setDialogState(false)
 	}
-	const handleDrag = (e: any) => {
+	const handleDrag = (e: MarkerDragEvent) => {
 		setPoints((prev) => {
 			return {
 				...prev,
