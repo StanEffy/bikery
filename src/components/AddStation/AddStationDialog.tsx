@@ -10,23 +10,27 @@ import {
 } from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import React, { useCallback, useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AddNewStation } from "../../store/actions/stationsActions"
+import { TState } from "../../store/actions/types"
 
 const AddStationDialog = ({
 	handleClose,
 	open,
 	x,
 	y,
-	length,
 }: {
 	handleClose: any
 	open: boolean
 	x: number
 	y: number
-	length: number
 }) => {
-	const [station, setStaion] = useState({
+	const length = useSelector(
+		(state: TState) => state.stations.allStations.length
+	)
+
+	console.log(length)
+	const [station, setStation] = useState({
 		Name: "",
 		Namn: "",
 		Nimi: "",
@@ -37,23 +41,24 @@ const AddStationDialog = ({
 		Kapasiteet: 0,
 		x: x,
 		y: y,
-		FID: length + 822,
-		ID: length + 822,
+		FID: length + 1023,
+		ID: length + 1023,
 	})
 
 	const dispatch = useDispatch()
 
 	const handleSendStation = () => {
-		console.log(station)
-		// @ts-ignore
-		dispatch(AddNewStation(JSON.stringify(station)))
+		dispatch<any>(AddNewStation(station))
+		handleClose()
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	useEffect(() => {
-		setStaion((prev) => ({ ...prev, x: x, y: y }))
+		setStation((prev) => ({ ...prev, x: x, y: y }))
 	}, [x, y])
 
+	useEffect(() => {
+		console.log("")
+	}, [length])
 	return (
 		<Dialog onClose={handleClose} open={open}>
 			<Box display={"flex"} justifyContent={"space-between"}>
@@ -78,7 +83,7 @@ const AddStationDialog = ({
 					label="Station name"
 					variant="outlined"
 					onChange={(e) =>
-						setStaion((prev) => ({
+						setStation((prev) => ({
 							...prev,
 							Name: e.target.value,
 							Namn: e.target.value,
@@ -90,7 +95,7 @@ const AddStationDialog = ({
 					label="Station address"
 					variant="outlined"
 					onChange={(e) =>
-						setStaion((prev) => ({
+						setStation((prev) => ({
 							...prev,
 							Osoite: e.target.value,
 						}))

@@ -38,7 +38,13 @@ export const JourneysStationFilters: React.FC<Props> = ({
 			onChange={(event, value) => {
 				handleStationChange(value)
 			}}
-			sx={{ width: 300 }}
+			sx={{
+				width: 300,
+				mb: {
+					xs: 2,
+					md: 0,
+				},
+			}}
 			getOptionLabel={(option: Station) => option.Name}
 			renderOption={(props, option) => (
 				<Box

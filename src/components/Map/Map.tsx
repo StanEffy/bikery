@@ -50,6 +50,7 @@ const MapComponent = () => {
 			}
 		})
 	}
+
 	return (
 		<Map
 			{...viewState}
@@ -102,7 +103,6 @@ const MapComponent = () => {
 			<AddStationDialog
 				open={dialog}
 				handleClose={setDialogClose}
-				length={allStations.length}
 				x={points.x}
 				y={points.y}
 			/>

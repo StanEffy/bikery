@@ -27,6 +27,7 @@ export const DistanceFilter = ({ handleFilters }) => {
 	return (
 		<Box display={"flex"} alignItems={"center"}>
 			<FormControlLabel
+				labelPlacement={"top"}
 				control={<Checkbox checked={checked} onChange={handleChange} />}
 				label={checked ? "Greater than:" : "Shorter than:"}
 			/>
@@ -72,6 +73,7 @@ export const DurationFilter = ({ handleFilters }) => {
 	return (
 		<Box display={"flex"} alignItems={"center"}>
 			<FormControlLabel
+				labelPlacement={"top"}
 				control={<Checkbox checked={checked} onChange={handleChange} />}
 				label={checked ? "Greater than:" : "Shorter than:"}
 			/>
