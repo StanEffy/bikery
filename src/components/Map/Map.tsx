@@ -12,7 +12,9 @@ import mapboxgl from "mapbox-gl"
 
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+// eslint-disable-next-line
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 mapboxgl.workerClass =
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
