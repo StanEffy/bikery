@@ -1,29 +1,29 @@
 // @ts-nocheck
-import * as React from 'react'
-import { alpha } from '@mui/material/styles'
-import Box from '@mui/material/Box'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TablePagination from '@mui/material/TablePagination'
-import TableRow from '@mui/material/TableRow'
-import TableSortLabel from '@mui/material/TableSortLabel'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Paper from '@mui/material/Paper'
-import Checkbox from '@mui/material/Checkbox'
-import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Switch from '@mui/material/Switch'
-import DeleteIcon from '@mui/icons-material/Delete'
-import FilterListIcon from '@mui/icons-material/FilterList'
-import { visuallyHidden } from '@mui/utils'
-import { useSelector } from 'react-redux'
-import { Station, StationStats } from '../../store/actions/types'
-import { useNavigate } from 'react-router-dom'
+import * as React from "react"
+import { alpha } from "@mui/material/styles"
+import Box from "@mui/material/Box"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TablePagination from "@mui/material/TablePagination"
+import TableRow from "@mui/material/TableRow"
+import TableSortLabel from "@mui/material/TableSortLabel"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import Paper from "@mui/material/Paper"
+import Checkbox from "@mui/material/Checkbox"
+import IconButton from "@mui/material/IconButton"
+import Tooltip from "@mui/material/Tooltip"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Switch from "@mui/material/Switch"
+import DeleteIcon from "@mui/icons-material/Delete"
+import FilterListIcon from "@mui/icons-material/FilterList"
+import { visuallyHidden } from "@mui/utils"
+import { useSelector } from "react-redux"
+import { Station, StationStats, TState } from "../../store/actions/types"
+import { useNavigate } from "react-router-dom"
 
 interface Data {
 	name: string
@@ -44,7 +44,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 	return 0
 }
 
-type Order = 'asc' | 'desc'
+type Order = "asc" | "desc"
 
 function getComparator<Key extends keyof any>(
 	order: Order,
@@ -53,7 +53,7 @@ function getComparator<Key extends keyof any>(
 	a: { [key in Key]: number | string },
 	b: { [key in Key]: number | string }
 ) => number {
-	return order === 'desc'
+	return order === "desc"
 		? (a, b) => descendingComparator(a, b, orderBy)
 		: (a, b) => -descendingComparator(a, b, orderBy)
 }
@@ -80,32 +80,37 @@ interface HeadCell {
 	id: keyof Data
 	label: string
 	numeric: boolean
+	align: "right" | "left"
 }
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: 'id',
+		id: "id",
 		numeric: true,
 		disablePadding: true,
-		label: 'id',
+		label: "id",
+		align: "left",
 	},
 	{
-		id: 'name',
-		numeric: true,
-		disablePadding: false,
-		label: 'name',
+		id: "name",
+		numeric: false,
+		disablePadding: true,
+		label: "name",
+		align: "right",
 	},
 	{
-		id: 'arrivals',
+		id: "arrivals",
 		numeric: true,
 		disablePadding: false,
-		label: 'arrivals',
+		label: "arrivals",
+		align: "right",
 	},
 	{
-		id: 'departures',
+		id: "departures",
 		numeric: true,
 		disablePadding: false,
-		label: 'departures',
+		label: "departures",
+		align: "right",
 	},
 ]
 
@@ -122,14 +127,7 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-	const {
-		onSelectAllClick,
-		order,
-		orderBy,
-		numSelected,
-		rowCount,
-		onRequestSort,
-	} = props
+	const { order, orderBy, onRequestSort } = props
 	const createSortHandler =
 		(property: keyof Data) => (event: React.MouseEvent<unknown>) => {
 			onRequestSort(event, property)
@@ -141,21 +139,21 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
-						align={headCell.numeric ? 'right' : 'left'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
+						align={headCell.align}
+						padding={headCell.disablePadding ? "none" : "normal"}
 						sortDirection={orderBy === headCell.id ? order : false}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
-							direction={orderBy === headCell.id ? order : 'asc'}
+							direction={orderBy === headCell.id ? order : "asc"}
 							onClick={createSortHandler(headCell.id)}
 						>
 							{headCell.label}
 							{orderBy === headCell.id ? (
 								<Box component="span" sx={visuallyHidden}>
-									{order === 'desc'
-										? 'sorted descending'
-										: 'sorted ascending'}
+									{order === "desc"
+										? "sorted descending"
+										: "sorted ascending"}
 								</Box>
 							) : null}
 						</TableSortLabel>
@@ -188,7 +186,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 			}}
 		>
 			<Typography
-				sx={{ flex: '1 1 100%' }}
+				sx={{ flex: "1 1 100%" }}
 				variant="h6"
 				id="tableTitle"
 				component="div"
@@ -200,22 +198,24 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 }
 
 export default function StationListTable() {
-	const [order, setOrder] = React.useState<Order>('asc')
-	const [orderBy, setOrderBy] = React.useState<keyof Data>('id')
+	const [order, setOrder] = React.useState<Order>("asc")
+	const [orderBy, setOrderBy] = React.useState<keyof Data>("id")
 	const [selected, setSelected] = React.useState<readonly string[]>([])
 	const [page, setPage] = React.useState(0)
 	const [dense, setDense] = React.useState(false)
 	const [rowsPerPage, setRowsPerPage] = React.useState(25)
 	const navigate = useNavigate()
-	// @ts-ignore
-	const allStations = useSelector((state) => state.stations.allStationsStats)
+
+	const allStations = useSelector(
+		(state: TState) => state.stations.allStationsStats
+	)
 
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
 		property: keyof Data
 	) => {
-		const isAsc = orderBy === property && order === 'asc'
-		setOrder(isAsc ? 'desc' : 'asc')
+		const isAsc = orderBy === property && order === "asc"
+		setOrder(isAsc ? "desc" : "asc")
 		setOrderBy(property)
 	}
 
@@ -258,18 +258,17 @@ export default function StationListTable() {
 			? Math.max(0, (1 + page) * rowsPerPage - allStations.length)
 			: 0
 
-	// @ts-ignore
 	return (
-		<Box sx={{ width: '100%' }}>
+		<Box sx={{ width: "100%" }}>
 			<Paper
-				sx={{ width: '100%', mb: 2, pl: 1, boxSizing: 'border-box' }}
+				sx={{ width: "100%", mb: 2, pl: 1, boxSizing: "border-box" }}
 			>
 				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer>
 					<Table
-						sx={{ minWidth: 750 }}
+						sx={{ minWidth: 375 }}
 						aria-labelledby="tableTitle"
-						size={dense ? 'small' : 'medium'}
+						size={dense ? "small" : "medium"}
 					>
 						<EnhancedTableHead
 							numSelected={selected.length}
@@ -309,7 +308,7 @@ export default function StationListTable() {
 												tabIndex={-1}
 												key={name}
 												className={
-													'station-list__row--clickable'
+													"station-list__row--clickable"
 												}
 											>
 												<TableCell
