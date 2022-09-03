@@ -52,6 +52,8 @@ function getComparator<Key extends keyof any>(
 		: (a, b) => -descendingComparator(a, b, orderBy)
 }
 
+// 'Trip[]' is not assignable to parameter of type 'readonly { departure_station_name: string | number; return_station_name: string | number; duration_sec: string | number; covered_distance_m: string | number; return_station_id: string | number; }[]'.
+
 // This method is created for cross-browser compatibility, if you don't
 // need to support IE11, you can use Array.prototype.sort() directly
 function stableSort<T>(

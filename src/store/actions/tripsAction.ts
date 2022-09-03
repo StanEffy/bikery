@@ -41,17 +41,7 @@ export const LoadFilteredTrips =
 	}
 
 export const AddNewTrip =
-	(trip: {
-		departure_station_name: string | undefined
-		covered_distance_m: number
-		departure: string
-		departure_station_id: number | undefined
-		return_station_id: number | undefined
-		return_station_name: string | undefined
-		return: string
-		duration_sec: number
-	}) =>
-	async (dispatch: Dispatch<IAddNewTrip>) => {
+	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
 		try {
 			await apiTrips.post("/", JSON.stringify(trip), {
 				withCredentials: true,
