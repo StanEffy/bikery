@@ -15,9 +15,7 @@ Backend is in separate repo and to make it all works you should go and install a
 Open [https://github.com/StanEffy/back-bikery](https://github.com/StanEffy/back-bikery) and clone repo the same way
 with `npm i` afterwards.
 
-"CT0I nVZa YVGi s5Y1" - it is a password to a db. Delete all backspaces and add it to config.env file to connect to
-mongodb.
-Also you can write me in telegram @Holydonk
+You can write me in telegram @Holydonk to get a pass to a db. 
 
 In the project directory, you can run:
 
