@@ -1,5 +1,7 @@
 # Bikery - roll the HEL out of here!
 
+http://52.47.173.43:8080/ - this is where you can have a look on a working app. (Combined node + react deployed to AWS EC2)
+
 This is a project based on a dataset which consisted of three months of lovely bike journeys around Helsinki. The
 collection of the documents is about 3 000 000, so you can easily learn some patterns in paths in the city and
 always be on trend.
@@ -13,9 +15,7 @@ Backend is in separate repo and to make it all works you should go and install a
 Open [https://github.com/StanEffy/back-bikery](https://github.com/StanEffy/back-bikery) and clone repo the same way
 with `npm i` afterwards.
 
-"CT0I nVZa YVGi s5Y1" - it is a password to a db. Delete all backspaces and add it to config.env file to connect to
-mongodb.
-Also you can write me in telegram @Holydonk
+You can write me in telegram @Holydonk to get a pass to a db. 
 
 In the project directory, you can run:
 
