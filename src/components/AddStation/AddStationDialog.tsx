@@ -27,7 +27,6 @@ const AddStationDialog = ({
 		(state: TState) => state.stations.allStations.length
 	)
 
-	console.log(length)
 	const [station, setStation] = useState({
 		Name: "",
 		Namn: "",
@@ -54,9 +53,6 @@ const AddStationDialog = ({
 		setStation((prev) => ({ ...prev, x: x, y: y }))
 	}, [x, y])
 
-	useEffect(() => {
-		console.log("")
-	}, [length])
 	return (
 		<Dialog onClose={handleClose} open={open}>
 			<Box display={"flex"} justifyContent={"space-between"}>
