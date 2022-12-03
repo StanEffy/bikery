@@ -54,7 +54,11 @@ const AddStationDialog = ({
 	}, [x, y])
 
 	return (
-		<Dialog onClose={handleClose} open={open}>
+		<Dialog
+			onClose={handleClose}
+			open={open}
+			data-testid="add-station-dialog__test-id"
+		>
 			<Box display={"flex"} justifyContent={"space-between"}>
 				<Box />
 				<IconButton
