@@ -1,6 +1,6 @@
 import { TFilter } from "../../components/JourneysList/JourneysList"
 
-export default (filter: TFilter) => {
+export default (filter: TFilter): string => {
 	let str = ""
 	if (filter.departure_station_id !== null) {
 		str += "departure_station_id=" + filter.departure_station_id?.ID

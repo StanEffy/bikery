@@ -34,6 +34,7 @@ function App() {
 		dispatch<any>(LoadAllStations())
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
+
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
