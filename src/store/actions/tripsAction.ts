@@ -13,7 +13,7 @@ export const LoadAllTripsByStation =
 	async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
 		try {
 			const { data } = await apiTrips.get("/?departure_station_id=" + id)
-
+			console.log(data)
 			dispatch({
 				type: ActionTypesTrips.LoadAllTripsByStation,
 				payload: data.data.data,
