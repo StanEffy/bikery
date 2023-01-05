@@ -1,4 +1,4 @@
-import { apiStations } from "../../api/api"
+import { apiStations } from "../../api/apiCopy"
 import {
 	ActionTypes,
 	IAddNewStation,
