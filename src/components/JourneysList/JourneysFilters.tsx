@@ -19,11 +19,15 @@ export type TWarmMonths = { dateFilter: TDate }
 type Props = {
 	handleFilters: (cb: (value: TFilter) => TFilter) => void
 }
-export const SelectMonth: React.FC<Props> = () => {
+export const SelectMonth: React.FC<Props> = ({ handleFilters }) => {
 	const [month, setMonth] = React.useState<string>("")
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setMonth(event.target.value)
+		handleFilters((prevState: TFilter) => ({
+			...prevState,
+			dateFilter: event.target.value,
+		}))
 	}
 
 	return (
