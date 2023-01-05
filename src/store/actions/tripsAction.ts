@@ -1,4 +1,4 @@
-import { apiTrips } from "../../api/api"
+import { apiTrips } from "../../api/apiCopy"
 import {
 	ActionTypesTrips,
 	IAddNewTrip,
