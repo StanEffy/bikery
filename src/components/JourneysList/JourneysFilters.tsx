@@ -32,7 +32,7 @@ export const SelectMonth: React.FC<Props> = ({ handleFilters }) => {
 
 	return (
 		<FormControl fullWidth>
-			<InputLabel id="select-month-label">Age</InputLabel>
+			<InputLabel id="select-month-label">Month</InputLabel>
 			<Select
 				labelId="select-month-label"
 				id="select-month"
