@@ -20,7 +20,7 @@ type Props = {
 	handleFilters: (cb: (value: TFilter) => TFilter) => void
 }
 export const SelectMonth: React.FC<Props> = ({ handleFilters }) => {
-	const [month, setMonth] = React.useState<string>("")
+	const [month, setMonth] = React.useState<string>("all")
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setMonth(event.target.value)
@@ -40,7 +40,7 @@ export const SelectMonth: React.FC<Props> = ({ handleFilters }) => {
 				label="Month"
 				onChange={handleChange}
 			>
-				<MenuItem value={null}>All data</MenuItem>
+				<MenuItem value={"all"}>All data</MenuItem>
 				<MenuItem value={"may"}>May</MenuItem>
 				<MenuItem value={"june"}>June</MenuItem>
 				<MenuItem value={"july"}>July</MenuItem>
