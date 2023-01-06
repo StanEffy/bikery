@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { DistanceFilter, DurationFilter, TWarmMonths } from "./JourneysFilters"
+import {
+	DistanceFilter,
+	DurationFilter,
+	SelectMonth,
+	TWarmMonths,
+} from "./JourneysFilters"
 import { Box, Button } from "@mui/material"
 import TripsFromStationTable from "../SingleStation/TripsFromStation"
 import { useDispatch, useSelector } from "react-redux"
@@ -69,6 +74,9 @@ const JourneysList = () => {
 				<Box>
 					<DistanceFilter handleFilters={setFilters} />
 					<DurationFilter handleFilters={setFilters} />
+				</Box>
+				<Box>
+					<SelectMonth handleFilters={setFilters} />
 				</Box>
 				<Box
 					display={"flex"}
