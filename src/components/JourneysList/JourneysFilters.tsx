@@ -1,13 +1,53 @@
 import React, { useState } from "react"
 import Checkbox from "@mui/material/Checkbox"
 import TextField from "@mui/material/TextField"
-import { Box, FormControlLabel, InputAdornment } from "@mui/material"
+import {
+	Box,
+	FormControl,
+	FormControlLabel,
+	InputAdornment,
+	InputLabel,
+} from "@mui/material"
+import Select, { SelectChangeEvent } from "@mui/material/Select"
 import { TFilter } from "./JourneysList"
+import MenuItem from "@mui/material/MenuItem"
+
+export type TDate = { start: string; end: string }
+
+export type TWarmMonths = { dateFilter: TDate }
 
 type Props = {
 	handleFilters: (cb: (value: TFilter) => TFilter) => void
 }
+export const SelectMonth: React.FC<Props> = ({ handleFilters }) => {
+	const [month, setMonth] = React.useState<string>("all")
 
+	const handleChange = (event: SelectChangeEvent) => {
+		setMonth(event.target.value)
+		handleFilters((prevState: TFilter) => ({
+			...prevState,
+			dateFilter: event.target.value,
+		}))
+	}
+
+	return (
+		<FormControl fullWidth>
+			<InputLabel id="select-month-label">Month</InputLabel>
+			<Select
+				labelId="select-month-label"
+				id="select-month"
+				value={month}
+				label="Month"
+				onChange={handleChange}
+			>
+				<MenuItem value={"all"}>All data</MenuItem>
+				<MenuItem value={"may"}>May</MenuItem>
+				<MenuItem value={"june"}>June</MenuItem>
+				<MenuItem value={"july"}>July</MenuItem>
+			</Select>
+		</FormControl>
+	)
+}
 export const DistanceFilter: React.FC<Props> = ({ handleFilters }) => {
 	const [distance, setDistance] = useState("0")
 	const [checked, setChecked] = React.useState(true)
