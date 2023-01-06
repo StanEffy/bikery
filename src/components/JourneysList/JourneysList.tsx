@@ -75,15 +75,16 @@ const JourneysList = () => {
 					<DistanceFilter handleFilters={setFilters} />
 					<DurationFilter handleFilters={setFilters} />
 				</Box>
-				<Box>
-					<SelectMonth handleFilters={setFilters} />
-				</Box>
+
 				<Box
 					display={"flex"}
-					alignItems={"flex-start"}
+					alignItems={"center"}
 					justifyContent={"center"}
 					sx={{ width: "100%" }}
 				>
+					<Box>
+						<SelectMonth handleFilters={setFilters} />
+					</Box>
 					<Button
 						disabled={!toggleDisable()}
 						variant="contained"

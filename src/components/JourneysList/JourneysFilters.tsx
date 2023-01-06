@@ -40,6 +40,7 @@ export const SelectMonth: React.FC<Props> = ({ handleFilters }) => {
 				label="Month"
 				onChange={handleChange}
 			>
+				<MenuItem value={null}>All data</MenuItem>
 				<MenuItem value={"may"}>May</MenuItem>
 				<MenuItem value={"june"}>June</MenuItem>
 				<MenuItem value={"july"}>July</MenuItem>
