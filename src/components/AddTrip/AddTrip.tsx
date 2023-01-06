@@ -19,6 +19,7 @@ const AddTrip = () => {
 		duration_sec: 0,
 		distance_is_greater: true,
 		duration_is_greater: true,
+		dateFilter: null,
 	})
 
 	const res = { duration: 0, length: 0 }
