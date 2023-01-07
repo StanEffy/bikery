@@ -44,7 +44,7 @@ export default (filter: TFilter): string => {
 		} else if (filter.dateFilter === "june") {
 			str += "&departure[gte]=" + dates.june.start
 			str += "&departure[lte]=" + dates.june.end
-		} else {
+		} else if (filter.dateFilter === "july") {
 			str += "&departure[gte]=" + dates.july.start
 			str += "&departure[lte]=" + dates.july.end
 		}

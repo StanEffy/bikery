@@ -82,16 +82,18 @@ const JourneysList = () => {
 					justifyContent={"center"}
 					sx={{ width: "100%" }}
 				>
-					<Box>
+					<Box sx={{ ml: 2 }}>
 						<SelectMonth handleFilters={setFilters} />
 					</Box>
-					<Button
-						disabled={!toggleDisable()}
-						variant="contained"
-						onClick={() => handleFilter()}
-					>
-						Send filters
-					</Button>
+					<Box>
+						<Button
+							disabled={!toggleDisable()}
+							variant="contained"
+							onClick={() => handleFilter()}
+						>
+							Send filters
+						</Button>
+					</Box>
 				</Box>
 			</Box>
 			<TripsFromStationTable trips={trips} />
