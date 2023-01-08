@@ -15,6 +15,7 @@ import { LoadAllStationsStats } from "./store/actions/stationsStatsActions"
 import InitialPage from "./components/InitialPage/InitialPage"
 import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
+import AppAlert from "./components/Alert/Alert"
 
 function App() {
 	const dispatch = useDispatch()
@@ -41,6 +42,10 @@ function App() {
 				<header className="App-header">
 					<Router>
 						<Header />
+						<AppAlert
+							type={"info"}
+							message={"Checking how alert goes"}
+						/>
 						<Routes>
 							<Route path={"/"} element={<InitialPage />} />
 							<Route
