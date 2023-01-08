@@ -42,7 +42,10 @@ export enum ActionTypes {
 	SetActiveStation = "SetActiveStation",
 	AddNewStation = "AddNewStation",
 }
-
+export enum ActionTypesAlert {
+	SetAlert = "SetAlert",
+	NullifyAlert = "NullifyAlert",
+}
 export enum ActionTypesTrips {
 	LoadAllTripsByStation = "LoadAllTripsByStation",
 	AddNewTrip = "AddNewTrip",
