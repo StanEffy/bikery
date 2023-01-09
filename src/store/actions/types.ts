@@ -1,5 +1,6 @@
 import { TTripsState } from "../reducers/tripsReducers"
 import { TTStations } from "../reducers/stationsReducers"
+import { TAlert } from "../reducers/alertReducers"
 
 export type Station = {
 	Name: string
@@ -90,4 +91,12 @@ export interface ILoadAllStats {
 export type TState = {
 	stations: TTStations
 	trips: TTripsState
+}
+
+export interface ISetAlert {
+	type: ActionTypesAlert.SetAlert
+	payload: TAlert
+}
+export interface INullifyAlert {
+	type: ActionTypesAlert.NullifyAlert
 }
