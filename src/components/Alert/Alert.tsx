@@ -4,9 +4,22 @@ type Props = {
 	type: AlertColor
 	message: string
 	status?: number
+	visibility: boolean
 }
-const AppAlert: React.FC<Props> = ({ type, message }) => {
-	return <Alert severity={type}>{message}</Alert>
+const AppAlert: React.FC<Props> = ({ type, message, visibility }) => {
+	return (
+		<Alert
+			sx={{
+				position: "absolute",
+				display: visibility ? "flex" : "none",
+				marginTop: "20px",
+				marginLeft: "20px",
+			}}
+			severity={type}
+		>
+			{message}
+		</Alert>
+	)
 }
 
 export default AppAlert
