@@ -16,6 +16,7 @@ import InitialPage from "./components/InitialPage/InitialPage"
 import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
 import AppAlert from "./components/Alert/Alert"
+import Box from "@mui/material/Box"
 
 function App() {
 	const dispatch = useDispatch()
@@ -42,10 +43,14 @@ function App() {
 				<header className="App-header">
 					<Router>
 						<Header />
-						<AppAlert
-							type={"info"}
-							message={"Checking how alert goes"}
-						/>
+						<Box sx={{ position: "relative", width: "100%" }}>
+							<AppAlert
+								type={"success"}
+								message={"Checking how alert goes"}
+								visibility={true}
+							/>
+						</Box>
+
 						<Routes>
 							<Route path={"/"} element={<InitialPage />} />
 							<Route
