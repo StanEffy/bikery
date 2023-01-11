@@ -19,7 +19,7 @@ export const initialState: TAlertState = {
 }
 type TAction = ISetAlert | INullifyAlert
 
-export const tripsReducers = (state = initialState, action: TAction) => {
+export const alertReducers = (state = initialState, action: TAction) => {
 	switch (action.type) {
 		case ActionTypesAlert.SetAlert: {
 			return {

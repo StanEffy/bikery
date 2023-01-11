@@ -8,7 +8,7 @@ import Map from "./components/Map/Map"
 import StationList from "./components/StationsList/StationList"
 import AddTrip from "./components/AddTrip/AddTrip"
 import AddStationPin from "./components/AddStation/AddStationPin"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { LoadAllStations } from "./store/actions/stationsActions"
 import { LoadAllStationsStats } from "./store/actions/stationsStatsActions"
@@ -37,6 +37,7 @@ function App() {
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
 
+	const alert = useSelector((state) => state)
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
