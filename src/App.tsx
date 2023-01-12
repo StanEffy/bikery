@@ -37,7 +37,10 @@ function App() {
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
 
-	const alert = useSelector((state) => state)
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
+	const alert = useSelector((state) => state.alert)
+
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
