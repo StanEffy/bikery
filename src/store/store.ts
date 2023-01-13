@@ -2,9 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
-import { stationsReducers } from "./reducers/stationsReducers"
-import { tripsReducers } from "./reducers/tripsReducers"
-import { alertReducers } from "./reducers/alertReducers"
+import {
+	stationsReducers,
+	TStationsReducers,
+} from "./reducers/stationsReducers"
+import { tripsReducers, TTripsState } from "./reducers/tripsReducers"
+import { alertReducers, TAlertState } from "./reducers/alertReducers"
 
 const reducer = combineReducers({
 	stations: stationsReducers,

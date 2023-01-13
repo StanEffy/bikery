@@ -17,6 +17,7 @@ import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
 import AppAlert from "./components/Alert/Alert"
 import Box from "@mui/material/Box"
+import { TState } from "./store/actions/types"
 
 function App() {
 	const dispatch = useDispatch()
@@ -37,9 +38,14 @@ function App() {
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
 
+	const alert = useSelector((state: TState) => state.alert)
+	console.log(alert)
+
+	useEffect(() => {
+		console.log("alert has changed!")
+	}, [alert])
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
-	const alert = useSelector((state) => state.alert)
 
 	return (
 		<div className="App">
@@ -47,12 +53,20 @@ function App() {
 				<header className="App-header">
 					<Router>
 						<Header />
-						<Box sx={{ position: "relative", width: "100%" }}>
-							<AppAlert
-								type={"success"}
-								message={"Checking how alert goes"}
-								visibility={true}
-							/>
+						<Box
+							sx={{
+								position: "relative",
+								width: "100%",
+								top: "-70px",
+							}}
+						>
+							{alert !== null ? (
+								<AppAlert
+									type={alert?.alert?.type}
+									message={alert?.alert?.message}
+									visibility={alert.visibility}
+								/>
+							) : null}
 						</Box>
 
 						<Routes>

@@ -1,6 +1,6 @@
 import { TTripsState } from "../reducers/tripsReducers"
-import { TTStations } from "../reducers/stationsReducers"
-import { TAlert } from "../reducers/alertReducers"
+import { TStationsReducers } from "../reducers/stationsReducers"
+import { TAlert, TAlertState } from "../reducers/alertReducers"
 
 export type Station = {
 	Name: string
@@ -89,8 +89,9 @@ export interface ILoadAllStats {
 }
 
 export type TState = {
-	stations: TTStations
+	stations: TStationsReducers
 	trips: TTripsState
+	alert: TAlertState
 }
 
 export interface ISetAlert {

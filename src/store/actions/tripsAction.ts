@@ -3,10 +3,15 @@ import {
 	ActionTypesTrips,
 	IAddNewTrip,
 	ILoadAllTripsByStation,
+	ISetAlert,
 	Station,
 	Trip,
 } from "./types"
 import { Dispatch } from "redux"
+import handleAlert from "../../utils/functions/handleAlert"
+import axios from "axios"
+import { SetAlert } from "./alertAction"
+import { AlertColor } from "@mui/material"
 
 export const LoadAllTripsByStation =
 	(id: string | undefined) =>
@@ -27,7 +32,7 @@ export const LoadFilteredTrips =
 	(requestString: string) =>
 	async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
 		try {
-			//If nothing was filtered, than sending only 60k trips
+			//If nothing was filtered, then sending only 60k trips
 			const str = requestString.length > 0 ? "/?" + requestString : ""
 			const { data } = await apiTrips.get(str)
 
@@ -43,17 +48,25 @@ export const LoadFilteredTrips =
 export const AddNewTrip =
 	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
 		try {
-			await apiTrips.post("/", JSON.stringify(trip), {
+			const postedTrip = await apiTrips.post("/", JSON.stringify(trip), {
 				withCredentials: true,
 				headers: {
 					"Content-Type": "application/json",
 				},
 			})
+			console.log(postedTrip)
 			dispatch({
 				type: ActionTypesTrips.AddNewTrip,
 				payload: trip,
 			})
 		} catch (e) {
+			if (axios.isAxiosError(e)) {
+				const alert = {
+					type: "error" as AlertColor,
+					message: e.message,
+				}
+				handleAlert({ dispatch, alert })
+			}
 			console.log(e)
 		}
 	}
