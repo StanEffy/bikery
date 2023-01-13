@@ -17,6 +17,7 @@ import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
 import AppAlert from "./components/Alert/Alert"
 import Box from "@mui/material/Box"
+import { TState } from "./store/actions/types"
 
 function App() {
 	const dispatch = useDispatch()
@@ -37,7 +38,7 @@ function App() {
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
 
-	const alert = useSelector((state) => state.alert)
+	const alert = useSelector((state: TState) => state.alert)
 	console.log(alert)
 
 	useEffect(() => {
@@ -59,11 +60,13 @@ function App() {
 								top: "-70px",
 							}}
 						>
-							<AppAlert
-								type={alert.alert.type}
-								message={alert.alert.message}
-								visibility={alert.visibility}
-							/>
+							{alert !== null ? (
+								<AppAlert
+									type={alert?.alert?.type}
+									message={alert?.alert?.message}
+									visibility={alert.visibility}
+								/>
+							) : null}
 						</Box>
 
 						<Routes>

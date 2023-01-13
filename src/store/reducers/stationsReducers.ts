@@ -9,13 +9,13 @@ import {
 } from "../actions/types"
 import { Station } from "../actions/types"
 
-export type TTStations = {
+export type TStationsReducers = {
 	allStations: Station[]
 	activeStation: null | Station
 	allStationsStats: StationStats[]
 }
 
-export const initialState: TTStations = {
+export const initialState: TStationsReducers = {
 	allStations: [],
 	activeStation: null,
 	allStationsStats: [],
