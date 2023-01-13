@@ -7,6 +7,7 @@ type Props = {
 	visibility: boolean
 }
 const AppAlert: React.FC<Props> = ({ type, message, visibility }) => {
+	console.log("the type is " + type + " message is " + message)
 	return visibility ? (
 		<Alert
 			sx={{

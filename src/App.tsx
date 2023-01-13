@@ -37,10 +37,15 @@ function App() {
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
 
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
 	const alert = useSelector((state) => state.alert)
 	console.log(alert)
+
+	useEffect(() => {
+		console.log("alert has changed!")
+	}, [alert])
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
+
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
@@ -55,9 +60,9 @@ function App() {
 							}}
 						>
 							<AppAlert
-								type={"success"}
-								message={"Checking how alert goes"}
-								visibility={true}
+								type={alert.alert.type}
+								message={alert.alert.message}
+								visibility={alert.visibility}
 							/>
 						</Box>
 
