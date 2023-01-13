@@ -7,11 +7,10 @@ type Props = {
 	visibility: boolean
 }
 const AppAlert: React.FC<Props> = ({ type, message, visibility }) => {
-	return (
+	return visibility ? (
 		<Alert
 			sx={{
 				position: "absolute",
-				display: visibility ? "flex" : "none",
 				marginTop: "20px",
 				marginLeft: "20px",
 				right: "10px",
@@ -21,7 +20,7 @@ const AppAlert: React.FC<Props> = ({ type, message, visibility }) => {
 		>
 			{message}
 		</Alert>
-	)
+	) : null
 }
 
 export default AppAlert
