@@ -1,6 +1,6 @@
 import "./App.css"
 
-import React from "react"
+import React, { useState } from "react"
 import Header from "./components/Header/Header"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import SingleStation from "./components/SingleStation/SingleStation"
@@ -17,11 +17,12 @@ import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
 import AppAlert from "./components/Alert/Alert"
 import Box from "@mui/material/Box"
-import { TState } from "./store/actions/types"
+import { INullifyAlert, TState } from "./store/actions/types"
+import { NullifyAlert } from "./store/actions/alertAction"
 
 function App() {
 	const dispatch = useDispatch()
-
+	const [showAlert, setShowAlert] = useState<boolean>(true)
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -42,7 +43,15 @@ function App() {
 	console.log(alert)
 
 	useEffect(() => {
-		console.log("alert has changed!")
+		console.log("called!")
+		// @ts-ignore
+		const timer = setTimeout(
+			() => dispatch<INullifyAlert>(NullifyAlert()),
+			3000
+		)
+		return () => {
+			clearTimeout(timer)
+		}
 	}, [alert])
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
@@ -60,13 +69,10 @@ function App() {
 								top: "-70px",
 							}}
 						>
-							{alert !== null ? (
-								<AppAlert
-									type={alert?.alert?.type}
-									message={alert?.alert?.message}
-									visibility={alert.visibility}
-								/>
-							) : null}
+							<AppAlert
+								alert={alert.alert}
+								visibility={alert.visibility}
+							/>
 						</Box>
 
 						<Routes>

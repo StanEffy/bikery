@@ -1,14 +1,13 @@
 import React from "react"
-import { Alert, AlertColor } from "@mui/material"
+import { Alert } from "@mui/material"
+import { TAlert } from "../../store/reducers/alertReducers"
+
 type Props = {
-	type: AlertColor
-	message: string
-	status?: number
+	alert: TAlert | null
 	visibility: boolean
 }
-const AppAlert: React.FC<Props> = ({ type, message, visibility }) => {
-	console.log("the type is " + type + " message is " + message)
-	return visibility ? (
+const AppAlert: React.FC<Props> = ({ alert, visibility }) => {
+	return visibility && alert ? (
 		<Alert
 			sx={{
 				position: "absolute",
@@ -17,9 +16,9 @@ const AppAlert: React.FC<Props> = ({ type, message, visibility }) => {
 				right: "10px",
 				opacity: 0.75,
 			}}
-			severity={type}
+			severity={alert.type}
 		>
-			{message}
+			{alert.message}
 		</Alert>
 	) : null
 }
