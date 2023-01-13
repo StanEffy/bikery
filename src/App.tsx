@@ -47,7 +47,7 @@ function App() {
 		// @ts-ignore
 		const timer = setTimeout(
 			() => dispatch<INullifyAlert>(NullifyAlert()),
-			3000
+			2500
 		)
 		return () => {
 			clearTimeout(timer)
