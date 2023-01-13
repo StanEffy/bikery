@@ -40,14 +40,20 @@ function App() {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	const alert = useSelector((state) => state.alert)
-
+	console.log(alert)
 	return (
 		<div className="App">
 			<ThemeProvider theme={theme}>
 				<header className="App-header">
 					<Router>
 						<Header />
-						<Box sx={{ position: "relative", width: "100%" }}>
+						<Box
+							sx={{
+								position: "relative",
+								width: "100%",
+								top: "-70px",
+							}}
+						>
 							<AppAlert
 								type={"success"}
 								message={"Checking how alert goes"}
