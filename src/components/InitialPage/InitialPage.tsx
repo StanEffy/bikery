@@ -4,10 +4,12 @@ import { Typography } from "@mui/material"
 const InitialPage = () => {
 	return (
 		<Typography variant={"h4"} sx={{ p: 3 }}>
-			Welcome to our unbelievably well done Bikery app. Need to confess:
-			you were bamboozled! While you were reading this paragraph I already
-			uploaded data and dispatched it to the store; Have a look on the Map
-			or Stations list, please.
+			This is a bikery app. It was made as an assignment for Solita
+			Academy and consist data of over 3 million bike trips made in
+			Uusimaa in 2021. But that is not all! You can easily create your own
+			station, add a trip or filter out some specific trips you are
+			looking for. You can navigate through menu which is in the header.
+			App has been adapted for mobile and desktop screens.
 		</Typography>
 	)
 }
