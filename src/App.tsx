@@ -22,7 +22,6 @@ import { NullifyAlert } from "./store/actions/alertAction"
 
 function App() {
 	const dispatch = useDispatch()
-	const [showAlert, setShowAlert] = useState<boolean>(true)
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -44,11 +43,7 @@ function App() {
 
 	useEffect(() => {
 		console.log("called!")
-		// @ts-ignore
-		const timer = setTimeout(
-			() => dispatch<INullifyAlert>(NullifyAlert()),
-			2500
-		)
+		const timer = setTimeout(() => dispatch<any>(NullifyAlert()), 2500)
 		return () => {
 			clearTimeout(timer)
 		}
