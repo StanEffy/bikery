@@ -34,7 +34,7 @@ export const JourneysStationFilters: React.FC<Props> = ({
 	return (
 		<Autocomplete
 			disablePortal
-			id="combo-box-demo"
+			id={"autocomplete" + label.split(" ").join("")}
 			options={allStations}
 			onChange={(event, value) => {
 				handleStationChange(value)
@@ -52,6 +52,7 @@ export const JourneysStationFilters: React.FC<Props> = ({
 					component="li"
 					sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
 					{...props}
+					key={option.Name + label}
 				>
 					{option.Name}
 				</Box>

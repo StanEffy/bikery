@@ -4,7 +4,6 @@ import { AlertColor } from "@mui/material"
 export type TAlert = {
 	type: AlertColor
 	message: string
-	status?: string
 }
 
 export type TAlertState = {
