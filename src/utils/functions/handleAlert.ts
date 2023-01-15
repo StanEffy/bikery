@@ -14,4 +14,9 @@ const handleAlert = ({
 	dispatch(SetAlert(alert))
 }
 
+export const handleInfoAlert = (dispatch: Dispatch<any>): void => {
+	dispatch(
+		SetAlert({ type: "info", message: "Hold on! Working on your request!" })
+	)
+}
 export default handleAlert

@@ -15,8 +15,8 @@ const AddTrip = () => {
 	const [filters, setFilters] = useState<TFilter>({
 		departure_station_id: null,
 		return_station_id: null,
-		covered_distance_m: 0,
-		duration_sec: 0,
+		covered_distance_m: "0",
+		duration_sec: "0",
 		distance_is_greater: true,
 		duration_is_greater: true,
 		dateFilter: null,
@@ -29,32 +29,39 @@ const AddTrip = () => {
 	}
 
 	const toggleDisable = () => {
-		return filters.departure_station_id && filters.return_station_id
-	}
-	//Add some random distance or duration to a trip
-	const randomiseNumber = (num: number) => {
-		return Math.floor(((Math.random() + 0.4) * num) / trips.length)
+		const {
+			departure_station_id,
+			return_station_id,
+			duration_sec,
+			covered_distance_m,
+		} = filters
+		return (
+			departure_station_id &&
+			return_station_id &&
+			parseInt(duration_sec) >= 100 &&
+			parseInt(covered_distance_m) >= 100
+		)
 	}
 
 	const handleSubmit = () => {
 		const dateNow = new Date()
 
-		const distance = Math.floor(randomiseNumber(res.length))
-		const duration = Math.floor(randomiseNumber(res.duration))
-
 		const createdTrip = {
 			departure: dateNow.toISOString(),
-			return: addSeconds(dateNow, duration).toISOString(),
+			return: addSeconds(
+				dateNow,
+				parseInt(filters.duration_sec)
+			).toISOString(),
 			departure_station_id: filters.departure_station_id?.ID ?? 1111,
 			departure_station_name:
 				filters.departure_station_id?.Name ?? "Mock station",
 			return_station_id: filters.return_station_id?.ID ?? 1111,
 			return_station_name:
 				filters.return_station_id?.Name ?? "Mock station",
-			covered_distance_m: distance,
-			duration_sec: duration,
+			covered_distance_m: parseInt(filters.covered_distance_m),
+			duration_sec: parseInt(filters.duration_sec),
 		}
-
+		console.log(createdTrip)
 		dispatch<any>(AddNewTrip(createdTrip))
 	}
 
@@ -86,26 +93,12 @@ const AddTrip = () => {
 					handleFilters={setFilters}
 				/>
 			</Box>
-			{!trips.length ? (
-				<Typography textAlign={"center"} sx={{ p: 2 }}>
-					Fetch trips to count on average, or fill distance and
-					duration it yourself
-				</Typography>
-			) : (
-				<Typography textAlign={"center"} sx={{ p: 2 }}>
-					Average data is in the system! All energy to engines!
-				</Typography>
-			)}
 
-			<Box display={"flex"} justifyContent={"center"}>
-				<Button
-					disabled={!toggleDisable()}
-					variant="contained"
-					onClick={() => handleFilter()}
-				>
-					Send filters
-				</Button>
-			</Box>
+			<Typography textAlign={"center"} sx={{ p: 2 }}>
+				Your distance and time should be adequate. Why? Because I am not
+				handling all the errors yet...
+			</Typography>
+
 			{!!filters.departure_station_id &&
 			!!filters.return_station_id &&
 			trips.length === 0 ? (

@@ -16,8 +16,8 @@ import { JourneysStationFilters } from "../common/JourneysStationFilters"
 export type TFilter = {
 	departure_station_id: null | Station
 	return_station_id: null | Station
-	covered_distance_m: string | 0
-	duration_sec: string | 0
+	covered_distance_m: string
+	duration_sec: string
 	distance_is_greater: boolean
 	duration_is_greater: boolean
 	dateFilter: string | null
@@ -31,8 +31,8 @@ const JourneysList = () => {
 	const [filters, setFilters] = useState<TFilter>({
 		departure_station_id: null,
 		return_station_id: null,
-		covered_distance_m: 0,
-		duration_sec: 0,
+		covered_distance_m: "0",
+		duration_sec: "0",
 		distance_is_greater: true,
 		duration_is_greater: true,
 		dateFilter: null,
