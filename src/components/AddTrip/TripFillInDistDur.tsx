@@ -26,11 +26,15 @@ const TripFillInDistDur = ({
 	return (
 		<Box display={"flex"} justifyContent={"center"} sx={{ p: 2 }}>
 			<TextField
+				type="number"
 				label={"distance meters"}
+				required={true}
 				onChange={(e) => handleDistance(e.target.value)}
 			/>
 			<TextField
+				type="number"
 				label={"duration sec"}
+				required={true}
 				onChange={(e) => handleDuration(e.target.value)}
 			/>
 		</Box>

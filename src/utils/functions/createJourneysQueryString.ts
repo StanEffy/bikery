@@ -23,14 +23,14 @@ export default (filter: TFilter): string => {
 			? (str += "&return_station_id=" + filter.return_station_id?.ID)
 			: (str += "return_station_id=" + filter.return_station_id?.ID)
 	}
-	if (filter.covered_distance_m > 0) {
+	if (parseInt(filter.covered_distance_m) > 0) {
 		if (filter.distance_is_greater) {
 			str += "&covered_distance_m[gte]=" + filter.covered_distance_m
 		} else {
 			str += "&covered_distance_m[lte]=" + filter.covered_distance_m
 		}
 	}
-	if (filter.duration_sec > 0) {
+	if (parseInt(filter.duration_sec) > 0) {
 		if (filter.duration_is_greater) {
 			str += "&duration_sec[gte]=" + filter.duration_sec
 		} else {

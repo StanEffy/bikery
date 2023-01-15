@@ -8,7 +8,7 @@ import {
 	Trip,
 } from "./types"
 import { Dispatch } from "redux"
-import handleAlert from "../../utils/functions/handleAlert"
+import handleAlert, { handleInfoAlert } from "../../utils/functions/handleAlert"
 import axios from "axios"
 import { SetAlert } from "./alertAction"
 import { AlertColor } from "@mui/material"
@@ -47,6 +47,7 @@ export const LoadFilteredTrips =
 
 export const AddNewTrip =
 	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
+		handleInfoAlert(dispatch)
 		try {
 			const postedTrip = await apiTrips.post("/", JSON.stringify(trip), {
 				withCredentials: true,

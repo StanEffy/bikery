@@ -15,8 +15,8 @@ const AddTrip = () => {
 	const [filters, setFilters] = useState<TFilter>({
 		departure_station_id: null,
 		return_station_id: null,
-		covered_distance_m: 0,
-		duration_sec: 0,
+		covered_distance_m: "0",
+		duration_sec: "0",
 		distance_is_greater: true,
 		duration_is_greater: true,
 		dateFilter: null,
@@ -44,17 +44,20 @@ const AddTrip = () => {
 
 		const createdTrip = {
 			departure: dateNow.toISOString(),
-			return: addSeconds(dateNow, duration).toISOString(),
+			return: addSeconds(
+				dateNow,
+				parseInt(filters.duration_sec)
+			).toISOString(),
 			departure_station_id: filters.departure_station_id?.ID ?? 1111,
 			departure_station_name:
 				filters.departure_station_id?.Name ?? "Mock station",
 			return_station_id: filters.return_station_id?.ID ?? 1111,
 			return_station_name:
 				filters.return_station_id?.Name ?? "Mock station",
-			covered_distance_m: distance,
-			duration_sec: duration,
+			covered_distance_m: parseInt(filters.covered_distance_m),
+			duration_sec: parseInt(filters.duration_sec),
 		}
-
+		console.log(createdTrip)
 		dispatch<any>(AddNewTrip(createdTrip))
 	}
 
