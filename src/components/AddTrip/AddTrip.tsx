@@ -29,18 +29,22 @@ const AddTrip = () => {
 	}
 
 	const toggleDisable = () => {
-		return filters.departure_station_id && filters.return_station_id
-	}
-	//Add some random distance or duration to a trip
-	const randomiseNumber = (num: number) => {
-		return Math.floor(((Math.random() + 0.4) * num) / trips.length)
+		const {
+			departure_station_id,
+			return_station_id,
+			duration_sec,
+			covered_distance_m,
+		} = filters
+		return (
+			departure_station_id &&
+			return_station_id &&
+			parseInt(duration_sec) >= 100 &&
+			parseInt(covered_distance_m) >= 100
+		)
 	}
 
 	const handleSubmit = () => {
 		const dateNow = new Date()
-
-		const distance = Math.floor(randomiseNumber(res.length))
-		const duration = Math.floor(randomiseNumber(res.duration))
 
 		const createdTrip = {
 			departure: dateNow.toISOString(),
@@ -89,26 +93,12 @@ const AddTrip = () => {
 					handleFilters={setFilters}
 				/>
 			</Box>
-			{!trips.length ? (
-				<Typography textAlign={"center"} sx={{ p: 2 }}>
-					Fetch trips to count on average, or fill distance and
-					duration it yourself
-				</Typography>
-			) : (
-				<Typography textAlign={"center"} sx={{ p: 2 }}>
-					Average data is in the system! All energy to engines!
-				</Typography>
-			)}
 
-			<Box display={"flex"} justifyContent={"center"}>
-				<Button
-					disabled={!toggleDisable()}
-					variant="contained"
-					onClick={() => handleFilter()}
-				>
-					Send filters
-				</Button>
-			</Box>
+			<Typography textAlign={"center"} sx={{ p: 2 }}>
+				Your distance and time should be adequate. Why? Because I am not
+				handling all the errors yet...
+			</Typography>
+
 			{!!filters.departure_station_id &&
 			!!filters.return_station_id &&
 			trips.length === 0 ? (
