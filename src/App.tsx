@@ -34,7 +34,6 @@ function App() {
 	})
 
 	const alert = useSelector((state: TState) => state.alert)
-	console.log(alert)
 
 	useEffect(() => {
 		dispatch<any>(LoadAllStations())
