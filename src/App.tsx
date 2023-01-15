@@ -33,23 +33,22 @@ function App() {
 		},
 	})
 
+	const alert = useSelector((state: TState) => state.alert)
+	console.log(alert)
+
 	useEffect(() => {
 		dispatch<any>(LoadAllStations())
 		dispatch<any>(LoadAllStationsStats())
 	}, [])
 
-	const alert = useSelector((state: TState) => state.alert)
-	console.log(alert)
-
 	useEffect(() => {
-		console.log("called!")
-		const timer = setTimeout(() => dispatch<any>(NullifyAlert()), 2500)
-		return () => {
-			clearTimeout(timer)
+		if (alert.alert) {
+			const timer = setTimeout(() => dispatch<any>(NullifyAlert()), 2500)
+			return () => {
+				clearTimeout(timer)
+			}
 		}
 	}, [alert])
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
 
 	return (
 		<div className="App">
