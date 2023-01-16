@@ -82,10 +82,10 @@ const JourneysList = () => {
 					justifyContent={"center"}
 					sx={{ width: "100%" }}
 				>
-					<Box sx={{ ml: 2 }}>
+					<Box>
 						<SelectMonth handleFilters={setFilters} />
 					</Box>
-					<Box>
+					<Box sx={{ ml: 4 }}>
 						<Button
 							disabled={!toggleDisable()}
 							variant="contained"
