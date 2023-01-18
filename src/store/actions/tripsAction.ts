@@ -1,26 +1,34 @@
 import { apiTrips } from "../../api/apiCopy"
 import {
+	ActionTypesAlert,
 	ActionTypesTrips,
 	IAddNewTrip,
 	ILoadAllTripsByStation,
 	ISetAlert,
-	Station,
 	Trip,
 } from "./types"
 import { Dispatch } from "redux"
-import handleAlert, { handleInfoAlert } from "../../utils/functions/handleAlert"
+import handleAlert from "../../utils/functions/handleAlert"
 import axios from "axios"
-import { SetAlert } from "./alertAction"
 import { AlertColor } from "@mui/material"
 import { dispatchLoading } from "./utils"
 
 export const LoadAllTripsByStation =
 	(id: string | undefined) =>
-	async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
+	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
 		dispatchLoading(dispatch, "loading all trips by station...")
 		try {
 			const { data } = await apiTrips.get("/?departure_station_id=" + id)
-			console.log(data)
+			dispatch({
+				type: ActionTypesAlert.SetAlert,
+				payload: {
+					message:
+						data.data.data.length > 0
+							? `Loaded ${data.data.data.length} trips`
+							: "Loaded ZERO trips! Hm-m-m...",
+					type: "success",
+				},
+			})
 			dispatch({
 				type: ActionTypesTrips.LoadAllTripsByStation,
 				payload: data.data.data,
@@ -32,7 +40,7 @@ export const LoadAllTripsByStation =
 
 export const LoadFilteredTrips =
 	(requestString: string) =>
-	async (dispatch: Dispatch<ILoadAllTripsByStation>) => {
+	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
 		dispatchLoading(dispatch, "loading trips...")
 		try {
 			//If nothing was filtered out, then sending only ~60k trips
@@ -56,7 +64,7 @@ export const LoadFilteredTrips =
 	}
 
 export const AddNewTrip =
-	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip>) => {
+	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip | ISetAlert>) => {
 		dispatchLoading(dispatch, "Trying to add new trip")
 		try {
 			const postedTrip = await apiTrips.post("/", JSON.stringify(trip), {
