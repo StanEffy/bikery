@@ -67,7 +67,7 @@ export const AddNewTrip =
 	(trip: Trip) => async (dispatch: Dispatch<IAddNewTrip | ISetAlert>) => {
 		dispatchLoading(dispatch, "Trying to add new trip")
 		try {
-			const postedTrip = await apiTrips.post("/", JSON.stringify(trip), {
+			await apiTrips.post("/", JSON.stringify(trip), {
 				withCredentials: true,
 				headers: {
 					"Content-Type": "application/json",
