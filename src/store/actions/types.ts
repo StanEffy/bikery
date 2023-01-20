@@ -51,6 +51,7 @@ export enum ActionTypesTrips {
 	LoadAllTripsByStation = "LoadAllTripsByStation",
 	AddNewTrip = "AddNewTrip",
 	LoadFilteredTrips = "LoadFilteredTrips",
+	ClearActiveTrips = "ClearActiveTrips",
 }
 export enum ActionTypesStats {
 	LoadAllStationStats = "LoadAllStationStats",
@@ -78,6 +79,10 @@ export interface ILoadAllTripsByStation {
 	payload: [Trip]
 }
 
+export interface IClearActiveTrips {
+	type: ActionTypesTrips.ClearActiveTrips
+	payload: []
+}
 export interface IAddNewTrip {
 	type: ActionTypesTrips.AddNewTrip
 	payload: Trip

@@ -3,6 +3,7 @@ import {
 	ActionTypesAlert,
 	ActionTypesTrips,
 	IAddNewTrip,
+	IClearActiveTrips,
 	ILoadAllTripsByStation,
 	ISetAlert,
 	Trip,
@@ -92,6 +93,18 @@ export const AddNewTrip =
 				}
 				handleAlert({ dispatch, alert })
 			}
+			console.log(e)
+		}
+	}
+
+export const ClearActiveTrips =
+	() => async (dispatch: Dispatch<IClearActiveTrips>) => {
+		try {
+			dispatch({
+				type: ActionTypesTrips.ClearActiveTrips,
+				payload: [],
+			})
+		} catch (e) {
 			console.log(e)
 		}
 	}
