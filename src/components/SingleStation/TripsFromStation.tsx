@@ -18,11 +18,15 @@ import Switch from "@mui/material/Switch"
 
 import { visuallyHidden } from "@mui/utils"
 
-import { Trip } from "../../store/actions/types"
+import { IClearActiveTrips, Trip } from "../../store/actions/types"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { LoadAllTripsByStation } from "../../store/actions/tripsAction"
+import {
+	ClearActiveTrips,
+	LoadAllTripsByStation,
+} from "../../store/actions/tripsAction"
+import { Dispatch } from "redux"
 
 interface IData {
 	departure_station_name: string | number | any
@@ -205,9 +209,9 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 
 	const dispatch = useDispatch()
 
-	// useEffect(() => {
-	// 	dispatch(LoadAllTripsByStation())
-	// }, [id])
+	useEffect(() => {
+		dispatch<any>(ClearActiveTrips())
+	}, [id])
 
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
