@@ -3,6 +3,7 @@ import {
 	ILoadAllTripsByStation,
 	IAddNewTrip,
 	Trip,
+	IClearActiveTrips,
 } from "../actions/types"
 
 import { Station } from "../actions/types"
@@ -16,7 +17,7 @@ export const initialState: TTripsState = {
 	tripsForActiveStation: [],
 	filteredTrips: [],
 }
-type TAction = ILoadAllTripsByStation | IAddNewTrip
+type TAction = ILoadAllTripsByStation | IAddNewTrip | IClearActiveTrips
 
 export const tripsReducers = (state = initialState, action: TAction) => {
 	switch (action.type) {
@@ -27,6 +28,12 @@ export const tripsReducers = (state = initialState, action: TAction) => {
 			return {
 				...state,
 				filteredTrips: action.payload,
+			}
+		}
+		case ActionTypesTrips.ClearActiveTrips: {
+			return {
+				...state,
+				tripsForActiveStation: [],
 			}
 		}
 		case ActionTypesTrips.AddNewTrip: {

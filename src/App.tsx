@@ -17,7 +17,7 @@ import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
 import AppAlert from "./components/Alert/Alert"
 import Box from "@mui/material/Box"
-import { INullifyAlert, TState } from "./store/actions/types"
+import { TState } from "./store/actions/types"
 import { NullifyAlert } from "./store/actions/alertAction"
 
 function App() {

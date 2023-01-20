@@ -19,10 +19,12 @@ import Switch from "@mui/material/Switch"
 import { visuallyHidden } from "@mui/utils"
 
 import { Trip } from "../../store/actions/types"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { LoadAllTripsByStation } from "../../store/actions/tripsAction"
 
-interface Data {
+interface IData {
 	departure_station_name: string | number | any
 	return_station_name: string | number | any
 	duration_sec: number
@@ -75,7 +77,7 @@ function stableSort<T>(
 
 interface HeadCell {
 	disablePadding: boolean
-	id: keyof Data
+	id: keyof IData
 	label: string
 	numeric: boolean
 }
@@ -111,7 +113,7 @@ interface EnhancedTableProps {
 	numSelected: number
 	onRequestSort: (
 		event: React.MouseEvent<unknown>,
-		property: keyof Data
+		property: keyof IData
 	) => void
 	onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void
 	order: Order
@@ -122,7 +124,7 @@ interface EnhancedTableProps {
 function EnhancedTableHead(props: EnhancedTableProps) {
 	const { order, orderBy, onRequestSort } = props
 	const createSortHandler =
-		(property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+		(property: keyof IData) => (event: React.MouseEvent<unknown>) => {
 			onRequestSort(event, property)
 		}
 
@@ -193,15 +195,23 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 	const [order, setOrder] = React.useState<Order>("asc")
 	const [orderBy, setOrderBy] =
-		React.useState<keyof Data>("covered_distance_m")
+		React.useState<keyof IData>("covered_distance_m")
 	const [page, setPage] = React.useState(0)
 	const [dense, setDense] = React.useState(false)
 	const [rowsPerPage, setRowsPerPage] = React.useState(25)
 	const navigate = useNavigate()
 
+	const { id } = useParams()
+
+	const dispatch = useDispatch()
+
+	// useEffect(() => {
+	// 	dispatch(LoadAllTripsByStation())
+	// }, [id])
+
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
-		property: keyof Data
+		property: keyof IData
 	) => {
 		const isAsc = orderBy === property && order === "asc"
 		setOrder(isAsc ? "desc" : "asc")
