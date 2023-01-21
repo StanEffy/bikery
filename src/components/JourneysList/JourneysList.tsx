@@ -21,6 +21,7 @@ export type TFilter = {
 	distance_is_greater: boolean
 	duration_is_greater: boolean
 	dateFilter: string | null
+	limit?: number
 }
 
 const JourneysList = () => {
