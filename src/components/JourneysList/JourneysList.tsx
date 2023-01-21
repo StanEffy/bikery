@@ -37,6 +37,7 @@ const JourneysList = () => {
 		distance_is_greater: true,
 		duration_is_greater: true,
 		dateFilter: null,
+		limit: 1000,
 	})
 
 	const handleFilter = () => {

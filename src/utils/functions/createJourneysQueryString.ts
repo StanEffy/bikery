@@ -49,5 +49,8 @@ export default (filter: TFilter): string => {
 			str += "&departure[lte]=" + dates.july.end
 		}
 	}
+	if (filter.limit) {
+		str += "&limit=" + filter.limit
+	}
 	return str
 }
