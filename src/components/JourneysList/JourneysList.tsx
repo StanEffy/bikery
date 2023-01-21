@@ -44,6 +44,20 @@ const JourneysList = () => {
 		dispatch<any>(LoadFilteredTrips(createJourneysQueryString(filters)))
 	}
 
+	const setUnlimitedTrips = () => {
+		setFilters((prev) => ({ ...prev, limit: undefined }))
+	}
+	const setLimitedTrips = () => {
+		setFilters((prev) => ({ ...prev, limit: 1000 }))
+	}
+	const downloadSomeTripsFromStation = () => {
+		setLimitedTrips()
+		handleFilter()
+	}
+	const downloadAllTripsFromStation = () => {
+		setUnlimitedTrips()
+		handleFilter()
+	}
 	const toggleDisable = () => {
 		return filters.departure_station_id || filters.return_station_id
 	}
@@ -91,9 +105,18 @@ const JourneysList = () => {
 						<Button
 							disabled={!toggleDisable()}
 							variant="contained"
-							onClick={() => handleFilter()}
+							onClick={() => downloadSomeTripsFromStation()}
+							sx={{ mr: 2, my: 1 }}
 						>
-							Send filters
+							Get some trips
+						</Button>
+						<Button
+							disabled={!toggleDisable()}
+							variant="contained"
+							onClick={() => downloadAllTripsFromStation()}
+							sx={{ my: 1 }}
+						>
+							Get all trips
 						</Button>
 					</Box>
 				</Box>
