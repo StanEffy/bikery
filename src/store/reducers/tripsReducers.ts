@@ -7,15 +7,18 @@ import {
 } from "../actions/types"
 
 import { Station } from "../actions/types"
+import { StationsStats } from "../../components/SingleStation/OtherStationStats"
 
 export type TTripsState = {
 	tripsForActiveStation: [] | [Trip]
+	mostPopularStations: StationsStats
 	filteredTrips: [] | [Trip]
 }
 
 export const initialState: TTripsState = {
 	tripsForActiveStation: [],
 	filteredTrips: [],
+	mostPopularStations: [],
 }
 type TAction = ILoadAllTripsByStation | IAddNewTrip | IClearActiveTrips
 
@@ -25,7 +28,12 @@ export const tripsReducers = (state = initialState, action: TAction) => {
 			return { ...state, tripsForActiveStation: action.payload }
 		}
 		case ActionTypesTrips.LoadSomeTripsByStation: {
-			return { ...state, tripsForActiveStation: action.payload }
+			const { trips, stats } = action.payload
+			return {
+				...state,
+				tripsForActiveStation: trips,
+				mostPopularStations: stats,
+			}
 		}
 		case ActionTypesTrips.LoadFilteredTrips: {
 			return {
@@ -37,6 +45,7 @@ export const tripsReducers = (state = initialState, action: TAction) => {
 			return {
 				...state,
 				tripsForActiveStation: [],
+				mostPopularStations: [],
 			}
 		}
 		case ActionTypesTrips.AddNewTrip: {
