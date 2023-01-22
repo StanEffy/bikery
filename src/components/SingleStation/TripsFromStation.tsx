@@ -18,7 +18,11 @@ import Switch from "@mui/material/Switch"
 
 import { visuallyHidden } from "@mui/utils"
 
-import { IClearActiveTrips, Trip } from "../../store/actions/types"
+import {
+	IClearActiveTrips,
+	ILoadAllTripsByStation,
+	Trip,
+} from "../../store/actions/types"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
@@ -27,6 +31,7 @@ import {
 	LoadAllTripsByStation,
 } from "../../store/actions/tripsAction"
 import { Dispatch } from "redux"
+import { Button } from "@mui/material"
 
 interface IData {
 	departure_station_name: string | number | any
@@ -188,7 +193,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 				sx={{ flex: "1 1 100%" }}
 				variant="h6"
 				id="tableTitle"
-				component="div"
+				component="h4"
 			>
 				Filtered trips from station/s
 			</Typography>
@@ -212,6 +217,10 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 	useEffect(() => {
 		dispatch<any>(ClearActiveTrips())
 	}, [id])
+
+	useEffect(() => {
+		console.log(`Trips length is ${trips.length}`)
+	}, [trips])
 
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
@@ -357,6 +366,15 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 				}
 				label="Dense padding"
 			/>
+			<Box display={"flex"} justifyContent={"center"}>
+				<Button
+					variant={"contained"}
+					sx={{ mb: 2 }}
+					onClick={() => dispatch<any>(LoadAllTripsByStation(id))}
+				>
+					Give me ALL trips!
+				</Button>
+			</Box>
 		</Box>
 	)
 }

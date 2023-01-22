@@ -38,7 +38,32 @@ export const LoadAllTripsByStation =
 			console.log(e)
 		}
 	}
-
+export const LoadSomeTripsByStation =
+	(id: string | undefined) =>
+	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
+		dispatchLoading(dispatch, "loading all trips by station...")
+		try {
+			const { data } = await apiTrips.get(
+				"/?departure_station_id=" + id + "&limit=1000"
+			)
+			dispatch({
+				type: ActionTypesAlert.SetAlert,
+				payload: {
+					message:
+						data.data.data.length > 0
+							? `Loaded ${data.data.data.length} trips`
+							: "Loaded ZERO trips! Hm-m-m...",
+					type: "success",
+				},
+			})
+			dispatch({
+				type: ActionTypesTrips.LoadSomeTripsByStation,
+				payload: data.data.data,
+			})
+		} catch (e) {
+			console.log(e)
+		}
+	}
 export const LoadFilteredTrips =
 	(requestString: string) =>
 	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {

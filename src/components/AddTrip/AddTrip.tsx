@@ -61,7 +61,7 @@ const AddTrip = () => {
 			covered_distance_m: parseInt(filters.covered_distance_m),
 			duration_sec: parseInt(filters.duration_sec),
 		}
-		console.log(createdTrip)
+
 		dispatch<any>(AddNewTrip(createdTrip))
 	}
 
