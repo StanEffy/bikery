@@ -18,7 +18,11 @@ import Switch from "@mui/material/Switch"
 
 import { visuallyHidden } from "@mui/utils"
 
-import { IClearActiveTrips, Trip } from "../../store/actions/types"
+import {
+	IClearActiveTrips,
+	ILoadAllTripsByStation,
+	Trip,
+} from "../../store/actions/types"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
@@ -27,6 +31,7 @@ import {
 	LoadAllTripsByStation,
 } from "../../store/actions/tripsAction"
 import { Dispatch } from "redux"
+import { Button } from "@mui/material"
 
 interface IData {
 	departure_station_name: string | number | any
@@ -357,6 +362,14 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 				}
 				label="Dense padding"
 			/>
+			<Box display={"flex"} justifyContent={"center"}>
+				<Button
+					variant={"contained"}
+					onClick={() => dispatch<any>(LoadAllTripsByStation(id))}
+				>
+					Give me ALL trips!
+				</Button>
+			</Box>
 		</Box>
 	)
 }
