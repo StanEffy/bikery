@@ -5,7 +5,10 @@ import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
 import { Typography } from "@mui/material"
-import { LoadAllTripsByStation } from "../../store/actions/tripsAction"
+import {
+	LoadAllTripsByStation,
+	LoadSomeTripsByStation,
+} from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
 
 const SingleStation = () => {
@@ -28,7 +31,7 @@ const SingleStation = () => {
 		(state: TState) => state.trips.tripsForActiveStation
 	)
 	useEffect(() => {
-		dispatch<any>(LoadAllTripsByStation(id))
+		dispatch<any>(LoadSomeTripsByStation(id))
 	}, [id])
 
 	const allStationsStats = useSelector(

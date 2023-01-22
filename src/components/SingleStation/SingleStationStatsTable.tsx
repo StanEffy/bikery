@@ -85,13 +85,12 @@ export default function SingleStationStatsTable({
 							"&:last-child td, &:last-child th": { border: 0 },
 						}}
 					>
-						{" "}
 						<TableCell component="th" scope="row">
 							{id}
 						</TableCell>
 						<TableCell component="th" scope="row">
 							{name}
-						</TableCell>{" "}
+						</TableCell>
 						<TableCell component="th" scope="row">
 							{address}
 						</TableCell>

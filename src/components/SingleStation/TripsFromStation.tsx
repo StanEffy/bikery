@@ -188,7 +188,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
 				sx={{ flex: "1 1 100%" }}
 				variant="h6"
 				id="tableTitle"
-				component="div"
+				component="h4"
 			>
 				Filtered trips from station/s
 			</Typography>
