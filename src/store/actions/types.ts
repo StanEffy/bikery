@@ -1,6 +1,7 @@
 import { TTripsState } from "../reducers/tripsReducers"
 import { TStationsReducers } from "../reducers/stationsReducers"
 import { TAlert, TAlertState } from "../reducers/alertReducers"
+import { LoadSomeTripsByStation } from "./tripsAction"
 
 export type Station = {
 	Name: string
@@ -49,6 +50,7 @@ export enum ActionTypesAlert {
 }
 export enum ActionTypesTrips {
 	LoadAllTripsByStation = "LoadAllTripsByStation",
+	LoadSomeTripsByStation = "LoadSomeTripsByStation",
 	AddNewTrip = "AddNewTrip",
 	LoadFilteredTrips = "LoadFilteredTrips",
 	ClearActiveTrips = "ClearActiveTrips",
@@ -76,6 +78,7 @@ export interface ILoadAllTripsByStation {
 	type:
 		| ActionTypesTrips.LoadAllTripsByStation
 		| ActionTypesTrips.LoadFilteredTrips
+		| ActionTypesTrips.LoadSomeTripsByStation
 	payload: [Trip]
 }
 
