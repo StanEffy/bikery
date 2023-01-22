@@ -365,6 +365,7 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 			<Box display={"flex"} justifyContent={"center"}>
 				<Button
 					variant={"contained"}
+					sx={{ mb: 2 }}
 					onClick={() => dispatch<any>(LoadAllTripsByStation(id))}
 				>
 					Give me ALL trips!
