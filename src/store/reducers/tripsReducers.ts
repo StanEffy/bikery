@@ -24,6 +24,9 @@ export const tripsReducers = (state = initialState, action: TAction) => {
 		case ActionTypesTrips.LoadAllTripsByStation: {
 			return { ...state, tripsForActiveStation: action.payload }
 		}
+		case ActionTypesTrips.LoadSomeTripsByStation: {
+			return { ...state, tripsForActiveStation: action.payload }
+		}
 		case ActionTypesTrips.LoadFilteredTrips: {
 			return {
 				...state,
