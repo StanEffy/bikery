@@ -5,13 +5,14 @@ import {
 	SelectMonth,
 	TWarmMonths,
 } from "./JourneysFilters"
-import { Box, Button } from "@mui/material"
+import { Box, Button, FormControlLabel } from "@mui/material"
 import TripsFromStationTable from "../SingleStation/TripsFromStation"
 import { useDispatch, useSelector } from "react-redux"
 import { LoadFilteredTrips } from "../../store/actions/tripsAction"
 import { Station, TState } from "../../store/actions/types"
 import createJourneysQueryString from "../../utils/functions/createJourneysQueryString"
 import { JourneysStationFilters } from "../common/JourneysStationFilters"
+import Checkbox from "@mui/material/Checkbox"
 
 export type TFilter = {
 	departure_station_id: null | Station
@@ -27,6 +28,7 @@ export type TFilter = {
 const JourneysList = () => {
 	const dispatch = useDispatch()
 
+	const [limitChecked, setLimitChecked] = useState(true)
 	const trips = useSelector((state: TState) => state.trips.filteredTrips)
 
 	const [filters, setFilters] = useState<TFilter>({
@@ -44,19 +46,22 @@ const JourneysList = () => {
 		dispatch<any>(LoadFilteredTrips(createJourneysQueryString(filters)))
 	}
 
-	const setUnlimitedTrips = () => {
+	const setUnlimitedTrips = async () => {
 		setFilters((prev) => ({ ...prev, limit: undefined }))
 	}
-	const setLimitedTrips = () => {
+	const setLimitedTrips = async () => {
 		setFilters((prev) => ({ ...prev, limit: 1000 }))
 	}
-	const downloadSomeTripsFromStation = () => {
-		setLimitedTrips()
-		handleFilter()
+	const handleLimitChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setLimitChecked(event.target.checked)
+		setFilters((prevState: TFilter) => ({
+			...prevState,
+			limit: event.target.checked ? 1000 : undefined,
+		}))
 	}
-	const downloadAllTripsFromStation = () => {
-		setUnlimitedTrips()
-		handleFilter()
+	const downloadAllTripsFromStation = async () => {
+		await setUnlimitedTrips().then(() => handleFilter())
+		console.log(filters.limit)
 	}
 	const toggleDisable = () => {
 		return filters.departure_station_id || filters.return_station_id
@@ -101,22 +106,28 @@ const JourneysList = () => {
 					<Box>
 						<SelectMonth handleFilters={setFilters} />
 					</Box>
-					<Box sx={{ ml: 4 }}>
+					<Box>
+						<FormControlLabel
+							labelPlacement={"top"}
+							control={
+								<Checkbox
+									checked={limitChecked}
+									onChange={handleLimitChange}
+								/>
+							}
+							label={
+								limitChecked
+									? "Only 1000 trips:"
+									: "All the trips"
+							}
+						/>
 						<Button
 							disabled={!toggleDisable()}
 							variant="contained"
-							onClick={() => downloadSomeTripsFromStation()}
-							sx={{ mr: 2, my: 1 }}
-						>
-							Get some trips
-						</Button>
-						<Button
-							disabled={!toggleDisable()}
-							variant="contained"
-							onClick={() => downloadAllTripsFromStation()}
+							onClick={() => handleFilter()}
 							sx={{ my: 1 }}
 						>
-							Get all trips
+							Get trips
 						</Button>
 					</Box>
 				</Box>

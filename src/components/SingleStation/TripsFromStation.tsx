@@ -218,6 +218,10 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 		dispatch<any>(ClearActiveTrips())
 	}, [id])
 
+	useEffect(() => {
+		console.log(`Trips length is ${trips.length}`)
+	}, [trips])
+
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
 		property: keyof IData
