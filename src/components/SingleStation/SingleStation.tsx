@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
-import { Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
+import OtherStationsStats, { StationTuple } from "./OtherStationStats"
 
 const SingleStation = () => {
 	const dispatch = useDispatch()
@@ -27,6 +28,10 @@ const SingleStation = () => {
 	const tripsFromStation = useSelector(
 		(state: TState) => state.trips.tripsForActiveStation
 	)
+	const statsForStation = useSelector(
+		(state: TState) => state.trips.mostPopularStations
+	)
+
 	useEffect(() => {
 		dispatch<any>(LoadSomeTripsByStation(id))
 	}, [id])
@@ -71,6 +76,19 @@ const SingleStation = () => {
 				median_duration={median_duration}
 				median_distance={median_distance}
 			/>
+			{statsForStation?.departures && statsForStation?.returns ? (
+				<Box display={"flex"} justifyContent={"space-around"}>
+					<OtherStationsStats
+						stationsWithTrips={statsForStation?.departures}
+						inOrOut={"departures"}
+					/>
+					<OtherStationsStats
+						stationsWithTrips={statsForStation?.returns}
+						inOrOut={"departures"}
+					/>
+				</Box>
+			) : null}
+
 			<Typography variant={"h5"} sx={{ textAlign: "center", my: 3 }}>
 				Here it is on the map!
 			</Typography>

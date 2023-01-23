@@ -11,14 +11,17 @@ import { StationsStats } from "../../components/SingleStation/OtherStationStats"
 
 export type TTripsState = {
 	tripsForActiveStation: [] | [Trip]
-	mostPopularStations: StationsStats
+	mostPopularStations: null | {
+		departures: StationsStats
+		returns: StationsStats
+	}
 	filteredTrips: [] | [Trip]
 }
 
 export const initialState: TTripsState = {
 	tripsForActiveStation: [],
 	filteredTrips: [],
-	mostPopularStations: [],
+	mostPopularStations: null,
 }
 type TAction = ILoadAllTripsByStation | IAddNewTrip | IClearActiveTrips
 
@@ -45,7 +48,7 @@ export const tripsReducers = (state = initialState, action: TAction) => {
 			return {
 				...state,
 				tripsForActiveStation: [],
-				mostPopularStations: [],
+				mostPopularStations: null,
 			}
 		}
 		case ActionTypesTrips.AddNewTrip: {

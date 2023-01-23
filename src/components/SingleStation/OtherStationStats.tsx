@@ -2,30 +2,42 @@ import React from "react"
 import { Box } from "@mui/material"
 import Typography from "@mui/material/Typography"
 
-type StationTuple = [string, number]
+export type StationTuple = [string, number]
 export type StationsStats = [StationTuple] | []
 type TInOrOut = "departures" | "returns"
-const OtherStationStats = (
-	statonsWithTrips: StationsStats,
+
+type Props = {
+	stationsWithTrips: StationsStats
 	inOrOut: TInOrOut
-) => {
+}
+const OtherStationsStats: React.FC<Props> = ({
+	stationsWithTrips,
+	inOrOut,
+}) => {
 	return (
-		<>
-			<Typography>
+		<Box>
+			<Typography variant={"h6"}>
 				{inOrOut === "departures"
 					? "Most frequent return stations"
 					: "Most often travelers arrived from these stations"}
 			</Typography>
-			<Box display={"flex"}>
-				{statonsWithTrips.map((s) => (
-					<Box key={s[0] + "stats" + s[1]}>
-						<Typography variant={"h6"}>{s[0]}</Typography>
-						<Typography variant={"subtitle1"}>{s[1]}</Typography>
+			<Box>
+				{stationsWithTrips?.map((s: StationTuple, i) => (
+					<Box
+						display={"flex"}
+						flexDirection={"row"}
+						key={"return" + i}
+					>
+						<Typography variant={"caption"} sx={{ mr: 1 }}>
+							{s[0]}
+						</Typography>
+						<Typography variant={"caption"}>
+							{s[1]} trips
+						</Typography>
 					</Box>
 				))}
 			</Box>
-		</>
+		</Box>
 	)
 }
-
-export default OtherStationStats
+export default OtherStationsStats
