@@ -42,7 +42,7 @@ function App() {
 
 	useEffect(() => {
 		if (alert.alert) {
-			const timer = setTimeout(() => dispatch<any>(NullifyAlert()), 2500)
+			const timer = setTimeout(() => dispatch<any>(NullifyAlert()), 4500)
 			return () => {
 				clearTimeout(timer)
 			}

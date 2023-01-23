@@ -5,10 +5,7 @@ import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
 import { Typography } from "@mui/material"
-import {
-	LoadAllTripsByStation,
-	LoadSomeTripsByStation,
-} from "../../store/actions/tripsAction"
+import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
 
 const SingleStation = () => {

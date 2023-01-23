@@ -56,9 +56,14 @@ export const LoadSomeTripsByStation =
 					type: "success",
 				},
 			})
+			console.log(data)
+
 			dispatch({
 				type: ActionTypesTrips.LoadSomeTripsByStation,
-				payload: data.data.data,
+				payload: {
+					trips: data.data.data,
+					stats: data.data.stats,
+				},
 			})
 		} catch (e) {
 			console.log(e)
@@ -69,9 +74,10 @@ export const LoadFilteredTrips =
 	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
 		dispatchLoading(dispatch, "loading trips...")
 		try {
-			//If nothing was filtered out, then sending only ~60k trips
 			const str = requestString.length > 0 ? "/?" + requestString : ""
 			const { data } = await apiTrips.get(str)
+
+			console.log(data)
 
 			dispatch({
 				type: ActionTypesTrips.LoadFilteredTrips,
