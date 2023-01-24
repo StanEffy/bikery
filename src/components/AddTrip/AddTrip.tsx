@@ -72,9 +72,7 @@ const AddTrip = () => {
 		res.length += t.covered_distance_m
 	})
 
-	useEffect(() => {
-		console.log("Trips updated!")
-	}, [trips])
+	useEffect(() => {}, [trips])
 	return (
 		<>
 			<Box
