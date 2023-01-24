@@ -142,7 +142,6 @@ const ResponsiveAppBar = () => {
 							</Button>
 						))}
 					</Box>
-
 					<Box sx={{ flexGrow: 0 }} />
 				</Toolbar>
 			</Container>
