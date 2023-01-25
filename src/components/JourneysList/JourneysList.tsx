@@ -46,22 +46,12 @@ const JourneysList = () => {
 		dispatch<any>(LoadFilteredTrips(createJourneysQueryString(filters)))
 	}
 
-	const setUnlimitedTrips = async () => {
-		setFilters((prev) => ({ ...prev, limit: undefined }))
-	}
-	const setLimitedTrips = async () => {
-		setFilters((prev) => ({ ...prev, limit: 1000 }))
-	}
 	const handleLimitChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setLimitChecked(event.target.checked)
 		setFilters((prevState: TFilter) => ({
 			...prevState,
 			limit: event.target.checked ? 1000 : undefined,
 		}))
-	}
-	const downloadAllTripsFromStation = async () => {
-		await setUnlimitedTrips().then(() => handleFilter())
-		console.log(filters.limit)
 	}
 	const toggleDisable = () => {
 		return filters.departure_station_id || filters.return_station_id
