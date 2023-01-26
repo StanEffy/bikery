@@ -14,6 +14,8 @@ import axios from "axios"
 import { AlertColor } from "@mui/material"
 import { dispatchLoading } from "./utils"
 
+type TTripsArray = [Trip]
+
 export const LoadAllTripsByStation =
 	(id: string | undefined) =>
 	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
@@ -46,12 +48,23 @@ export const LoadSomeTripsByStation =
 			const { data } = await apiTrips.get(
 				"/?departure_station_id=" + id + "&limit=1000"
 			)
+
+			const returnTrips = await apiTrips.get(
+				"/?return_station_id=" + id + "&limit=1000"
+			)
+
+			console.log(returnTrips.data.data.data)
+			const unitedResult = [
+				...data.data.data,
+				...returnTrips.data.data.data,
+			]
+
 			dispatch({
 				type: ActionTypesAlert.SetAlert,
 				payload: {
 					message:
-						data.data.data.length > 0
-							? `Loaded ${data.data.data.length} trips`
+						unitedResult.length > 0
+							? `Loaded ${unitedResult.length} trips`
 							: "Loaded ZERO trips! Hm-m-m...",
 					type: "success",
 				},
@@ -61,7 +74,9 @@ export const LoadSomeTripsByStation =
 			dispatch({
 				type: ActionTypesTrips.LoadSomeTripsByStation,
 				payload: {
-					trips: data.data.data,
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore
+					trips: unitedResult,
 					stats: data.data.stats,
 				},
 			})
