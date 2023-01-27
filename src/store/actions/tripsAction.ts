@@ -14,8 +14,6 @@ import axios from "axios"
 import { AlertColor } from "@mui/material"
 import { dispatchLoading } from "./utils"
 
-type TTripsArray = [Trip]
-
 export const LoadAllTripsByStation =
 	(id: string | undefined) =>
 	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
