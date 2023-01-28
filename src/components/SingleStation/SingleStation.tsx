@@ -77,14 +77,14 @@ const SingleStation = () => {
 				median_distance={median_distance}
 			/>
 			{statsForStation?.departures && statsForStation?.returns ? (
-				<Box display={"flex"} justifyContent={"space-around"}>
+				<Box>
 					<OtherStationsStats
 						stationsWithTrips={statsForStation?.departures}
 						inOrOut={"departures"}
 					/>
 					<OtherStationsStats
 						stationsWithTrips={statsForStation?.returns}
-						inOrOut={"departures"}
+						inOrOut={"returns"}
 					/>
 				</Box>
 			) : null}
