@@ -18,7 +18,12 @@ export const apiStationsStats = axios.create({
 	// @ts-ignore
 	"Access-Control-Allow-Credentials": true,
 })
-
+export const apiStationsPopular = axios.create({
+	baseURL: "http://localhost:3003/api/v1/stationToStation/",
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
+	"Access-Control-Allow-Credentials": true,
+})
 export const apiTrips = axios.create({
 	baseURL: "http://localhost:3003/api/v1/trips/",
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment

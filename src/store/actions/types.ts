@@ -40,6 +40,12 @@ export type StationStats = {
 	arrivals: number
 }
 
+export interface IStationToStationStats {
+	station_id: number
+	stations_of_return: object
+	stations_of_arrival: object
+}
+
 export enum ActionTypes {
 	LoadAllStations = "LoadAllStations",
 	SetActiveStation = "SetActiveStation",
@@ -58,13 +64,17 @@ export enum ActionTypesTrips {
 }
 export enum ActionTypesStats {
 	LoadAllStationStats = "LoadAllStationStats",
+	LoadStationPopular = "LoadStationPopular",
 }
 
 export interface ILoadAllStations {
 	type: ActionTypes.LoadAllStations
 	payload: [Station]
 }
-
+export interface ILoadStationPopular {
+	type: ActionTypesStats.LoadStationPopular
+	payload: IStationToStationStats
+}
 export interface ISetActiveStation {
 	type: ActionTypes.SetActiveStation
 	payload: Station

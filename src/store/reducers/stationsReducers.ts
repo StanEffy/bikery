@@ -5,6 +5,7 @@ import {
 	ILoadAllStations,
 	ILoadAllStats,
 	ISetActiveStation,
+	IStationToStationStats,
 	StationStats,
 } from "../actions/types"
 import { Station } from "../actions/types"
@@ -13,12 +14,14 @@ export type TStationsReducers = {
 	allStations: Station[]
 	activeStation: null | Station
 	allStationsStats: StationStats[]
+	popularStations: {} | IStationToStationStats
 }
 
 export const initialState: TStationsReducers = {
 	allStations: [],
 	activeStation: null,
 	allStationsStats: [],
+	popularStations: {},
 }
 type TAction =
 	| ILoadAllStations
