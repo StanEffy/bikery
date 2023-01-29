@@ -7,7 +7,9 @@ import SingleMap from "../Map/SingleMap"
 import { Box, Typography } from "@mui/material"
 import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
-import OtherStationsStats, { StationTuple } from "./OtherStationStats"
+import OtherStationsStats from "./OtherStationStats"
+import { LoadAllStationPopular } from "../../store/actions/stationsStatsActions"
+import filterTopStations from "../../utils/functions/filterTopStations"
 
 const SingleStation = () => {
 	const dispatch = useDispatch()
@@ -42,6 +44,29 @@ const SingleStation = () => {
 	const allStations = useSelector(
 		(state: TState) => state.stations.allStations
 	)
+	const popularStations = useSelector(
+		(state: TState) => state.stations.popularStations
+	)
+
+	const thisStationPopular = popularStations.find((st) => st.station_id == id)
+
+	const returnsStations = filterTopStations(
+		thisStationPopular?.stations_of_return
+	).map((station) => {
+		const { departure_station_name } = allStationsStats.find(
+			(st) => station[0] == st.departure_station_id
+		)
+		return { name: departure_station_name, trips: station[1] }
+	})
+
+	const arrivalsStations = filterTopStations(
+		thisStationPopular?.stations_of_arrival
+	).map((station) => {
+		const { departure_station_name } = allStationsStats.find(
+			(st) => station[0] == st.departure_station_id
+		)
+		return { name: departure_station_name, trips: station[1] }
+	})
 
 	const activeStation = allStations.find(
 		(st: Station) => st.ID.toString() === id
@@ -79,15 +104,28 @@ const SingleStation = () => {
 			{statsForStation?.departures && statsForStation?.returns ? (
 				<Box>
 					<OtherStationsStats
-						stationsWithTrips={statsForStation?.departures}
+						stationsWithTrips={arrivalsStations}
 						inOrOut={"departures"}
 					/>
 					<OtherStationsStats
-						stationsWithTrips={statsForStation?.returns}
+						stationsWithTrips={returnsStations}
 						inOrOut={"returns"}
 					/>
 				</Box>
 			) : null}
+
+			{/*<Box>*/}
+			{/*	{returnsStations.map((st) => (*/}
+			{/*		<p key={st.name + st.trips}>*/}
+			{/*			{`Bikers went from here to ${st.name} ${st.trips} times`}*/}
+			{/*		</p>*/}
+			{/*	))}*/}
+			{/*	{arrivalsStations.map((st) => (*/}
+			{/*		<p key={st.name + st.trips}>*/}
+			{/*			{`Bikes arrived from ${st.name} ${st.trips} times`}*/}
+			{/*		</p>*/}
+			{/*	))}*/}
+			{/*</Box>*/}
 
 			<Typography variant={"h5"} sx={{ textAlign: "center", my: 3 }}>
 				Here it is on the map!

@@ -6,8 +6,8 @@ import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 
-export type StationTuple = [string, number]
-export type StationsStats = [StationTuple] | []
+export type StationWithTrips = { name: string; trips: number }
+export type StationsStats = [StationWithTrips] | []
 type TInOrOut = "departures" | "returns"
 
 type Props = {
@@ -32,7 +32,7 @@ const OtherStationsStats: React.FC<Props> = ({
 			</AccordionSummary>
 			<AccordionDetails>
 				<Box component={"ul"} sx={{ p: 0, m: 0 }}>
-					{stationsWithTrips?.map((s: StationTuple, i) => (
+					{stationsWithTrips?.map((s: StationWithTrips, i) => (
 						<Box
 							component={"li"}
 							display={"flex"}
@@ -41,11 +41,11 @@ const OtherStationsStats: React.FC<Props> = ({
 							key={"return" + i}
 						>
 							<Typography variant={"body1"} sx={{ mr: 1 }}>
-								{s[0]}
+								{s.name}
 							</Typography>
 							<Typography variant={"body2"}>
 								<span style={{ fontWeight: "bold" }}>
-									{s[1]}
+									{s.trips}
 								</span>{" "}
 								trips
 							</Typography>
