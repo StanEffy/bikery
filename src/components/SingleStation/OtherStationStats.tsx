@@ -1,9 +1,13 @@
 import React from "react"
 import { Box } from "@mui/material"
 import Typography from "@mui/material/Typography"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import Accordion from "@mui/material/Accordion"
+import AccordionSummary from "@mui/material/AccordionSummary"
+import AccordionDetails from "@mui/material/AccordionDetails"
 
-export type StationTuple = [string, number]
-export type StationsStats = [StationTuple] | []
+export type StationWithTrips = { name: string; trips: number }
+export type StationsStats = [StationWithTrips] | []
 type TInOrOut = "departures" | "returns"
 
 type Props = {
@@ -15,29 +19,41 @@ const OtherStationsStats: React.FC<Props> = ({
 	inOrOut,
 }) => {
 	return (
-		<Box>
-			<Typography variant={"h6"}>
-				{inOrOut === "departures"
-					? "Most frequent return stations"
-					: "Most often travelers arrived from these stations"}
-			</Typography>
-			<Box>
-				{stationsWithTrips?.map((s: StationTuple, i) => (
-					<Box
-						display={"flex"}
-						flexDirection={"row"}
-						key={"return" + i}
-					>
-						<Typography variant={"caption"} sx={{ mr: 1 }}>
-							{s[0]}
-						</Typography>
-						<Typography variant={"caption"}>
-							{s[1]} trips
-						</Typography>
-					</Box>
-				))}
-			</Box>
-		</Box>
+		<Accordion>
+			<AccordionSummary
+				expandIcon={<ExpandMoreIcon />}
+				aria-controls="Most popular stations"
+			>
+				<Typography variant={"h6"}>
+					{inOrOut === "departures"
+						? "Most frequently striders departed to:"
+						: "Most often travelers arrived from:"}
+				</Typography>
+			</AccordionSummary>
+			<AccordionDetails>
+				<Box component={"ul"} sx={{ p: 0, m: 0 }}>
+					{stationsWithTrips?.map((s: StationWithTrips, i) => (
+						<Box
+							component={"li"}
+							display={"flex"}
+							flexDirection={"row"}
+							alignItems={"center"}
+							key={"return" + i}
+						>
+							<Typography variant={"body1"} sx={{ mr: 1 }}>
+								{s.name}
+							</Typography>
+							<Typography variant={"body2"}>
+								<span style={{ fontWeight: "bold" }}>
+									{s.trips}
+								</span>{" "}
+								trips
+							</Typography>
+						</Box>
+					))}
+				</Box>
+			</AccordionDetails>
+		</Accordion>
 	)
 }
 export default OtherStationsStats

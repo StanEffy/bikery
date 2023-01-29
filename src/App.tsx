@@ -11,7 +11,10 @@ import AddStationPin from "./components/AddStation/AddStationPin"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { LoadAllStations } from "./store/actions/stationsActions"
-import { LoadAllStationsStats } from "./store/actions/stationsStatsActions"
+import {
+	LoadAllStationPopular,
+	LoadAllStationsStats,
+} from "./store/actions/stationsStatsActions"
 import InitialPage from "./components/InitialPage/InitialPage"
 import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
@@ -38,6 +41,7 @@ function App() {
 	useEffect(() => {
 		dispatch<any>(LoadAllStations())
 		dispatch<any>(LoadAllStationsStats())
+		dispatch<any>(LoadAllStationPopular())
 	}, [])
 
 	useEffect(() => {

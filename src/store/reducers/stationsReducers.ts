@@ -4,27 +4,32 @@ import {
 	IAddNewStation,
 	ILoadAllStations,
 	ILoadAllStats,
+	ILoadStationPopular,
 	ISetActiveStation,
+	IStationToStationStats,
+	Station,
 	StationStats,
 } from "../actions/types"
-import { Station } from "../actions/types"
 
 export type TStationsReducers = {
 	allStations: Station[]
 	activeStation: null | Station
 	allStationsStats: StationStats[]
+	popularStations: [] | IStationToStationStats[]
 }
 
 export const initialState: TStationsReducers = {
 	allStations: [],
 	activeStation: null,
 	allStationsStats: [],
+	popularStations: [],
 }
 type TAction =
 	| ILoadAllStations
 	| IAddNewStation
 	| ISetActiveStation
 	| ILoadAllStats
+	| ILoadStationPopular
 
 export const stationsReducers = (state = initialState, action: TAction) => {
 	switch (action.type) {
@@ -35,6 +40,13 @@ export const stationsReducers = (state = initialState, action: TAction) => {
 			return {
 				...state,
 				allStationsStats: action.payload,
+			}
+		}
+		case ActionTypesStats.LoadStationPopular: {
+			console.log(action.payload)
+			return {
+				...state,
+				popularStations: action.payload,
 			}
 		}
 		case ActionTypes.AddNewStation: {

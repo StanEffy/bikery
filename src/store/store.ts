@@ -6,8 +6,8 @@ import {
 	stationsReducers,
 	TStationsReducers,
 } from "./reducers/stationsReducers"
-import { tripsReducers, TTripsState } from "./reducers/tripsReducers"
-import { alertReducers, TAlertState } from "./reducers/alertReducers"
+import { tripsReducers } from "./reducers/tripsReducers"
+import { alertReducers } from "./reducers/alertReducers"
 
 const reducer = combineReducers({
 	stations: stationsReducers,
