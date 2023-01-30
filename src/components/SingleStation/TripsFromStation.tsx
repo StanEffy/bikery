@@ -262,7 +262,7 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 				<EnhancedTableToolbar numSelected={0} />
 				<TableContainer>
 					<Table
-						sx={{ minWidth: "375px" }}
+						sx={{ minWidth: 375 }}
 						aria-labelledby="tableTitle"
 						size={dense ? "small" : "medium"}
 					>
