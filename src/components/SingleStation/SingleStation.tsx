@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
-import { Box, Typography } from "@mui/material"
+import { Box, CircularProgress, Typography } from "@mui/material"
 import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
 import OtherStationsStats from "./OtherStationStats"
@@ -122,7 +122,7 @@ const SingleStation = () => {
 				y={activeStation?.y}
 				st_id={st_id}
 			/>
-
+			<CircularProgress color="success" />
 			<TripsFromStationTable trips={tripsFromStation} />
 		</div>
 	)
