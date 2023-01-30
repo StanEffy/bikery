@@ -22,16 +22,17 @@ import {
 	IClearActiveTrips,
 	ILoadAllTripsByStation,
 	Trip,
+	TState,
 } from "../../store/actions/types"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
 	ClearActiveTrips,
 	LoadAllTripsByStation,
 } from "../../store/actions/tripsAction"
 import { Dispatch } from "redux"
-import { Button } from "@mui/material"
+import { Button, LinearProgress } from "@mui/material"
 
 interface IData {
 	departure_station_name: string | number | any
@@ -218,10 +219,6 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 		dispatch<any>(ClearActiveTrips())
 	}, [id])
 
-	useEffect(() => {
-		console.log(`Trips length is ${trips.length}`)
-	}, [trips])
-
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
 		property: keyof IData
@@ -253,128 +250,143 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - trips.length) : 0
 
-	useEffect(() => undefined, [trips])
-	return (
-		<Box sx={{ width: "100%" }}>
-			<Paper
-				sx={{ width: "100%", mb: 2, pl: 1, boxSizing: "border-box" }}
-			>
-				<EnhancedTableToolbar numSelected={0} />
-				<TableContainer>
-					<Table
-						sx={{ minWidth: 375 }}
-						aria-labelledby="tableTitle"
-						size={dense ? "small" : "medium"}
-					>
-						<TableBody>
-							{trips
-								.slice(
-									page * rowsPerPage,
-									page * rowsPerPage + rowsPerPage
-								)
-								.map(
-									(
-										{
-											departure_station_name,
-											return_station_name,
-											duration_sec,
-											covered_distance_m,
-											return_station_id,
-										},
-										index
-									) => {
-										const labelId = `enhanced-table-checkbox-${index}`
+	const isLoading = useSelector((state: TState) => state.alert.isLoading)
 
-										return (
-											<TableRow
-												hover
-												role="checkbox"
-												tabIndex={-1}
-												key={
-													departure_station_name +
-													"_" +
-													index +
-													"-row"
-												}
-												className={
-													"station-list__row--clickable"
-												}
-											>
-												<TableCell
-													component="th"
-													id={labelId}
-													scope="row"
-													padding="none"
-													className={"truncated"}
-												>
-													{departure_station_name}
-												</TableCell>
-												<TableCell
-													align="right"
-													component="th"
-													id={labelId + "-return"}
-													scope="row"
-													padding="none"
-													className={"truncated"}
-													onClick={() =>
-														handleClick(
-															return_station_id
-														)
+	return (
+		<>
+			<LinearProgress
+				color="success"
+				sx={{ display: isLoading ? "block" : "none" }}
+			/>
+			<Box sx={{ width: "100%", display: !isLoading ? "block" : "none" }}>
+				<Paper
+					sx={{
+						width: "100%",
+						mb: 2,
+						pl: 1,
+						boxSizing: "border-box",
+					}}
+				>
+					<EnhancedTableToolbar numSelected={0} />
+					<TableContainer>
+						<Table
+							sx={{ minWidth: 375 }}
+							aria-labelledby="tableTitle"
+							size={dense ? "small" : "medium"}
+						>
+							<TableBody>
+								{trips
+									.slice(
+										page * rowsPerPage,
+										page * rowsPerPage + rowsPerPage
+									)
+									.map(
+										(
+											{
+												departure_station_name,
+												return_station_name,
+												duration_sec,
+												covered_distance_m,
+												return_station_id,
+											},
+											index
+										) => {
+											const labelId = `enhanced-table-checkbox-${index}`
+
+											return (
+												<TableRow
+													hover
+													role="checkbox"
+													tabIndex={-1}
+													key={
+														departure_station_name +
+														"_" +
+														index +
+														"-row"
+													}
+													className={
+														"station-list__row--clickable"
 													}
 												>
-													{return_station_name}
-												</TableCell>
-												<TableCell align="right">
-													{Math.floor(
-														duration_sec / 60
-													)}{" "}
-													min {duration_sec % 60} sec
-												</TableCell>
-												<TableCell align="right">
-													{covered_distance_m / 1000}{" "}
-													km
-												</TableCell>
-											</TableRow>
-										)
-									}
+													<TableCell
+														component="th"
+														id={labelId}
+														scope="row"
+														padding="none"
+														className={"truncated"}
+													>
+														{departure_station_name}
+													</TableCell>
+													<TableCell
+														align="right"
+														component="th"
+														id={labelId + "-return"}
+														scope="row"
+														padding="none"
+														className={"truncated"}
+														onClick={() =>
+															handleClick(
+																return_station_id
+															)
+														}
+													>
+														{return_station_name}
+													</TableCell>
+													<TableCell align="right">
+														{Math.floor(
+															duration_sec / 60
+														)}{" "}
+														min {duration_sec % 60}{" "}
+														sec
+													</TableCell>
+													<TableCell align="right">
+														{covered_distance_m /
+															1000}{" "}
+														km
+													</TableCell>
+												</TableRow>
+											)
+										}
+									)}
+								{emptyRows > 0 && (
+									<TableRow
+										style={{
+											height:
+												(dense ? 33 : 53) * emptyRows,
+										}}
+									>
+										<TableCell colSpan={6} />
+									</TableRow>
 								)}
-							{emptyRows > 0 && (
-								<TableRow
-									style={{
-										height: (dense ? 33 : 53) * emptyRows,
-									}}
-								>
-									<TableCell colSpan={6} />
-								</TableRow>
-							)}
-						</TableBody>
-					</Table>
-				</TableContainer>
-				<TablePagination
-					rowsPerPageOptions={[5, 10, 25]}
-					component="div"
-					count={trips.length}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
+							</TableBody>
+						</Table>
+					</TableContainer>
+					<TablePagination
+						rowsPerPageOptions={[5, 10, 25]}
+						component="div"
+						count={trips.length}
+						rowsPerPage={rowsPerPage}
+						page={page}
+						onPageChange={handleChangePage}
+						onRowsPerPageChange={handleChangeRowsPerPage}
+					/>
+				</Paper>
+				<FormControlLabel
+					control={
+						<Switch checked={dense} onChange={handleChangeDense} />
+					}
+					label="Dense padding"
 				/>
-			</Paper>
-			<FormControlLabel
-				control={
-					<Switch checked={dense} onChange={handleChangeDense} />
-				}
-				label="Dense padding"
-			/>
-			<Box display={"flex"} justifyContent={"center"}>
-				<Button
-					variant={"contained"}
-					sx={{ mb: 2 }}
-					onClick={() => dispatch<any>(LoadAllTripsByStation(id))}
-				>
-					Give me ALL trips!
-				</Button>
+				<Box display={"flex"} justifyContent={"center"}>
+					<Button
+						variant={"contained"}
+						sx={{ mb: 2 }}
+						onClick={() => dispatch<any>(LoadAllTripsByStation(id))}
+					>
+						Give me ALL trips!
+					</Button>
+				</Box>
 			</Box>
-		</Box>
+		</>
 	)
 }

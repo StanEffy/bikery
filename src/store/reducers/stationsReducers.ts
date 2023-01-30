@@ -15,7 +15,7 @@ export type TStationsReducers = {
 	allStations: Station[]
 	activeStation: null | Station
 	allStationsStats: StationStats[]
-	popularStations: [] | IStationToStationStats[]
+	popularStations: IStationToStationStats[]
 }
 
 export const initialState: TStationsReducers = {

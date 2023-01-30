@@ -54,6 +54,7 @@ export enum ActionTypes {
 export enum ActionTypesAlert {
 	SetAlert = "SetAlert",
 	NullifyAlert = "NullifyAlert",
+	SetLoadingTrue = "SetLoadingTrue",
 }
 export enum ActionTypesTrips {
 	LoadAllTripsByStation = "LoadAllTripsByStation",
@@ -119,4 +120,8 @@ export interface ISetAlert {
 }
 export interface INullifyAlert {
 	type: ActionTypesAlert.NullifyAlert
+}
+
+export interface ISetLoadingTrue {
+	type: ActionTypesAlert.SetLoadingTrue
 }
