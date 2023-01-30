@@ -114,19 +114,6 @@ const SingleStation = () => {
 				</Box>
 			) : null}
 
-			{/*<Box>*/}
-			{/*	{returnsStations.map((st) => (*/}
-			{/*		<p key={st.name + st.trips}>*/}
-			{/*			{`Bikers went from here to ${st.name} ${st.trips} times`}*/}
-			{/*		</p>*/}
-			{/*	))}*/}
-			{/*	{arrivalsStations.map((st) => (*/}
-			{/*		<p key={st.name + st.trips}>*/}
-			{/*			{`Bikes arrived from ${st.name} ${st.trips} times`}*/}
-			{/*		</p>*/}
-			{/*	))}*/}
-			{/*</Box>*/}
-
 			<Typography variant={"h5"} sx={{ textAlign: "center", my: 3 }}>
 				Here it is on the map!
 			</Typography>
