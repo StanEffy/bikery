@@ -6,6 +6,8 @@ import {
 	IClearActiveTrips,
 	ILoadAllTripsByStation,
 	ISetAlert,
+	ISetLoadingFalse,
+	ISetLoadingTrue,
 	Trip,
 } from "./types"
 import { Dispatch } from "redux"
@@ -16,8 +18,18 @@ import { dispatchLoading } from "./utils"
 
 export const LoadAllTripsByStation =
 	(id: string | undefined) =>
-	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
+	async (
+		dispatch: Dispatch<
+			| ILoadAllTripsByStation
+			| ISetAlert
+			| ISetLoadingTrue
+			| ISetLoadingFalse
+		>
+	) => {
 		dispatchLoading(dispatch, "loading all trips by station...")
+		dispatch({
+			type: ActionTypesAlert.SetLoadingTrue,
+		})
 		try {
 			const { data } = await apiTrips.get("/?departure_station_id=" + id)
 			dispatch({
@@ -30,6 +42,7 @@ export const LoadAllTripsByStation =
 					type: "success",
 				},
 			})
+
 			dispatch({
 				type: ActionTypesTrips.LoadAllTripsByStation,
 				payload: data.data.data,
@@ -37,11 +50,24 @@ export const LoadAllTripsByStation =
 		} catch (e) {
 			console.log(e)
 		}
+		dispatch({
+			type: ActionTypesAlert.SetLoadingFalse,
+		})
 	}
 export const LoadSomeTripsByStation =
 	(id: string | undefined) =>
-	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
+	async (
+		dispatch: Dispatch<
+			| ILoadAllTripsByStation
+			| ISetAlert
+			| ISetLoadingTrue
+			| ISetLoadingFalse
+		>
+	) => {
 		dispatchLoading(dispatch, "loading all trips by station...")
+		dispatch({
+			type: ActionTypesAlert.SetLoadingTrue,
+		})
 		try {
 			const { data } = await apiTrips.get(
 				"/?departure_station_id=" + id + "&limit=1000"
@@ -51,7 +77,6 @@ export const LoadSomeTripsByStation =
 				"/?return_station_id=" + id + "&limit=1000"
 			)
 
-			console.log(returnTrips.data.data.data)
 			const unitedResult = [
 				...data.data.data,
 				...returnTrips.data.data.data,
@@ -81,16 +106,27 @@ export const LoadSomeTripsByStation =
 		} catch (e) {
 			console.log(e)
 		}
+		dispatch({
+			type: ActionTypesAlert.SetLoadingFalse,
+		})
 	}
 export const LoadFilteredTrips =
 	(requestString: string) =>
-	async (dispatch: Dispatch<ILoadAllTripsByStation | ISetAlert>) => {
+	async (
+		dispatch: Dispatch<
+			| ILoadAllTripsByStation
+			| ISetAlert
+			| ISetLoadingFalse
+			| ISetLoadingTrue
+		>
+	) => {
 		dispatchLoading(dispatch, "loading trips...")
+		dispatch({
+			type: ActionTypesAlert.SetLoadingTrue,
+		})
 		try {
 			const str = requestString.length > 0 ? "/?" + requestString : ""
 			const { data } = await apiTrips.get(str)
-
-			console.log(data)
 
 			dispatch({
 				type: ActionTypesTrips.LoadFilteredTrips,
@@ -106,6 +142,9 @@ export const LoadFilteredTrips =
 			}
 			console.log(e)
 		}
+		dispatch({
+			type: ActionTypesAlert.SetLoadingFalse,
+		})
 	}
 
 export const AddNewTrip =

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
-import { Box, Typography } from "@mui/material"
+import { Box, LinearProgress, Typography } from "@mui/material"
 import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
 import OtherStationsStats from "./OtherStationStats"
@@ -49,6 +49,8 @@ const SingleStation = () => {
 	)
 
 	const thisStationPopular = popularStations.find((st) => st.station_id == id)
+
+	const isLoading = useSelector((state: TState) => state.alert.isLoading)
 
 	const returnsStations = filterTopStations(
 		thisStationPopular?.stations_of_return
@@ -122,6 +124,7 @@ const SingleStation = () => {
 				y={activeStation?.y}
 				st_id={st_id}
 			/>
+			{isLoading ? <LinearProgress color="success" /> : null}
 			<TripsFromStationTable trips={tripsFromStation} />
 		</div>
 	)

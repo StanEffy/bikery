@@ -3,6 +3,7 @@ import {
 	ISetAlert,
 	INullifyAlert,
 	ISetLoadingTrue,
+	ISetLoadingFalse,
 } from "../actions/types"
 import { AlertColor } from "@mui/material"
 
@@ -23,7 +24,7 @@ export const initialState: TAlertState = {
 	visibility: false,
 	isLoading: false,
 }
-type TAction = ISetAlert | INullifyAlert | ISetLoadingTrue
+type TAction = ISetAlert | INullifyAlert | ISetLoadingTrue | ISetLoadingFalse
 
 export const alertReducers = (state = initialState, action: TAction) => {
 	switch (action.type) {
@@ -32,18 +33,25 @@ export const alertReducers = (state = initialState, action: TAction) => {
 				...state,
 				alert: action.payload,
 				visibility: true,
-				isLoading: true,
 			}
 		}
 		case ActionTypesAlert.NullifyAlert: {
 			return {
-				...initialState,
+				...state,
+				alert: null,
+				visibility: false,
 			}
 		}
 		case ActionTypesAlert.SetLoadingTrue: {
 			return {
 				...state,
 				isLoading: true,
+			}
+		}
+		case ActionTypesAlert.SetLoadingFalse: {
+			return {
+				...state,
+				isLoading: false,
 			}
 		}
 		default:
