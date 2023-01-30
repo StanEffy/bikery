@@ -218,10 +218,6 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 		dispatch<any>(ClearActiveTrips())
 	}, [id])
 
-	useEffect(() => {
-		console.log(`Trips length is ${trips.length}`)
-	}, [trips])
-
 	const handleRequestSort = (
 		event: React.MouseEvent<unknown>,
 		property: keyof IData
@@ -253,7 +249,6 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - trips.length) : 0
 
-	useEffect(() => undefined, [trips])
 	return (
 		<Box sx={{ width: "100%" }}>
 			<Paper
@@ -262,7 +257,7 @@ export default function TripsFromStationTable({ trips }: { trips: Trip[] }) {
 				<EnhancedTableToolbar numSelected={0} />
 				<TableContainer>
 					<Table
-						sx={{ minWidth: "375px" }}
+						sx={{ minWidth: 375 }}
 						aria-labelledby="tableTitle"
 						size={dense ? "small" : "medium"}
 					>
