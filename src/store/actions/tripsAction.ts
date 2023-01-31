@@ -31,7 +31,7 @@ export const LoadAllTripsByStation =
 			type: ActionTypesAlert.SetLoadingTrue,
 		})
 		try {
-			const { data } = await apiTrips.get("/?departure_station_id=" + id)
+			const { data } = await apiTrips.get("/allTrips/" + id)
 			dispatch({
 				type: ActionTypesAlert.SetAlert,
 				payload: {
