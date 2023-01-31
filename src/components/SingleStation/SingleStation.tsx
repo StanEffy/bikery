@@ -8,7 +8,6 @@ import { Box, LinearProgress, Typography } from "@mui/material"
 import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
 import OtherStationsStats from "./OtherStationStats"
-import { LoadAllStationPopular } from "../../store/actions/stationsStatsActions"
 import filterTopStations from "../../utils/functions/filterTopStations"
 
 const SingleStation = () => {
@@ -67,7 +66,10 @@ const SingleStation = () => {
 		const thisStation = allStationsStats.find(
 			(st) => station[0] == st.departure_station_id
 		)
-		return { name: thisStation?.departure_station_name, trips: station[1] }
+		return {
+			name: thisStation?.departure_station_name,
+			trips: station[1],
+		}
 	})
 
 	const activeStation = allStations.find(
