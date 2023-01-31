@@ -55,19 +55,19 @@ const SingleStation = () => {
 	const returnsStations = filterTopStations(
 		thisStationPopular?.stations_of_return
 	).map((station) => {
-		const { departure_station_name } = allStationsStats.find(
+		const thisStation = allStationsStats.find(
 			(st) => station[0] == st.departure_station_id
 		)
-		return { name: departure_station_name, trips: station[1] }
+		return { name: thisStation?.departure_station_name, trips: station[1] }
 	})
 
 	const arrivalsStations = filterTopStations(
 		thisStationPopular?.stations_of_arrival
 	).map((station) => {
-		const { departure_station_name } = allStationsStats.find(
+		const thisStation = allStationsStats.find(
 			(st) => station[0] == st.departure_station_id
 		)
-		return { name: departure_station_name, trips: station[1] }
+		return { name: thisStation?.departure_station_name, trips: station[1] }
 	})
 
 	const activeStation = allStations.find(
