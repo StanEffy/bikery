@@ -6,12 +6,13 @@ import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 
-export type StationWithTrips = { name: string; trips: number }
-export type StationsStats = [StationWithTrips] | []
+export type StationWithTrips = { name?: any; trips?: any }
+
+export type StationsStats = StationWithTrips[]
 type TInOrOut = "departures" | "returns"
 
 type Props = {
-	stationsWithTrips: StationsStats
+	stationsWithTrips: StationsStats | []
 	inOrOut: TInOrOut
 }
 const OtherStationsStats: React.FC<Props> = ({

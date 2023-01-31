@@ -14,7 +14,7 @@ import {
 export type TStationsReducers = {
 	allStations: Station[]
 	activeStation: null | Station
-	allStationsStats: StationStats[]
+	allStationsStats: [StationStats] | []
 	popularStations: IStationToStationStats[]
 }
 
