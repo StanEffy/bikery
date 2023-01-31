@@ -101,7 +101,7 @@ Mongo deployed to Atlas, backend to EC2.
 
 Soon I am going to add:
 
-- Filtering on trips
+- ~~Filtering on trips~~
     
 Partly done. Need to change functionality on backend to make it possible observe trips not only from/to one 
   station to another/any, but make several options from station. And also create limiter to top something trips
@@ -112,6 +112,7 @@ Done. Need to fix when there are no examples from one station to another to rand
     
 Done. Need to redirect to map on success.
 - Registration (without any reason, just because I want to)
-- deployment
+- ~~deployment~~
+- Update statistics on adding new trip and then listen to it
     
 Back deployed, front waiting.
