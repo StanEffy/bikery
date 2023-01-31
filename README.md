@@ -30,8 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm test`
 
-Suppose to run test but they have not been written because repo's owner doesn't know how to write meaningful test
-and Solita recommended not to write meaningless tests.
+It will run tests. You can find all the written tests in coverage folder
 
 ### `npm run build`
 
