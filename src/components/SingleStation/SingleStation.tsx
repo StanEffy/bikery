@@ -72,6 +72,11 @@ const SingleStation = () => {
 		}
 	})
 
+	useEffect(() => {
+		console.log(arrivalsStations)
+		console.log(returnsStations)
+	}, [allStationsStats])
+
 	const activeStation = allStations.find(
 		(st: Station) => st.ID.toString() === id
 	)
@@ -105,7 +110,7 @@ const SingleStation = () => {
 				median_duration={median_duration}
 				median_distance={median_distance}
 			/>
-			{statsForStation?.departures && statsForStation?.returns ? (
+			{arrivalsStations && returnsStations ? (
 				<Box>
 					<OtherStationsStats
 						stationsWithTrips={arrivalsStations}

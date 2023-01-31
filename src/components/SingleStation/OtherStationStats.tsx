@@ -19,9 +19,6 @@ const OtherStationsStats: React.FC<Props> = ({
 	stationsWithTrips,
 	inOrOut,
 }) => {
-	useEffect(() => {
-		console.log(stationsWithTrips)
-	}, [stationsWithTrips])
 	return (
 		<Accordion>
 			<AccordionSummary
