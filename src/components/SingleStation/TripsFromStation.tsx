@@ -34,13 +34,13 @@ import { Dispatch } from "redux"
 import { Button } from "@mui/material"
 
 interface IData {
-	departure_station_name: string | number | any
-	return_station_name: string | number | any
+	departure_station_name: string | number
+	return_station_name: string | number
 	duration_sec: number
 	covered_distance_m: number
 	return_station_id: number
-	departure?: string | number | any
-	return?: string | number | any
+	departure?: string | number
+	return?: string | number
 }
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
