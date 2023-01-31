@@ -72,11 +72,6 @@ const SingleStation = () => {
 		}
 	})
 
-	useEffect(() => {
-		console.log(arrivalsStations)
-		console.log(returnsStations)
-	}, [allStationsStats])
-
 	const activeStation = allStations.find(
 		(st: Station) => st.ID.toString() === id
 	)
