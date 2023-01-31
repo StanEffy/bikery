@@ -43,7 +43,6 @@ export const stationsReducers = (state = initialState, action: TAction) => {
 			}
 		}
 		case ActionTypesStats.LoadStationPopular: {
-			console.log(action.payload)
 			return {
 				...state,
 				popularStations: action.payload,

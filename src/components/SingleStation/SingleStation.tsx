@@ -5,7 +5,7 @@ import { Station, StationStats, TState } from "../../store/actions/types"
 import SingleStationStatsTable from "./SingleStationStatsTable"
 import SingleMap from "../Map/SingleMap"
 import { Box, LinearProgress, Typography } from "@mui/material"
-import { LoadSomeTripsByStation } from "../../store/actions/tripsAction"
+import { LoadAllTripsByStation } from "../../store/actions/tripsAction"
 import TripsFromStationTable from "./TripsFromStation"
 import OtherStationsStats from "./OtherStationStats"
 import filterTopStations from "../../utils/functions/filterTopStations"
@@ -34,7 +34,7 @@ const SingleStation = () => {
 	)
 
 	useEffect(() => {
-		dispatch<any>(LoadSomeTripsByStation(id))
+		dispatch<any>(LoadAllTripsByStation(id))
 	}, [id])
 
 	const allStationsStats = useSelector(
