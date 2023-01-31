@@ -1,7 +1,6 @@
 import { TTripsState } from "../reducers/tripsReducers"
 import { TStationsReducers } from "../reducers/stationsReducers"
 import { TAlert, TAlertState } from "../reducers/alertReducers"
-import { LoadSomeTripsByStation } from "./tripsAction"
 import { StationsStats } from "../../components/SingleStation/OtherStationStats"
 
 export type Station = {

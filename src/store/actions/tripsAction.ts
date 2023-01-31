@@ -54,62 +54,6 @@ export const LoadAllTripsByStation =
 			type: ActionTypesAlert.SetLoadingFalse,
 		})
 	}
-export const LoadSomeTripsByStation =
-	(id: string | undefined) =>
-	async (
-		dispatch: Dispatch<
-			| ILoadAllTripsByStation
-			| ISetAlert
-			| ISetLoadingTrue
-			| ISetLoadingFalse
-		>
-	) => {
-		dispatchLoading(dispatch, "loading all trips by station...")
-		dispatch({
-			type: ActionTypesAlert.SetLoadingTrue,
-		})
-		try {
-			const { data } = await apiTrips.get(
-				"/?departure_station_id=" + id + "&limit=1000"
-			)
-
-			const returnTrips = await apiTrips.get(
-				"/?return_station_id=" + id + "&limit=1000"
-			)
-
-			const unitedResult = [
-				...data.data.data,
-				...returnTrips.data.data.data,
-			]
-
-			dispatch({
-				type: ActionTypesAlert.SetAlert,
-				payload: {
-					message:
-						unitedResult.length > 0
-							? `Loaded ${unitedResult.length} trips`
-							: "Loaded ZERO trips! Hm-m-m...",
-					type: "success",
-				},
-			})
-			console.log(data)
-
-			dispatch({
-				type: ActionTypesTrips.LoadSomeTripsByStation,
-				payload: {
-					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-					// @ts-ignore
-					trips: unitedResult,
-					stats: data.data.stats,
-				},
-			})
-		} catch (e) {
-			console.log(e)
-		}
-		dispatch({
-			type: ActionTypesAlert.SetLoadingFalse,
-		})
-	}
 export const LoadFilteredTrips =
 	(requestString: string) =>
 	async (
