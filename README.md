@@ -30,8 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm test`
 
-Suppose to run test but they have not been written because repo's owner doesn't know how to write meaningful test
-and Solita recommended not to write meaningless tests.
+It will run tests. You can find all the written tests in coverage folder
 
 ### `npm run build`
 
@@ -92,17 +91,15 @@ Futurama seen by me.
 
 ## Tech used
 
-For the project I used classic MERN stack with Typescript on frontend and javascript on back.
-Also MUI was used for the UI, simply because I wanted to have one more training with others code and also feel way
-more comfortable when I write css myself: coding is not about always being comfortable with technologies.
+For the project I used classic MERN stack with Typescript. Simply because it is one of the most used one. 
+MUI was used for the UI, simply because it was an important thing to work with the other approach towards css (I really adored BEM, even though it is not a thing anymore).
+I am going to dive even deeper and create flexibility and may be theming. 
 
 Mongo deployed to Atlas, backend to EC2.
 
 ## To do
 
-Soon I am going to add:
-
-- Filtering on trips
+- ~~Filtering on trips~~
     
 Partly done. Need to change functionality on backend to make it possible observe trips not only from/to one 
   station to another/any, but make several options from station. And also create limiter to top something trips
@@ -113,6 +110,7 @@ Done. Need to fix when there are no examples from one station to another to rand
     
 Done. Need to redirect to map on success.
 - Registration (without any reason, just because I want to)
-- deployment
+- ~~deployment~~
+- Update statistics on adding new trip and then listen to it
     
 Back deployed, front waiting.

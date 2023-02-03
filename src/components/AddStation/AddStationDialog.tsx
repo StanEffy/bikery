@@ -63,7 +63,7 @@ const AddStationDialog = ({
 				<Box />
 				<IconButton
 					color={"error"}
-					aria-label="delete"
+					aria-label="Cancel adding new station"
 					size="large"
 					onClick={() => handleClose()}
 				>
