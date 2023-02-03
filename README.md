@@ -91,15 +91,13 @@ Futurama seen by me.
 
 ## Tech used
 
-For the project I used classic MERN stack with Typescript on frontend and javascript on back.
-Also MUI was used for the UI, simply because I wanted to have one more training with others code and also feel way
-more comfortable when I write css myself: coding is not about always being comfortable with technologies.
+For the project I used classic MERN stack with Typescript. Simply because it is one of the most used one. 
+MUI was used for the UI, simply because it was an important thing to work with the other approach towards css (I really adored BEM, even though it is not a thing anymore).
+I am going to dive even deeper and create flexibility and may be theming. 
 
 Mongo deployed to Atlas, backend to EC2.
 
 ## To do
-
-Soon I am going to add:
 
 - ~~Filtering on trips~~
     
