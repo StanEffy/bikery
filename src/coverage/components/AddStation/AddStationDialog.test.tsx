@@ -18,17 +18,31 @@ describe("check add station button functionality", () => {
 
     })
 
-    test("both buttons - delete and send - exist when dialog is opened",  () => {
+    test("both buttons - cancel and send - exist when dialog is opened",  () => {
         render(
             <ReduxTestProvider>
                 <AddStationDialog handleClose={mockCb} open={true} x={1} y={1}/>
             </ReduxTestProvider>
         )
-        const buttonDelete = screen.getByLabelText("delete")
+        const buttonDelete = screen.getByLabelText("Cancel adding new station")
         expect(buttonDelete).toBeInTheDocument()
 
         const buttonSend = screen.getByText("Send station")
         expect(buttonSend).toBeInTheDocument()
+    })
+
+    test("both name and address fields are in the form",  () => {
+        render(
+            <ReduxTestProvider>
+                <AddStationDialog handleClose={mockCb} open={true} x={1} y={1}/>
+            </ReduxTestProvider>
+        )
+        const nameTextField = screen.getByLabelText("Station name")
+        expect(nameTextField).toBeInTheDocument()
+
+
+        const addressTextField = screen.getByLabelText("Station address")
+        expect(addressTextField).toBeInTheDocument()
     })
 })
 
