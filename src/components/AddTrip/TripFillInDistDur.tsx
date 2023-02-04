@@ -24,11 +24,18 @@ const TripFillInDistDur = ({
 		})
 	}
 	return (
-		<Box display={"flex"} justifyContent={"center"} sx={{ p: 2 }}>
+		<Box
+			display={"flex"}
+			justifyContent={"center"}
+			sx={{ p: 2 }}
+			flexDirection={"row"}
+			flexWrap={"wrap"}
+		>
 			<TextField
 				type="number"
 				label={"distance meters (100+)"}
 				required={true}
+				sx={{ mx: 2, mb: 2 }}
 				inputProps={{
 					min: 100,
 				}}

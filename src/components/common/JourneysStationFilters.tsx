@@ -36,6 +36,7 @@ export const JourneysStationFilters: React.FC<Props> = ({
 		<Autocomplete
 			disablePortal
 			id={"autocomplete" + label.split(" ").join("")}
+			aria-label={"autocomplete" + label.split(" ").join("")}
 			options={allStations}
 			onChange={(event, value) => {
 				handleStationChange(value)
@@ -44,7 +45,6 @@ export const JourneysStationFilters: React.FC<Props> = ({
 				width: 300,
 				mb: {
 					xs: 2,
-					md: 0,
 				},
 			}}
 			getOptionLabel={(option: Station) => option.Name}

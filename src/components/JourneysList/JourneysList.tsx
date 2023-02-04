@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {
-	DistanceFilter,
-	DurationFilter,
-	SelectMonth,
-	TWarmMonths,
-} from "./JourneysFilters"
+import { DistanceFilter, DurationFilter, SelectMonth } from "./JourneysFilters"
 import { Box, Button, FormControlLabel } from "@mui/material"
 import TripsFromStationTable from "../SingleStation/TripsFromStation"
 import { useDispatch, useSelector } from "react-redux"

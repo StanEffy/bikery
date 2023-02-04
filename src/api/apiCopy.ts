@@ -1,8 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
-//This file is needed in case you want to try it with locally working server
-//I struggled a lot with ec2
-// may be I will set up variables and different commands for ui
+//This file is needed in case I want to try it with locally working server
 import axios from "axios"
 
 export const apiStations = axios.create({

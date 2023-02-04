@@ -29,6 +29,7 @@
 		"redux": "^4.2.0",
 		"redux-devtools-extension": "^2.13.9",
 		"redux-thunk": "^2.4.1",
+		"ts-jest": "^29.0.5",
 		"web-vitals": "^2.1.4",
 		"worker-loader": "^3.0.8"
 	},

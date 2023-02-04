@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 import * as React from "react"
 import { alpha } from "@mui/material/styles"
 import Box from "@mui/material/Box"
@@ -18,11 +20,7 @@ import Switch from "@mui/material/Switch"
 
 import { visuallyHidden } from "@mui/utils"
 
-import {
-	IClearActiveTrips,
-	ILoadAllTripsByStation,
-	Trip,
-} from "../../store/actions/types"
+import { Trip } from "../../store/actions/types"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
@@ -30,7 +28,6 @@ import {
 	ClearActiveTrips,
 	LoadAllTripsByStation,
 } from "../../store/actions/tripsAction"
-import { Dispatch } from "redux"
 import { Button } from "@mui/material"
 
 interface IData {
