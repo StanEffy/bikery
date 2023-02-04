@@ -1,4 +1,4 @@
-import {fireEvent, render, screen, within} from "@testing-library/react"
+import {act, fireEvent, getAllByRole, render, screen, within} from "@testing-library/react"
 import React from "react"
 import {ReduxTestProvider} from "../../testHelper"
 import AddTrip from "../../../components/AddTrip/AddTrip"
@@ -35,7 +35,7 @@ describe("check add station button functionality", () => {
     })
 
 
-    // test("Two more fields appear when stations are selected",  () => {
+    // test("Two more fields appear when stations are selected",  async () => {
     //     render(
     //         <ReduxTestProvider>
     //             <AddTrip />
@@ -49,7 +49,13 @@ describe("check add station button functionality", () => {
     //
     //     expect(autocompleteDeparture).toBeInTheDocument()
     //
-    //     fireEvent.change(inputDeparture, { target: { value: "Hanasaari" } })
+    //     await act(async () => {
+    //         await new Promise(resolve => setTimeout(resolve, 0))
+    //     })
+    //
+    //     const val = screen.getByLabelText("Arrival station")
+    //     console.log(val)
+    //     fireEvent.click(val)
     //
     //     expect(screen.getByText(/Hanasaari/)).toBeInTheDocument()
     //

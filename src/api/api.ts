@@ -14,3 +14,7 @@ export const apiTrips = axios.create({
 	baseURL: "/api/v1/trips/",
 	"Access-Control-Allow-Credentials": true,
 })
+export const apiStationsPopular = axios.create({
+	baseURL: "/api/v1/stationToStation/",
+	"Access-Control-Allow-Credentials": true,
+})
