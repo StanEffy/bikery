@@ -93,8 +93,7 @@ const AddTrip = () => {
 			</Box>
 
 			<Typography textAlign={"center"} sx={{ p: 2 }}>
-				Your distance and time should be adequate. Why? Because I am not
-				handling all the errors yet...
+				Distance or duration can&rsquo;t be less than 100 units!
 			</Typography>
 
 			{!!filters.departure_station_id &&
