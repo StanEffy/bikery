@@ -1,4 +1,4 @@
-import { apiStations } from "../../api/apiCopy"
+import { apiStations } from "../../api/api"
 import {
 	ActionTypes,
 	ActionTypesAlert,

@@ -1,4 +1,4 @@
-import { apiTrips } from "../../api/apiCopy"
+import { apiTrips } from "../../api/api"
 import {
 	ActionTypesAlert,
 	ActionTypesTrips,
