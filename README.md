@@ -77,6 +77,10 @@ There is a table which consist of some trips started from this station with cove
 Also there is a page where you can have a look on every single station, click on the row and go straight to this
 station.
 
+On single station view you can also learn the most popular routes to and from just by clicking on accordion 
+
+[![Single station view](https://i.postimg.cc/DyhcZq4h/Screenshot-from-2023-02-04-18-47-06.png)](https://postimg.cc/23HW9Lx9)
+
 [![filters.jpg](https://i.postimg.cc/MpdLzF41/filters.jpg)](https://postimg.cc/18VBHJyz)
 You can go to Journeys page and use its' rather primitive filtering system. I promise it is going to become bigger and
 easier to use. For now, you can select one station and look for specifically long/short trips or observe all of them
