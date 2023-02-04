@@ -1,4 +1,4 @@
-import { apiStationsPopular, apiStationsStats } from "../../api/apiCopy"
+import { apiStationsPopular, apiStationsStats } from "../../api/api"
 
 import { Dispatch } from "redux"
 import { ActionTypesStats, ILoadAllStats, ILoadStationPopular } from "./types"

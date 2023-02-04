@@ -15,6 +15,19 @@ Backend is in separate repo and to make it all works you should go and install a
 Open [https://github.com/StanEffy/back-bikery](https://github.com/StanEffy/back-bikery) and clone repo the same way
 with `npm i` afterwards.
 
+# BUT
+
+The easiest way might be just to pull the image from dockerhub 
+
+`docker pull holydonk/bickery:final`
+
+And then do something like
+`docker run -t -i -p 3002:3002 holydonk/bickery:final`
+
+Voila! App is running on your localhost 3002
+
+[http://localhost:3002/]
+
 You can write me in telegram @Holydonk to get a pass to a db. 
 
 In the project directory, you can run:
