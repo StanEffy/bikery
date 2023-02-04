@@ -26,7 +26,7 @@ And then do something like
 
 Voila! App is running on your localhost 3002
 
-[http://localhost:3002/]
+[http://localhost:3002/](http://localhost:3002/)
 
 You can write me in telegram @Holydonk to get a pass to a db. 
 
