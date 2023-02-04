@@ -1,6 +1,7 @@
 # Bikery - roll the HEL out of here!
 
 http://52.47.173.43:8080/ - this is where you can have a look on a working app. (Combined node + react deployed to AWS EC2)
+### This is **previous** version of an app. Newer one can be used in docker
 
 This is a project based on a dataset which consisted of three months of lovely bike journeys around Helsinki. The
 collection of the documents is about 3 000 000, so you can easily learn some patterns in paths in the city and
@@ -26,7 +27,7 @@ And then do something like
 
 Voila! App is running on your localhost 3002
 
-[http://localhost:3002/]
+[http://localhost:3002/](http://localhost:3002/)
 
 You can write me in telegram @Holydonk to get a pass to a db. 
 
