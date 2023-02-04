@@ -5,6 +5,7 @@ import { Box } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import React from "react"
 import { TFilter } from "../JourneysList/JourneysList"
+import { nanoid } from "nanoid"
 
 type Props = {
 	label: string
@@ -47,16 +48,19 @@ export const JourneysStationFilters: React.FC<Props> = ({
 				},
 			}}
 			getOptionLabel={(option: Station) => option.Name}
-			renderOption={(props, option) => (
-				<Box
-					component="li"
-					sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-					{...props}
-					key={option.Name + label}
-				>
-					{option.Name}
-				</Box>
-			)}
+			renderOption={(props, option) => {
+				const uniqueId = nanoid()
+				return (
+					<Box
+						component="li"
+						sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+						{...props}
+						key={uniqueId}
+					>
+						{option.Name}
+					</Box>
+				)
+			}}
 			renderInput={(params) => <TextField {...params} label={label} />}
 		/>
 	)
