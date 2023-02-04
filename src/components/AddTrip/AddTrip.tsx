@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { JourneysStationFilters } from "../common/JourneysStationFilters"
 import { TFilter } from "../JourneysList/JourneysList"
-import { AddNewTrip, LoadFilteredTrips } from "../../store/actions/tripsAction"
-import createJourneysQueryString from "../../utils/functions/createJourneysQueryString"
+import { AddNewTrip } from "../../store/actions/tripsAction"
 import { Box, Button, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { TState } from "../../store/actions/types"
@@ -23,10 +22,6 @@ const AddTrip = () => {
 	})
 
 	const res = { duration: 0, length: 0 }
-
-	const handleFilter = () => {
-		dispatch<any>(LoadFilteredTrips(createJourneysQueryString(filters)))
-	}
 
 	const toggleDisable = () => {
 		const {

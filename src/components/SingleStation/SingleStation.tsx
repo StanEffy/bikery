@@ -29,9 +29,6 @@ const SingleStation = () => {
 	const tripsFromStation = useSelector(
 		(state: TState) => state.trips.tripsForActiveStation
 	)
-	const statsForStation = useSelector(
-		(state: TState) => state.trips.mostPopularStations
-	)
 
 	useEffect(() => {
 		dispatch<any>(LoadAllTripsByStation(id))
