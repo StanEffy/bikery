@@ -44,7 +44,6 @@ export const JourneysStationFilters: React.FC<Props> = ({
 				width: 300,
 				mb: {
 					xs: 2,
-					md: 0,
 				},
 			}}
 			getOptionLabel={(option: Station) => option.Name}

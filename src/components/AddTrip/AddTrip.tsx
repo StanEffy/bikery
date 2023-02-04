@@ -78,8 +78,9 @@ const AddTrip = () => {
 			<Box
 				display={"flex"}
 				flexDirection={"row"}
-				sx={{ py: 2 }}
+				sx={{ py: 2, maxWidth: 580, margin: "0 auto" }}
 				justifyContent={"center"}
+				alignItems={"center"}
 				flexWrap={"wrap"}
 			>
 				<JourneysStationFilters
