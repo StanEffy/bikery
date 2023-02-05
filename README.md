@@ -1,7 +1,6 @@
 # Bikery - roll the HEL out of here!
 
-http://35.180.152.206/ - this is where you can have a look on a working app. (Combined node + react deployed to AWS EC2)
-### This is **previous** version of an app. Newer one can be used in docker
+http://35.180.152.206/ - this is where you can have a look on a working app. (Combined node + react deployed to AWS EC2 as a Docker container)
 
 This is a project based on a dataset which consisted of three months of lovely bike journeys around Helsinki. The
 collection of the documents is about 3 000 000, so you can easily learn some patterns in paths in the city and
