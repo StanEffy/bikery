@@ -129,5 +129,18 @@ Done. Need to redirect to map on success.
 - Registration (without any reason, just because I want to)
 - ~~deployment~~
 - Update statistics on adding new trip and then listen to it
+- Store migrating from redux to zustand
+- Make native content tables
+- Animations
+- E2E
+- Rewrite error handling
+- Main page redesign
+- Mobile menu
+- More tests for logic
+- Better architecture
+- Docs
+- Ci/cd
+- redesign filters
+- Better UX on adding new trips/stations
     
 Back deployed, front waiting.
