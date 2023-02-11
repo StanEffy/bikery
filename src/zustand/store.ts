@@ -19,7 +19,7 @@ type Actions = {
 	setActiveStation: (activeStation: Station) => void
 }
 
-const useStore = create<State & Actions>((set) => ({
+export const useStationsStore = create<State & Actions>((set) => ({
 	allStations: [],
 	activeStation: null,
 	allStationsStats: [],
