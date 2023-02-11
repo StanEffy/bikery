@@ -12,9 +12,14 @@ type State = {
 	popularStations: IStationToStationStats[]
 }
 
-type Actions = {}
+type Actions = {
+	loadAllStations: (stations: Station[]) => void
+	loadAllStationsStats: (allStationsStats: [StationStats]) => void
+	loadStationPopular: (popularStations: IStationToStationStats[]) => void
+	setActiveStation: (activeStation: Station) => void
+}
 
-const useStore = create<State & Actions>((set) => ({
+export const useStationsStore = create<State & Actions>((set) => ({
 	allStations: [],
 	activeStation: null,
 	allStationsStats: [],
