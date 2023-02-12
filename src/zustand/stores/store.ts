@@ -1,9 +1,5 @@
 import { create } from "zustand"
-import {
-	IStationToStationStats,
-	Station,
-	StationStats,
-} from "../store/actions/types"
+import { IStationToStationStats, Station, StationStats } from "../actions/types"
 
 type State = {
 	allStations: Station[]
