@@ -9,6 +9,7 @@ import AddStationDialog from "../AddStation/AddStationDialog"
 
 // added the following 6 lines.
 import mapboxgl from "mapbox-gl"
+import { useStationsStore } from "../../zustand/stores/stationsStore"
 
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
@@ -27,9 +28,11 @@ const MapComponent = () => {
 		zoom: 13,
 	})
 
-	const allStations = useSelector(
-		(state: TState) => state.stations.allStations
-	)
+	const allStations = useStationsStore((state) => state.allStations)
+	console.log(allStations)
+	// const allStations = useSelector(
+	// 	(state: TState) => state.stations.allStations
+	// )
 
 	const navigate = useNavigate()
 	const [points, setPoints] = useState({

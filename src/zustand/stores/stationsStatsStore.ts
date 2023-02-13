@@ -1,6 +1,5 @@
 import { create } from "zustand"
 import { IStationToStationStats, Station, StationStats } from "../actions/types"
-import { apiStations } from "../../api/apiCopy"
 
 type State = {
 	allStations: Station[]
@@ -10,7 +9,7 @@ type State = {
 }
 
 type Actions = {
-	loadAllStations: () => void
+	loadAllStations: (stations: Station[]) => void
 	loadAllStationsStats: (allStationsStats: [StationStats]) => void
 	loadStationPopular: (popularStations: IStationToStationStats[]) => void
 	setActiveStation: (activeStation: Station) => void
@@ -21,10 +20,8 @@ export const useStationsStore = create<State & Actions>((set) => ({
 	activeStation: null,
 	allStationsStats: [],
 	popularStations: [],
-	loadAllStations: async () => {
-		const { data } = await apiStations.get("/")
-		set(() => ({ allStations: data.data.data }))
-	},
+	loadAllStations: (stations: Station[]) =>
+		set(() => ({ allStations: stations })),
 	loadAllStationsStats: (allStationsStats: [StationStats]) =>
 		set(() => ({ allStationsStats: allStationsStats })),
 	loadStationPopular: (popularStations: IStationToStationStats[]) =>
