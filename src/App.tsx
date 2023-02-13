@@ -22,6 +22,8 @@ import AppAlert from "./components/Alert/Alert"
 import Box from "@mui/material/Box"
 import { TState } from "./store/actions/types"
 import { NullifyAlert } from "./store/actions/alertAction"
+import { ZLoadAllStations } from "./zustand/actions/stationsActions"
+import { useStationsStore } from "./zustand/stores/stationsStore"
 
 function App() {
 	const dispatch = useDispatch()
@@ -37,12 +39,17 @@ function App() {
 	})
 
 	const alert = useSelector((state: TState) => state.alert)
+	const loadAllStations = useStationsStore((state) => state.loadAllStations)
 
 	useEffect(() => {
-		dispatch<any>(LoadAllStations())
-		dispatch<any>(LoadAllStationsStats())
-		dispatch<any>(LoadAllStationPopular())
+		loadAllStations()
+		//dispatch<any>(LoadAllStations())
+		//dispatch<any>(LoadAllStationsStats())
+		//dispatch<any>(LoadAllStationPopular())
 	}, [])
+
+	const allStations = useStationsStore((state) => state.allStations)
+	console.log(allStations)
 
 	useEffect(() => {
 		if (alert.alert) {

@@ -6,7 +6,6 @@ import {
 	IClearActiveTrips,
 } from "../actions/types"
 
-import { Station } from "../actions/types"
 import { StationsStats } from "../../components/SingleStation/OtherStationStats"
 
 export type TTripsState = {

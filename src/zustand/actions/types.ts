@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { TTripsState } from "../reducers/tripsReducers"
 import { TStationsReducers } from "../reducers/stationsReducers"
 import { TAlert, TAlertState } from "../reducers/alertReducers"
