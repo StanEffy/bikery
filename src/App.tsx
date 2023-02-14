@@ -43,13 +43,9 @@ function App() {
 
 	useEffect(() => {
 		loadAllStations()
-		//dispatch<any>(LoadAllStations())
 		//dispatch<any>(LoadAllStationsStats())
 		//dispatch<any>(LoadAllStationPopular())
 	}, [])
-
-	const allStations = useStationsStore((state) => state.allStations)
-	console.log(allStations)
 
 	useEffect(() => {
 		if (alert.alert) {
