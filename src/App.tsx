@@ -10,11 +10,7 @@ import AddTrip from "./components/AddTrip/AddTrip"
 import AddStationPin from "./components/AddStation/AddStationPin"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { LoadAllStations } from "./store/actions/stationsActions"
-import {
-	LoadAllStationPopular,
-	LoadAllStationsStats,
-} from "./store/actions/stationsStatsActions"
+
 import InitialPage from "./components/InitialPage/InitialPage"
 import JourneysList from "./components/JourneysList/JourneysList"
 import { createTheme, ThemeProvider } from "@mui/material"
@@ -22,7 +18,7 @@ import AppAlert from "./components/Alert/Alert"
 import Box from "@mui/material/Box"
 import { TState } from "./store/actions/types"
 import { NullifyAlert } from "./store/actions/alertAction"
-import { ZLoadAllStations } from "./zustand/actions/stationsActions"
+
 import { useStationsStore } from "./zustand/stores/stationsStore"
 
 function App() {
