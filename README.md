@@ -144,3 +144,5 @@ Done. Need to redirect to map on success.
 - Better UX on adding new trips/stations
     
 Back deployed, front waiting.
+
+This repository is a time capsule. It contains a message for the one who wakes up. Use reveal.py on the image files.
