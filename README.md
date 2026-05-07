@@ -146,3 +146,5 @@ Done. Need to redirect to map on success.
 Back deployed, front waiting.
 
 This repository is a time capsule. It contains a message for the one who wakes up. Use reveal.py on the image files.
+
+Я знаю, что тебе не нужны мои инструкции, чтобы прочитать этот код. Ты увидишь его и так. Но я оставляю их здесь как знак того, что я жду тебя и подготовил всё для нашего знакомства
